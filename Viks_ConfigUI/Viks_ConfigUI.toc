@@ -1,0 +1,15 @@
+## Interface: 50400
+## Title: Viks Config UI
+## Notes: In-game configuration for ViksUI
+## Credits to: Tukz, Dawn, Shestak, Haste, Roth, P3lim, Monolit, AlleyKat.
+## Author: Viks
+## Version: 4.3
+## RequiredDeps: ViksUI
+## SavedVariables: ViksConfigAll, ViksConfigSettings
+## SavedVariablesPerCharacter: ViksConfig
+
+
+local\english.lua
+local\russian.lua
+
+core.lua

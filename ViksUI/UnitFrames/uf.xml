@@ -1,0 +1,26 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="cfg.lua"/>
+	<Script file="castbar.lua"/>
+	<Script file="tags.lua"/>
+	<Script file="move.lua"/>
+	<Script file="Elements\afk1.lua"/>
+	<Script file="Elements\AuraWatch.lua"/>
+	<Script file="Elements\DebuffHighlight.lua"/>
+	<Script file="Elements\raidDebuffs.lua"/>
+	<Script file="Elements\auras.lua"/>
+	<Script file="Elements\Indicators.lua"/>
+	<Script file="Elements\Indicators2.lua"/>
+	<Script file="Elements\autorez1.lua"/>
+	<Script file="Elements\1heals.lua"/>
+	<Script file="Elements\range.lua"/>
+	<Script file="Plugins\Experience.lua"/>
+	<Script file="Plugins\HarmonyBar.lua"/>
+	<Script file="Plugins\Reputation.lua"/>
+	<Script file="Plugins\oUF_Smooth.lua"/>
+	<Script file="Plugins\oUF_Trinkets.lua"/>
+	<Script file="Plugins\TotemBar.lua"/>
+	<Script file="Plugins\WarlockSpecBars.lua"/>
+	<Script file="Plugins\oUF_RaidDebuffs.lua"/>
+	<Script file="lib.lua"/>
+	<Script file="core.lua"/>
+</Ui>
