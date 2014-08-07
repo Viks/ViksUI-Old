@@ -3,7 +3,7 @@
 	<Script file="Core\Constants.lua"/>
 	<Script file="Locales\English.lua"/>
 
-	
+	<Include file="Libs\LibSharedMedia-3.0\lib.xml"/>
 	<Script file="Config\LibSharedMedia.lua"/>
 	<Script file="Config\variables.lua"/>
 	<Script file="Config\config.lua"/>
@@ -50,7 +50,6 @@
 	<Script file="Main\move.lua"/>
 	<Script file="Main\Core.lua"/>
 	<Script file="Core\Functions.lua"/>
-	<Include file="Config\addonssettings\addons.xml"/>
 	<Script file="Core\Launch.lua"/>
 	<Script file="Core\Disable.lua"/>
 	<Script file="Core\Commands.lua"/>
@@ -327,5 +326,6 @@
 	<Script file="Modules\Skins\TinyDPS.lua"/>
 	<Script file="Modules\Skins\VanasKoS.lua"/>
 	<Script file="Modules\Skins\WeakAuras.lua"/>
+	<Script file="Modules\Skins\tmp.lua"/>
 	<Script file="Modules\Automation\tmp.lua"/>
 </Ui>
