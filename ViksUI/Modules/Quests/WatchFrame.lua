@@ -22,40 +22,9 @@ function ToggleTitle()
 end
 ToggleTitle()
 
---// Move function by rQuestWatchFrameMover
-  local function rQWFM_Tooltip(self)
-    GameTooltip:SetOwner(self, "ANCHOR_TOP")
-    GameTooltip:AddLine("Drag me!", 0, 1, 0.5, 1, 1, 1)
-    GameTooltip:Show()
-  end
 
-  WatchFrame:SetClampedToScreen(true)
-  WatchFrame:SetMovable(true)
-  WatchFrame:SetUserPlaced(true)
-  WatchFrame:ClearAllPoints()
-  WatchFrame.ClearAllPoints = function() end
-  WatchFrame:SetPoint("TOPRIGHT", CPMinimb1, "BOTTOMRIGHT", 0, 10)
-  WatchFrame.SetPoint = function() end
-  WatchFrame:SetHeight(450)
- 
- local wfh = WatchFrameHeader
-  wfh:EnableMouse(true)
-  wfh:RegisterForDrag("LeftButton")
-  wfh:SetHitRectInsets(-15, -15, -5, -5)
-  wfh:SetScript("OnDragStart", function(s)
-    local f = s:GetParent()
-    f:StartMoving()
-  end)
-  wfh:SetScript("OnDragStop", function(s)
-    local f = s:GetParent()
-    f:StopMovingOrSizing()
-  end)
-  wfh:SetScript("OnEnter", function(s)
-    rQWFM_Tooltip(s)
-  end)
-  wfh:SetScript("OnLeave", function(s)
-    GameTooltip:Hide()
-  end) 
+WatchFrame:SetPoint("TOPRIGHT", CPMinimb1, "BOTTOMRIGHT", 0, 10)
+WatchFrame:SetClampedToScreen(true)
 
 function ToggleButton()
 	if showCollapseButton then
