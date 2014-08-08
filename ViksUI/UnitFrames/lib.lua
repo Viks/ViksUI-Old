@@ -1521,42 +1521,41 @@ end
 
 --WARLOCK
 lib.genShards = function(self)
-    if playerClass ~= "WARLOCK" then return end
- 
-    local ShardsFrame = CreateFrame("Frame", nil, self)
-    ShardsFrame:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0,2)
-    ShardsFrame:SetHeight(6)
-    ShardsFrame:SetWidth(self:GetWidth())
-    ShardsFrame:SetFrameLevel(4)
-    -- Tukz color scheme again
-    local Colors = {  
-    [1] = {109/255, 51/255, 188/255, 1},
-    [2] = {139/255, 51/255, 188/255, 1},
-    [3] = {179/255, 51/255, 188/255, 1},
-    [4] = {209/255, 51/255, 188/255, 1},
-    }
-    local totalShards = 4 
-        for i= 1, totalShards do
-            local Shards = CreateFrame("StatusBar", nil, ShardsFrame)
-            Shards:SetSize((ShardsFrame:GetWidth())/totalShards, 6)
-            Shards:SetStatusBarTexture(cfg.statusbar_texture)
-            Shards:SetFrameLevel(4)
-			Shards:SetStatusBarColor(unpack(Colors[i]))
-            local h = CreateFrame("Frame", nil, Shards)
-            h:SetFrameLevel(1)
-            h:SetPoint("TOPLEFT",-5,5)
-            h:SetPoint("BOTTOMRIGHT",5,-5)
-			frame1px2_2(h)
-            
-            if (i == 1) then
-                Shards:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 4)
-            else
-                Shards:SetPoint("LEFT", ShardsFrame[i-1], "RIGHT", 6, 0)
-            end
-            
-            ShardsFrame[i] = Shards
-    end  
-    self.WarlockSpecBars = ShardsFrame
+	if myclass == "WARLOCK" then
+		local wb = CreateFrame("Frame", "WarlockSpecBars", self)
+		wb:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 6)
+		wb:SetWidth(self:GetWidth()-5)
+		wb:SetHeight(6)
+		wb:CreateBackdrop("Default", "Shadow")
+					
+		wb:SetBackdropColor(0, 0, 0)
+		wb:SetBackdropBorderColor(0, 0, 0)	
+		--frame1px2_2(wb)
+		wb:SetFrameLevel(6)
+			for i = 1, 4 do
+				wb[i] = CreateFrame("StatusBar", "WarlockSpecBars"..i, wb)
+				wb[i]:SetHeight(6)
+				wb[i]:SetStatusBarTexture(cfg.statusbar_texture)
+						
+					if i == 1 then
+						wb[i]:SetWidth(30, 6)
+						wb[i]:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 2, 4)
+					else
+						wb[i]:SetWidth(30, 6)
+						wb[i]:SetPoint("LEFT", wb[i-1], "RIGHT", 1, 0)
+					end
+						wb[i].bg = wb[i]:CreateTexture(nil, 'ARTWORK')
+			end
+		wb:SetScript("OnShow", function(self) 
+		local f = self:GetParent()			
+		end)
+					
+		wb:SetScript("OnHide", function(self)
+		local f = self:GetParent()
+		end)
+					
+		self.WarlockSpecBars = wb				
+	end
 end
 
 -- Paladins, HolyPowerbar

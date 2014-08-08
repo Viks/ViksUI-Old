@@ -29,6 +29,7 @@ local oUF = ns.oUF
 
 local SPELL_POWER_SOUL_SHARDS = SPELL_POWER_SOUL_SHARDS
 
+local SHARD_BAR_NUM_SHARDS = SHARD_BAR_NUM_SHARDS
 
 local Update = function(self, event, unit, powerType)
 	if(self.unit ~= unit or (powerType and powerType ~= 'SOUL_SHARDS')) then return end
@@ -36,9 +37,10 @@ local Update = function(self, event, unit, powerType)
 	local ss = self.SoulShards
 	if(ss.PreUpdate) then ss:PreUpdate() end
 
-	local num = UnitPower(unit, SPELL_POWER_SOUL_SHARDS)
-	
-	for i = 1, UnitPowerMax(unit, SPELL_POWER_SOUL_SHARDS) do
+	local num = UnitPower('player', SPELL_POWER_SOUL_SHARDS)
+
+
+	for i = 1, SHARD_BAR_NUM_SHARDS do
 		if(i <= num) then
 			ss[i]:Show()
 		else
