@@ -1356,7 +1356,7 @@ elseif ( LAYOUT == 4 ) then
 
 	local playerFrame = CreateAuraBarFrame( playerDataSource,  oUF_Player );
 	playerFrame:SetHiddenHeight( -yOffset );
-	if ( playerClass == "DRUID" or playerClass == "DEATHKNIGHT" or playerClass == "SHAMAN" or playerClass == "WARLOCK"  or playerClass == "PALADIN" or myclass == "MONK") then
+	if ( playerClass == "DRUID" or playerClass == "DEATHKNIGHT" or playerClass == "SHAMAN" or playerClass == "WARLOCK"  or playerClass == "PALADIN" or myclass == "MONK" or myclass == "PRIEST") then
 		playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 0, 18 );
 		playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", 0, 18 );
 	else
