@@ -10,6 +10,15 @@ local noop = function() end
 local showTitle = false
 local showCollapseButton = false
 local origTitleShow, origCollapseShow = WatchFrameTitle.Show, WatchFrameCollapseExpandButton.Show
+local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
+frame:SetPoint("TOPRIGHT", CPMinimb1, "BOTTOMLEFT", 40, 10)
+frame:SetHeight(150)
+
+if GetCVar("watchFrameWidth") == "1" then
+	frame:SetWidth(326)
+else
+	frame:SetWidth(224)
+end
 
 function ToggleTitle()
 	if showTitle then
@@ -22,9 +31,15 @@ function ToggleTitle()
 end
 ToggleTitle()
 
+WatchFrame:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
+WatchFrame:SetHeight(450)
 
-WatchFrame:SetPoint("TOPRIGHT", CPMinimb1, "BOTTOMRIGHT", 0, 10)
-WatchFrame:SetClampedToScreen(true)
+hooksecurefunc(WatchFrame, "SetPoint", function(_, _, parent)
+	if parent ~= frame then
+		WatchFrame:ClearAllPoints()
+		WatchFrame:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
+	end
+end)
 
 function ToggleButton()
 	if showCollapseButton then
