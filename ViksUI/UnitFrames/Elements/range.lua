@@ -148,7 +148,7 @@ local Enable = function(self)
         frame:SetFrameStrata("HIGH")
 
         frame.arrow = frame:CreateTexture(nil, "OVERLAY")
-        frame.arrow:SetTexture"Interface\\Addons\\oUF_Freebgrid\\Media\\Arrow"
+        frame.arrow:SetTexture"Interface\\Addons\\ViksUI\\Media\\Other\\Arrow"
         frame.arrow:SetPoint("TOPRIGHT", frame, "TOPRIGHT")
         frame.arrow:SetSize(24, 24)
 

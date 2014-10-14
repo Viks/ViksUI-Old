@@ -71,12 +71,14 @@ end)
 local show = false
 SlashCmdList.FARMMODE = function()
 	if show == false then
-		AnchorMinimap:SetSize(Viks.minimapp.size * 1.65, Viks.minimapp.size * 1.65)
-		Minimap:SetSize(AnchorMinimap:GetWidth(), AnchorMinimap:GetWidth())
+		Minimap:SetSize(Viks.minimapp.size * 1.65, Viks.minimapp.size * 1.65)
+		AnchorMinimap:SetPoint("TOPRIGHT", MinimapBackdrop, "TOPRIGHT", -46, -46)
+		MBFToggle:SetAlpha(0)
 		show = true
 	else
-		AnchorMinimap:SetSize(Viks.minimapp.size, Viks.minimapp.size)
-		Minimap:SetSize(AnchorMinimap:GetWidth(), AnchorMinimap:GetWidth())
+		Minimap:SetSize(Viks.minimapp.size-4, Viks.minimapp.size-4)
+		AnchorMinimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, -(Viks.panels.yoffset+Viks.panels.CPbarsheight+2))
+		MBFToggle:SetAlpha(1)
 		show = false
 	end
 end
@@ -90,7 +92,7 @@ SLASH_FARMMODE4 = "/аь"
 ----------------------------------------------------------------------------------------
 local farm = CreateFrame("Button", "FarmMode", UIParent)
 farm:SetTemplate("ClassColor")
-farm:SetPoint("TOP", switch, "BOTTOM", 0, -1)
+farm:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMLEFT", -3, 18)
 farm:SetSize(19, 19)
 farm:SetAlpha(0)
 

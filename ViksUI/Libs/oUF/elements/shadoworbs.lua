@@ -1,118 +1,81 @@
---[[ Element: Shadow Orbs
- Toggles visibility of the players Shadow Orbs.
-
- Widget
-
- ShadowOrbs - An array consisting of three UI widgets.
-
- Notes
-
- The default shadow orbs texture will be applied to textures within the ShadowOrbs
- array that don't have a texture or color defined.
-
- Examples
-
-   local ShadowOrbs = {}
-   for index = 1, PRIEST_BAR_NUM_ORBS do
-      local Orb = self:CreateTexture(nil, 'BACKGROUND')
-   
-      -- Position and size of the orb.
-      Orb:SetSize(14, 14)
-      Orb:SetPoint('TOPLEFT', self, 'BOTTOMLEFT', index * Orb:GetWidth(), 0)
-   
-      ShadowOrbs[index] = Orb
-   end
-   
-   -- Register with oUF
-   self.ShadowOrbs = ShadowOrbs
-
- Hooks
-
- Override(self) - Used to completely override the internal update function.
-                  Removing the table key entry will make the element fall-back
-                  to its internal function again.
-]]
+if(select(2, UnitClass('player')) ~= 'PRIEST') then return end
 
 local parent, ns = ...
 local oUF = ns.oUF
 
 local SPELL_POWER_SHADOW_ORBS = SPELL_POWER_SHADOW_ORBS
-local PRIEST_BAR_NUM_ORBS = PRIEST_BAR_NUM_ORBS
-local SPEC_PRIEST_SHADOW = SPEC_PRIEST_SHADOW
 
-local Update = function(self, event, unit, powerType)
+
+local function Update(self, event, unit, powerType)
 	if(self.unit ~= unit or (powerType and powerType ~= 'SHADOW_ORBS')) then return end
 
-	local element = self.ShadowOrbs
-	if(element.PreUpdate) then
-		element:PreUpdate()
+	local sb = self.ShadowOrbsBar
+
+	if(sb.PreUpdate) then
+		sb:PreUpdate(unit)
 	end
 
-	local numOrbs = UnitPower(unit, SPELL_POWER_SHADOW_ORBS)
+	local numOrbs = UnitPower('player', SPELL_POWER_SHADOW_ORBS)
+	local totalOrbs = UnitPowerMax("player", SPELL_POWER_SHADOW_ORBS)
 
-	for index = 1, PRIEST_BAR_NUM_ORBS do
-		if(index <= numOrbs) then
-			element[index]:Show()
+	for i = 1, totalOrbs do
+		if i <= numOrbs then
+			sb[i]:SetAlpha(1)
 		else
-			element[index]:Hide()
+			sb[i]:SetAlpha(.2)
 		end
 	end
 
-	if(element.PostUpdate) then
-		return element:PostUpdate(numOrbs)
-	end
-end
-
-local Visibility = function(self, event, unit)
-	local element = self.ShadowOrbs
-	if(GetSpecialization() == SPEC_PRIEST_SHADOW) then
-		for index = 1, PRIEST_BAR_NUM_ORBS do
-			element[index]:Show()
-		end
-	else
-		for index = 1, PRIEST_BAR_NUM_ORBS do
-			element[index]:Hide()
-		end
+	if(sb.PostUpdate) then
+		return sb:PostUpdate(numOrbs)
 	end
 end
 
 local Path = function(self, ...)
-	return (self.ShadowOrbs.Override or Update) (self, ...)
+	return (self.ShadowOrbsBar.Override or Update) (self, ...)
 end
 
 local ForceUpdate = function(element)
-	return Path(element.__owner, 'ForceUpdate', element.__owner.unit)
+	return Path(element.__owner, 'ForceUpdate', element.__owner.unit, 'SHADOW_ORBS')
 end
 
-local Enable = function(self, unit)
-	local element = self.ShadowOrbs
-	if(element and unit == 'player') then
-		element.__owner = self
-		element.ForceUpdate = ForceUpdate
+local function Visibility(self, event, unit)
+	local sb = self.ShadowOrbsBar
+	local spec = GetSpecialization()
+
+	if spec == SPEC_PRIEST_SHADOW then
+		sb:Show()
+		if self.Debuffs then self.Debuffs:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", 2, 19) end
+	else
+		sb:Hide()
+		if self.Debuffs then self.Debuffs:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", 2, 5) end
+	end
+end
+
+local function Enable(self, unit)
+	local sb = self.ShadowOrbsBar
+	if(sb) and unit == 'player' then
+		sb.__owner = self
+		sb.ForceUpdate = ForceUpdate
 
 		self:RegisterEvent('UNIT_POWER', Path)
 		self:RegisterEvent('UNIT_DISPLAYPOWER', Path)
-		self:RegisterEvent('PLAYER_TALENT_UPDATE', Visibility, true)
 
-		for index = 1, PRIEST_BAR_NUM_ORBS do
-			local orb = element[index]
-			if(orb:IsObjectType'Texture' and not orb:GetTexture()) then
-				orb:SetTexture[[Interface\PlayerFrame\Priest-ShadowUI]]
-				orb:SetTexCoord(0.45703125, 0.60546875, 0.44531250, 0.73437500)
-			end
-		end
+		sb.Visibility = CreateFrame("Frame", nil, sb)
+		sb.Visibility:RegisterEvent("PLAYER_TALENT_UPDATE")
+		sb.Visibility:SetScript("OnEvent", function(frame, event, unit) Visibility(self, event, unit) end)
 
 		return true
 	end
 end
 
-local Disable = function(self)
-	local element = self.ShadowOrbs
-	if(element) then
+local function Disable(self)
+	local sb = self.ShadowOrbsBar
+	if(sb) then
 		self:UnregisterEvent('UNIT_POWER', Path)
 		self:UnregisterEvent('UNIT_DISPLAYPOWER', Path)
-		self:UnregisterEvent('PLAYER_TALENT_UPDATE', Visibility)
+		sb.Visibility:UnregisterEvent("PLAYER_TALENT_UPDATE")
 	end
 end
 
-oUF:AddElement('ShadowOrbs', Path, Enable, Disable)
+oUF:AddElement('ShadowOrbsBar', Path, Enable, Disable)

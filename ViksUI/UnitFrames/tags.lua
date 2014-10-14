@@ -463,7 +463,7 @@ elseif (class == "SHAMAN") then
 	spells = {}
 elseif (class == "MONK") then
 	spells = {
-			["Legacy of the Emperor"] = GetSpellInfo(117667)
+			["Legacy of the Emperor"] = GetSpellInfo(115921)
 	}
 	oUF.Tags.Methods["LE"] = function(unit)
 		if (not UnitAura(unit, spells["Legacy of the Emperor"])) then

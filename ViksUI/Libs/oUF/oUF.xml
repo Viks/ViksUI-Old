@@ -40,6 +40,7 @@
 	<Script file='elements\druidmana.lua' />
 	<Script file='elements\harmonyorbs.lua' />
 	<Script file='elements\shadoworbs.lua' />
+	<Script file="elements\Vengeance.lua"/>
 	
 
 	<!-- Clique Support -->

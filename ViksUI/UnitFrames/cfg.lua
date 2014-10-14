@@ -43,7 +43,6 @@ cfg.showLFDIcons = Viks.unitframes.showLFDIcons						-- Show LFD Icons, must be 
 cfg.customLFDIcons = Viks.unitframes.customLFDIcons					-- Use Custom Icons; cfg.customLFDText must be false
 cfg.customLFDText = Viks.unitframes.customLFDText					-- Use Text instead of Icon; Tank/Dps/Heal. cfg.customLFDIcons must be false
 cfg.RCheckIcon = Viks.unitframes.RCheckIcon							-- Show Ready Check Icons On Health Frames
-cfg.TotemBars = Viks.unitframes.TotemBars							-- show totem bars
 cfg.Experiencebar = Viks.unitframes.Experiencebar					-- show experience bar
 cfg.Reputationbar = Viks.unitframes.Reputationbar					-- show reputation bar
 cfg.enableDebuffHighlight = Viks.unitframes.enableDebuffHighlight	-- Highlight Unit Frame if having a Debuffs
@@ -57,12 +56,17 @@ cfg.showRaidDebuffs = Viks.unitframes.showRaidDebuffs 				-- Shows debuff as ico
 cfg.scale = 1
 cfg.showPlayerAuras = Viks.unitframes.showPlayerAuras				-- use a custom player buffs/debuffs frame instead of blizzard's default
 cfg.Powercolor = Viks.unitframes.Powercolor							-- power color = class color
-cfg.showEclipsebar = Viks.unitframes.showEclipsebar					-- show druid eclipse bar
-cfg.showShardbar = Viks.unitframes.showShardbar						-- show warlock soulShard bar
-cfg.showHolybar = Viks.unitframes.showHolybar						-- show paladin HolyPower bar
-cfg.showRunebar = Viks.unitframes.showRunebar						-- show dk rune bar
-cfg.showHarmony = Viks.unitframes.showHarmony 						-- show Monk Harmony bar
-cfg.showShadowOrbsBar = Viks.unitframes.showShadowOrbsBar 			-- show Shadow Priest Shadow Orbs bar
+
+cfg.showEclipsebar = Viks.unitframe_class_bar.eclipse				-- Eclipse bar
+cfg.showShardbar = Viks.unitframe_class_bar.shard					-- Shard/Burning bar
+cfg.showHolybar = Viks.unitframe_class_bar.holy						-- Holy Power bar
+cfg.showRunebar = Viks.unitframe_class_bar.rune						-- Rune bar
+cfg.showHarmony = Viks.unitframe_class_bar.chi						-- Chi bar
+cfg.showShadowOrbsBar = Viks.unitframe_class_bar.shadow				-- Shadow Orbs bar
+cfg.TotemBars = Viks.unitframe_class_bar.totem						-- Totem bar
+cfg.showVengeance = Viks.unitframe_class_bar.vengeance				-- Vengeance bar
+cfg.class_bar_range = Viks.unitframe_class_bar.range				-- Range bar (only for Priest)
+cfg.CPoints = Viks.unitframe_class_bar.combo						-- Rogue/Druid Combo bar
 cfg.IndicatorIcons2 = Viks.unitframes.IndicatorIcons2				-- Toggles different Indicator types.
 cfg.RaidShowAllGroups = Viks.unitframes.RaidShowAllGroups			-- Show All 8 Raid Groups, if not then 5
 cfg.RaidShowSolo = Viks.unitframes.RaidShowSolo						-- show raid frames even when solo
@@ -77,8 +81,8 @@ cfg.indicatorsize = Viks.unitframes.indicatorsize					-- Size on Squares on Indi
 cfg.symbolsize = Viks.unitframes.symbolsize							-- Size on Symbols on Indicator type 2
 cfg.fontsizeEdge = Viks.unitframes.fontsizeEdge
 cfg.Findoutline = Viks.unitframes.Findoutline
-cfg.showVengeance = Viks.unitframes.vengeance
-cfg.class_bar_range = Viks.unitframes.class_bar_range
+
+
 
 
 cfg.ABspacing = 59
@@ -246,17 +250,17 @@ cfg.showarena = false
 			[GetSpellInfo(47476)] = 3,	-- Strangulate
 			[GetSpellInfo(47481)] = 3,	-- Gnaw (Ghoul)
 			[GetSpellInfo(91797)] = 3,	-- Monstrous Blow (Mutated Ghoul)
-			-- Druid
+			--Druid
 			[GetSpellInfo(33786)] = 3,	-- Cyclone
-			[GetSpellInfo(2637)] = 3,	-- Hibernate
+			--WoD[GetSpellInfo(2637)] = 3,	-- Hibernate
 			[GetSpellInfo(339)] = 3,		-- Entangling Roots
 			[GetSpellInfo(78675)] = 3,	-- Solar Beam
 			-- Hunter
 			[GetSpellInfo(3355)] = 3,	-- Freezing Trap
 			[GetSpellInfo(117526)] = 3,	-- Binding Shot
-			[GetSpellInfo(1513)] = 3,	-- Scare Beast
-			[GetSpellInfo(19503)] = 3,	-- Scatter Shot
-			[GetSpellInfo(34490)] = 3,	-- Silence Shot
+			--WoD [GetSpellInfo(1513)] = 3,	-- Scare Beast
+			--WoD[GetSpellInfo(19503)] = 3,	-- Scatter Shot
+			--WoD[GetSpellInfo(34490)] = 3,	-- Silence Shot
 			[GetSpellInfo(19386)] = 3,	-- Wyvern Sting
 
 			-- Mage
@@ -264,7 +268,7 @@ cfg.showarena = false
 			[GetSpellInfo(82691)] = 3,	-- Ring of Frost
 			[GetSpellInfo(61305)] = 3,	-- Polymorph
 			[GetSpellInfo(102051)] = 3,	-- Frostjaw
-			[GetSpellInfo(55021)] = 3,	-- Improved Counterspell
+			--WoD[GetSpellInfo(55021)] = 3,	-- Improved Counterspell
 			[GetSpellInfo(122)] = 3,		-- Frost Nova
 			[GetSpellInfo(111340)] = 3,	-- Ice Ward
 			-- Monk
@@ -278,7 +282,7 @@ cfg.showarena = false
 			-- Priest
 			[GetSpellInfo(605)] = 3,		-- Dominate Mind
 			[GetSpellInfo(8122)] = 3,	-- Psychic Scream
-			[GetSpellInfo(113792)] = 3,	-- Psychic Terror
+			--WoD[GetSpellInfo(113792)] = 3,	-- Psychic Terror
 			[GetSpellInfo(64044)] = 3,	-- Psychic Horror
 			[GetSpellInfo(15487)] = 3,	-- Silence
 			[GetSpellInfo(6788)] = 10,	-- Weaken Soul
@@ -294,7 +298,7 @@ cfg.showarena = false
 			[GetSpellInfo(63685)] = 3,	-- Freeze
 			-- Warlock
 			[GetSpellInfo(118699)] = 3,	-- Fear
-			[GetSpellInfo(104045)] = 3,	-- Sleep
+			--WoD[GetSpellInfo(104045)] = 3,	-- Sleep
 			[GetSpellInfo(6789)] = 3,	-- Mortal Coil
 			[GetSpellInfo(5484)] = 3,	-- Howl of Terror
 			[GetSpellInfo(6358)] = 3,	-- Seduction (Succubus)
@@ -302,7 +306,7 @@ cfg.showarena = false
 			[GetSpellInfo(30283)] = 3,	-- Shadowfury
 			-- Warrior
 			[GetSpellInfo(46968)] = 3,	-- Shockwave
-			[GetSpellInfo(20511)] = 3,	-- Intimidating Shout
+			--WoD[GetSpellInfo(20511)] = 3,	-- Intimidating Shout
 	-- Racial
 		[GetSpellInfo(25046)] = 3, --Arcane Torrent
 		[GetSpellInfo(20549)] = 3, --War Stomp

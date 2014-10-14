@@ -1,5 +1,5 @@
-local T, Viks, L, _ = unpack(select(2, ...))
-if Viks.loot.lootframe == true then return end
+local T, C, L, _ = unpack(select(2, ...))
+if C.loot.lootframe == true then return end
 
 local hook
 local _E

@@ -26,6 +26,9 @@ local spells = (UnitFactionGroup("player") == "Horde") and {
 	[9] = {132621,132620},	-- Vale of Eternal Blossoms
 }
 
+if IsSpellKnown(120145) then
+	tinsert(spells, {120145,120146}) -- Ancient Dalaran
+end
 local frame = CreateFrame("Frame", "TeleportMenu", UIParent)
 frame:CreatePanel("Invisible", Viks.minimapp.size, (#spells) * 20 + 4, "BOTTOMLEFT", RChatTab, "TOPLEFT", -2, 3)
 frame:RegisterEvent("UNIT_SPELLCAST_START")

@@ -1,4 +1,4 @@
-﻿local T, Viks, L, _ = unpack(select(2, ...))
+﻿local T, C, L, _ = unpack(select(2, ...))
 if T.client ~= "deDE" then return end
 
 ----------------------------------------------------------------------------------------
@@ -41,12 +41,6 @@ L_TOOLTIP_LOADING = "Lade..."
 L_TOOLTIP_ACH_STATUS = "Dein Fortschritt:"
 L_TOOLTIP_ACH_COMPLETE = "Dein Status: Fertig gestellt am "
 L_TOOLTIP_ACH_INCOMPLETE = "Dein Status: Noch nicht Ferig"
-L_TOOLTIP_ACH_NOT_EAT = "nicht gegessen"
-L_TOOLTIP_ACH_EAT = "gegessen"
-L_TOOLTIP_ACH_NOT_DRINK = "nicht Konsumiert"
-L_TOOLTIP_ACH_DRINK = "Konsumiert"
-L_TOOLTIP_ACH_NOT_EQUIP = "nicht Ausgestattet"
-L_TOOLTIP_ACH_EQUIP = "Ausgestattet"
 L_TOOLTIP_SPELL_ID = "Zauber ID:"
 L_TOOLTIP_ITEM_ID = "Gegenstands ID:"
 L_TOOLTIP_WHO_TARGET = "Anvisiert von"
@@ -100,9 +94,6 @@ L_UF_GHOST = "Geist"
 L_UF_DEAD = "Tod"
 L_UF_OFFLINE = "Offline"
 L_UF_MANA = "Niedriges Mana"
-L_UF_TRINKET_READY = "Schmuckstück bereit: "
-L_UF_TRINKET_USED = "Schmuckstück benutzt: "
-L_UF_WOTF_USED = "WdV benutzt: "
 
 -- Map
 L_MAP_CURSOR = "Mauszeiger: "
@@ -213,40 +204,10 @@ L_BIND_KEY = "Taste"
 L_BIND_NO_SET = "Keine Tastaturbelegung festgelegt"
 
 -- Talent spec
-L_PLANNER_DEATHKNIGHT_1 = "Blut"
-L_PLANNER_DEATHKNIGHT_2 = "Frost"
-L_PLANNER_DEATHKNIGHT_3 = "Unheilig"
-L_PLANNER_DRUID_1 = "Gleichgewicht"
-L_PLANNER_DRUID_2 = "Wildheit"
-L_PLANNER_DRUID_3 = "Wätchter"
 L_PLANNER_DRUID_4 = "Wiederherstellung"
-L_PLANNER_HUNTER_1 = "Tierherrschaft"
-L_PLANNER_HUNTER_2 = "Treffsicherheit"
-L_PLANNER_HUNTER_3 = "Überleben"
-L_PLANNER_MAGE_1 = "Arkan"
-L_PLANNER_MAGE_2 = "Feuer"
-L_PLANNER_MAGE_3 = "Frost"
-L_PLANNER_MONK_1 = "Braumeister"
 L_PLANNER_MONK_2 = "Nebelwirker"
-L_PLANNER_MONK_3 = "Windläufer"
 L_PLANNER_PALADIN_1 = "Heilig"
-L_PLANNER_PALADIN_2 = "Schutz"
-L_PLANNER_PALADIN_3 = "Vergeltung"
 L_PLANNER_PRIEST_1 = "Disziplin"
-L_PLANNER_PRIEST_2 = "Heilig"
-L_PLANNER_PRIEST_3 = "Schatten"
-L_PLANNER_ROGUE_1 = "Meucheln"
-L_PLANNER_ROGUE_2 = "Kampf"
-L_PLANNER_ROGUE_3 = "Täuschung"
-L_PLANNER_SHAMAN_1 = "Elementar"
-L_PLANNER_SHAMAN_2 = "Verstärkung"
-L_PLANNER_SHAMAN_3 = "Wiederherstellung"
-L_PLANNER_WARLOCK_1 = "Gebrechen"
-L_PLANNER_WARLOCK_2 = "Dämonologie"
-L_PLANNER_WARLOCK_3 = "Zerstörung"
-L_PLANNER_WARRIOR_1 = "Waffen"
-L_PLANNER_WARRIOR_2 = "Furor"
-L_PLANNER_WARRIOR_3 = "Schutz"
 
 -- BG stats
 L_DATATEXT_BASESASSAULTED = "Basen angegriffen:"
@@ -265,9 +226,9 @@ L_DATATEXT_CARTS_CONTROLLED = "Kontrollierte Loren:"
 
 -- Info text
 L_INFO_ERRORS = "Noch keine Fehler."
-L_INFO_INVITE = "Gruppeneinladung akzeptiert von: "
-L_INFO_DUEL = "Duellanfrage Ignoriert von: "
-L_INFO_PET_DUEL = "Haustier Duellanfrage Ignoriert von: "
+L_INFO_INVITE = "Gruppeneinladung akzeptiert von "
+L_INFO_DUEL = "Duellanfrage Ignoriert von "
+L_INFO_PET_DUEL = "Haustier Duellanfrage Ignoriert von "
 L_INFO_DISBAND = "Löse Gruppe auf..."
 L_INFO_SETTINGS_DBM = "Gebe /settings dbm ein, um DBM Einstellungen zu laden."
 L_INFO_SETTINGS_DXE = "Gebe /settings dxe ein, um DXE Einstellungen zu laden."
@@ -282,7 +243,7 @@ L_INFO_SKIN_DISABLED2 = " ist ausgeschaltet."
 L_POPUP_INSTALLUI = "Dies ist Ihre erste Benutzung von ViksUI mit diesem Charakter. Um das Interface zu konfigurieren, wird das UI nun neugeladen."
 L_POPUP_RESETUI = "Sind Sie sich sicher, dass Sie die Einstellungen von ViksUI zurückgesetzen wollen?"
 L_POPUP_RESETSTATS = "Bist du sicher das du die Gold und verbrachte Zeit Statistik zurücksetzen möchtest?"
-L_POPUP_SWITCH_RAID = "Select Raid layout." -- Needs review
+L_POPUP_SWITCH_RAID = "Wähle Raid Layout."
 L_POPUP_DISBAND_RAID = "Bist du dir sicher, dass du die Gruppe auflösen möchtest?"
 L_POPUP_DISABLEUI = "ViksUI funktioniert nicht mit deiner Auflösung, möchtest du ViksUI ausschalten? (Drücke Abbrechen, falls du eine andere Auflösung testen willst)"
 L_POPUP_SETTINGS_ALL = "Einstellungen für alle AddOns übernehmen? (DBM/DXE, Skada und MSBT)"
@@ -308,7 +269,7 @@ L_COMBATTEXT_TEST_USE_LOCK = "Gib '/xct' ein um den Kampftext Testmodus zu sperr
 L_COMBATTEXT_TEST_USE_TEST = "Gib '/xct' ein um den Kampftext Testmodus zu aktivieren."
 L_COMBATTEXT_POPUP = "Um die Kampftext Fensterpositionen zu sichern muss das Interface neu geladen werden."
 L_COMBATTEXT_UNSAVED = "Kampftext Fensterpositionen nicht gespeichert, vergiss nicht das Interface neu zu laden."
-L_COMBATTEXT_UNLOCKED = "Kmpftext freigegeben."
+L_COMBATTEXT_UNLOCKED = "Kampftext freigegeben."
 
 -- LiteStats
 L_STATS_ACC_PLAYED = "Gesamtspielzeit"
@@ -323,7 +284,7 @@ L_STATS_CLEARED_JUNK = "Junk-Ausnahmeliste gelöscht."
 L_STATS_CLEAR_EXCEPTIONS = "Ausnahmenliste löschen."
 L_STATS_WORLD_MAP = "Klicken, zum Öffnen der World-Map."
 L_STATS_CURRENT_XP = "Aktuell/Max XP"
-L_STATS_MEMORY_USAGE = "Blizzard UI Memory Usage:" -- Needs review
+L_STATS_MEMORY_USAGE = "Blizzard UI Speicher Auslastung:"
 L_STATS_GARBAGE_COLLECTED = "Abfall zusammengefasst"
 L_STATS_CHANGE_SORTING = "[Gilde] Rechts-Klick, zum Ändern der Sortierung und Umschalt-Rechts-Klick zum Umkehren der Reihenfolge."
 L_STATS_HIDDEN = "Versteckt"
@@ -379,36 +340,36 @@ L_STATS_TOOLTIP_EXPERIENCE = "Wenn unter dem max. Level, wird ein Tooltip mit we
 -- Slash commands
 L_SLASHCMD_HELP = {
 	"Available slash commands:",
-	"/rl - Reload interface.",
-	"/rc - Activates a ready check.",
-	"/gm - Opens GM frame.",
-	"/dis ADDON_NAME - Disable Addon.",
-	"/en ADDON_NAME - Enable Addon.",
-	"/rd - Disband party or raid.",
-	"/toraid - Convert to party or raid.",
-	"/teleport - Teleportation from random dungeon.",
-	"/spec, /ss - Switches between talent spec's.",
-	"/heal - Switches to 'Heal' layout.",
-	"/dps - Switches to 'DPS' layout.",
-	"/frame - Description is not ready.",
-	"/farmmode - Increase the size of the minimap.",
-	"/moveui - Allows the movement of interface elements.",
-	"/resetui - Resets general settings to default.",
-	"/resetuf - Resets the unit frames to their default position.",
-	"/resetconfig - Resets ViksUI_Config settings.",
-	"/resetstats - Resets the statistics of gold and time spent.",
-	"/settings ADDON_NAME - Applies settings to msbt, dbm, skada, or all addons.",
-	"/ls, /litestats - Help for LiteStats.",
-	"/bags - Managing for bags.",
-	"/xct - Manage the combat text.",
-	"/raidcd - Raid cooldown test.",
-	"/enemycd - Enemy cooldown test.",
-	"/pulsecd - Self cooldown pulse test.",
-	"/threat - Threat meter test.",
-	"/tt - Whisper target.",
-	"/ainv - Enables automatic invitation.",
-	"/testuf - Unit frame test.",
-	"/cfg - Opens interface settings.",
+	"/rl - Interface neu laden.",
+	"/rc - Starte Bereitschaftscheck.",
+	"/gm - Öffne das Game Master Fenster.",
+	"/dis ADDON_NAME - Deaktiviere Addon.",
+	"/en ADDON_NAME - Aktiviere Addon.",
+	"/rd - Gruppe oder Schlachtzug auflösen.",
+	"/toraid - In Gruppe oder Schlachtzug umwandeln.",
+	"/teleport - Teleportation from random dungeon.", -- Needs review
+	"/spec, /ss - Zwischen den Talenten wechseln.",
+	"/heal - Zum Heiler Layout wechseln.",
+	"/dps - Zum DPS Layout wechseln.",
+	"/frame - Beschreibung nicht verfügbar.",
+	"/farmmode - Erhöht die Größe der Minimap.",
+	"/moveui - Ermöglicht das Bewegen der Interface Elemente.",
+	"/resetui - Zurücksetzen der allgemeinen Einstellungen auf die Standardwerte.",
+	"/resetuf - Zurücksetzen der Einheitenfenster auf die Standardposition.",
+	"/resetconfig - Zurücksetzen der ShestakUI_Config Einstellungen.",
+	"/resetstats - Gold Statistik und gespielte Zeit zurücksetzen.",
+	"/settings ADDON_NAME - Einstellungen für msbt, dbm, skada, oder alle Addons anwenden.",
+	"/ls, /litestats - Hilfe für LiteStats.",
+	"/bags - Taschen verwalten.",
+	"/xct - Kampflogtext verwalten.",
+	"/raidcd - Abklingzeiten für Schlachtzüge testen.",
+	"/enemycd - Gegnerische Abklingzeiten testen.",
+	"/pulsecd - Pulsierende Abklingzeiten testen.",
+	"/threat - Bedrohungsmeter testen.",
+	"/tt - Ziehl anflüstern.",
+	"/ainv - Automatisches Einladen aktivieren.",
+	"/testuf - Einheitenfenster testen.",
+	"/cfg - Interface Einstellungen öffnen.",
 }
 
 -- ExploreMap

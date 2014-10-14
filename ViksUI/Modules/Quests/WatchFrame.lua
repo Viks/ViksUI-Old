@@ -3,54 +3,49 @@ local T, Viks, L, _ = unpack(select(2, ...))
 if Viks.misc.WatchFrame then
 local _, class = UnitClass("player")
 local r, g, b = unpack(Viks.media.pxcolor1)
-------------------------------
---Watch Frame
-------------------------------
-local noop = function() end
-local showTitle = false
-local showCollapseButton = false
-local origTitleShow, origCollapseShow = WatchFrameTitle.Show, WatchFrameCollapseExpandButton.Show
+
+local lST = "Wowhead"
+local lQ = "http://www.wowhead.com/quest=%d"
+local lA = "http://www.wowhead.com/achievement=%d"
+
+----------------------------------------------------------------------------------------
+--	Move ObjectiveTrackerFrame
+----------------------------------------------------------------------------------------
 local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
-frame:SetPoint("TOPRIGHT", CPMinimb1, "BOTTOMLEFT", 40, 10)
+frame:SetPoint("TOPRIGHT", CPMinimb1, "BOTTOMLEFT", 0, 10)
 frame:SetHeight(150)
+frame:SetWidth(224)
+frame:SetClampedToScreen(true)
+frame:SetMovable(true)
 
-if GetCVar("watchFrameWidth") == "1" then
-	frame:SetWidth(326)
-else
-	frame:SetWidth(224)
-end
+ObjectiveTrackerFrame:ClearAllPoints()
+ObjectiveTrackerFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+ObjectiveTrackerFrame:SetHeight(T.getscreenheight / 1.6)
+ObjectiveTrackerFrame:SetWidth(180)
 
-function ToggleTitle()
-	if showTitle then
-		WatchFrameTitle.Show = origTitleShow
-		WatchFrameTitle:Show()
-	else
-		WatchFrameTitle:Hide()
-		WatchFrameTitle.Show = noop
-	end
-end
-ToggleTitle()
 
-WatchFrame:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
-WatchFrame:SetHeight(450)
-
-hooksecurefunc(WatchFrame, "SetPoint", function(_, _, parent)
+hooksecurefunc(ObjectiveTrackerFrame, "SetPoint", function(_, _, parent)
 	if parent ~= frame then
-		WatchFrame:ClearAllPoints()
-		WatchFrame:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
+		ObjectiveTrackerFrame:ClearAllPoints()
+		ObjectiveTrackerFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, 0)
 	end
 end)
 
-function ToggleButton()
-	if showCollapseButton then
-		WatchFrameCollapseExpandButton.Show = origCollapseShow
-		WatchFrameCollapseExpandButton:Show()
-	else
-		WatchFrameCollapseExpandButton:Hide()
-		WatchFrameCollapseExpandButton.Show = noop
-	end
-end
-ToggleButton()
+ObjectiveTrackerBlocksFrame.QuestHeader:SetAlpha(0)
+ObjectiveTrackerFrame.HeaderMenu.Title:SetAlpha(0)
+
+_G.StaticPopupDialogs["WATCHFRAME_URL"] = {
+	text = lST .. " link",
+	button1 = OKAY,
+	timeout = 0,
+	whileDead = true,
+	hasEditBox = true,
+	editBoxWidth = 350,
+	OnShow = function(self, ...) self.editBox:SetFocus() end,
+	EditBoxOnEnterPressed = function(self) self:GetParent():Hide() end,
+	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
+}
+
 
 function watchFButton()
 	for i = 1, NUM_CHAT_WINDOWS do
@@ -68,7 +63,7 @@ function watchFButton()
 		buttontext:SetJustifyV("CENTER")
 		buttontext:SetTextColor(unpack(Viks.media.bordercolor)) 
 		button:SetScript("OnEnter", function(self)
-			GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+			GameTooltip:SetOwner(CPMinimb2, "ANCHOR_BOTTOMLEFT", -4, 16)
 			GameTooltip:AddLine("Left-click to toggle the Watch Frame.")
 			GameTooltip:AddLine("Shift-click to toggle the achievements window.")
 			GameTooltip:AddLine("Right-click to open the Quest Frame")
@@ -79,9 +74,13 @@ function watchFButton()
 			if IsShiftKeyDown() then
 			ToggleAchievementFrame()
 			elseif btn == "RightButton" then
-				ToggleFrame(QuestLogFrame)
+				ToggleQuestLog()
 			else
-				WatchFrame_CollapseExpandButton_OnClick()
+				    if ( ObjectiveTrackerFrame.collapsed ) then
+					ObjectiveTracker_Expand();
+					else
+					ObjectiveTracker_Collapse();
+					end
 			end
 		end)
 	end
@@ -90,92 +89,94 @@ end
 watchFButton()
 
 ----------------------------------------------------------------------------------------
---	Skin WatchFrame item buttons
+--	Skin ObjectiveTrackerFrame item buttons
 ----------------------------------------------------------------------------------------
-hooksecurefunc("WatchFrameItem_UpdateCooldown", function(self)
-	if not self.skinned and not InCombatLockdown() then
-		local icon = _G[self:GetName().."IconTexture"]
-		local border = _G[self:GetName().."NormalTexture"]
-		local count = _G[self:GetName().."Count"]
-		local hotkey = _G[self:GetName().."HotKey"]
+hooksecurefunc(QUEST_TRACKER_MODULE, "SetBlockHeader", function(_, block)
+	local item = block.itemButton
 
-		self:SetSize(25, 25)
-		self:SetTemplate("Default")
+	if item and not item.skinned then
+		item:SetSize(22, 22)
+		item:SetTemplate("Default")
+		item:StyleButton()
 
-		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-		icon:SetPoint("TOPLEFT", self, 2, -2)
-		icon:SetPoint("BOTTOMRIGHT", self, -2, 2)
+		item:SetNormalTexture(nil)
 
-		count:ClearAllPoints()
-		count:SetPoint("BOTTOMRIGHT", 0, 2)
-		count:SetFont(Viks.font.action_bars_font, Viks.font.action_bars_font_size, Viks.font.action_bars_font_style)
-		count:SetShadowOffset(Viks.font.action_bars_font_shadow and 1 or 0, Viks.font.action_bars_font_shadow and -1 or 0)
+		item.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		item.icon:SetPoint("TOPLEFT", item, 2, -2)
+		item.icon:SetPoint("BOTTOMRIGHT", item, -2, 2)
 
-		border:SetTexture(nil)
+		item.HotKey:ClearAllPoints()
+		item.HotKey:SetPoint("BOTTOMRIGHT", 0, 2)
+		item.HotKey:SetFont(Viks.font.action_bars_font, Viks.font.action_bars_font_size, Viks.font.action_bars_font_style)
+		item.HotKey:SetShadowOffset(Viks.font.action_bars_font_shadow and 1 or 0, Viks.font.action_bars_font_shadow and -1 or 0)
 
-		self:StyleButton()
+		item.Count:ClearAllPoints()
+		item.Count:SetPoint("TOPLEFT", 1, -1)
+		item.Count:SetFont(Viks.font.action_bars_font, Viks.font.action_bars_font_size, Viks.font.action_bars_font_style)
+		item.Count:SetShadowOffset(Viks.font.action_bars_font_shadow and 1 or 0, Viks.font.action_bars_font_shadow and -1 or 0)
 
-		self.skinned = true
+		item.skinned = true
 	end
 end)
 
 ----------------------------------------------------------------------------------------
---	Difficulty color for WatchFrame lines
+--	Difficulty color for ObjectiveTrackerFrame lines
 ----------------------------------------------------------------------------------------
-hooksecurefunc("WatchFrame_Update", function()
-	local numQuestWatches = GetNumQuestWatches()
+--WoD hooksecurefunc("ObjectiveTracker_Update", function()
+	-- local numQuestWatches = GetNumQuestWatches()
 
-	for i = 1, numQuestWatches do
-		local questIndex = GetQuestIndexForWatch(i)
-		if questIndex then
-			local title, level = GetQuestLogTitle(questIndex)
-			local col = GetQuestDifficultyColor(level)
+	-- for i = 1, numQuestWatches do
+		-- local questIndex = GetQuestIndexForWatch(i)
+		-- if questIndex then
+			-- local title, level = GetQuestLogTitle(questIndex)
+			-- local col = GetQuestDifficultyColor(level)
 
-			for j = 1, #WATCHFRAME_QUESTLINES do
-				if WATCHFRAME_QUESTLINES[j].text:GetText() == title then
-					WATCHFRAME_QUESTLINES[j].text:SetTextColor(col.r, col.g, col.b)
-					WATCHFRAME_QUESTLINES[j].col = col
-				end
-			end
-			for k = 1, #WATCHFRAME_ACHIEVEMENTLINES do
-				WATCHFRAME_ACHIEVEMENTLINES[k].col = nil
-			end
-		end
-	end
-end)
+			-- for j = 1, #WATCHFRAME_QUESTLINES do
+				-- if WATCHFRAME_QUESTLINES[j].text:GetText() == title then
+					-- WATCHFRAME_QUESTLINES[j].text:SetTextColor(col.r, col.g, col.b)
+					-- WATCHFRAME_QUESTLINES[j].col = col
+				-- end
+			-- end
+			-- for k = 1, #WATCHFRAME_ACHIEVEMENTLINES do
+				-- WATCHFRAME_ACHIEVEMENTLINES[k].col = nil
+			-- end
+		-- end
+	-- end
+-- end)
 
-hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
-	i = self.startLine
-	if not (self.lines[i] and self.lines[i].col) then return end
-	if onEnter then
-		self.lines[i].text:SetTextColor(1, 0.8, 0)
-	else
-		self.lines[i].text:SetTextColor(self.lines[i].col.r, self.lines[i].col.g, self.lines[i].col.b)
-	end
-end)
+--WoD hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
+	-- i = self.startLine
+	-- if not (self.lines[i] and self.lines[i].col) then return end
+	-- if onEnter then
+		-- self.lines[i].text:SetTextColor(1, 0.8, 0)
+	-- else
+		-- self.lines[i].text:SetTextColor(self.lines[i].col.r, self.lines[i].col.g, self.lines[i].col.b)
+	-- end
+-- end)
 
-----------------------------------------------------------------------------------------
---	Skin WatchFrameCollapseExpandButton
-----------------------------------------------------------------------------------------
-if Viks.skins.blizzard_frames == true then
-	T.SkinCloseButton(WatchFrameCollapseExpandButton, nil, "-", true)
-	WatchFrameCollapseExpandButton:HookScript("OnClick", function(self)
-		if WatchFrame.collapsed then
-			self.text:SetText("+")
-		else
-			self.text:SetText("-")
-		end
-	end)
+for _, headerName in pairs({"QuestHeader", "AchievementHeader", "ScenarioHeader"}) do
+	local header = ObjectiveTrackerFrame.BlocksFrame[headerName].Background:Hide()
 end
 
+----------------------------------------------------------------------------------------
+--	Skin ObjectiveTrackerFrame.HeaderMenu.MinimizeButton
+----------------------------------------------------------------------------------------
+if Viks.skins.blizzard_frames == true then
+	T.SkinCloseButton(ObjectiveTrackerFrame.HeaderMenu.MinimizeButton, nil, "-", true)
 
-------------------------------
---Watch Frame Ends
-------------------------------
+	hooksecurefunc("ObjectiveTracker_Collapse", function()
+		ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.text:SetText("+")
+	end)
+
+	hooksecurefunc("ObjectiveTracker_Expand", function()
+		ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.text:SetText("-")
+	end)
+	ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:Hide()
+end
 end
 
 local frame1 = CreateFrame("Frame")
 frame1:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame1:SetScript("OnEvent", function(self, event)
-		WatchFrameCollapseExpandButton:Click()
+		ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:Click()
 end)

@@ -1488,115 +1488,121 @@ lib.addEclipseBar = function(self)
 	if playerClass ~= "DRUID" then return end
 	
 	local eclipseBar = CreateFrame('Frame', nil, self)
-	eclipseBar:SetPoint('BOTTOMLEFT', self, 'TOPLEFT', 0, 6)
-	eclipseBar:SetSize(cfg.unit_size.Player.w, 6)
-	
-	local h = CreateFrame("Frame", nil, eclipseBar)
-	h:SetFrameLevel(0)
-	h:SetPoint("TOPLEFT",-5,5)
-	h:SetPoint("BOTTOMRIGHT",5,-5)
-	frame1px2_2(h)
-	eclipseBar.eBarBG = h
-	
+	eclipseBar:SetPoint('BOTTOMLEFT', self, 'TOPLEFT', 1, 6)
+	eclipseBar:CreateBackdrop("Default")
+	eclipseBar:SetHeight(7)
+    eclipseBar:SetWidth(self:GetWidth()-2)
+		
 	local lunarBar = CreateFrame('StatusBar', nil, eclipseBar)
-	lunarBar:SetPoint('LEFT', eclipseBar, 'LEFT', 0, 0)
-	lunarBar:SetSize(cfg.unit_size.Player.w, 5)
-	lunarBar:SetStatusBarTexture(cfg.statusbar_texture)
-	lunarBar:SetStatusBarColor(0, 0, 1)
+	--lunarBar:SetPoint('LEFT', eclipseBar, 'LEFT', 0, 0)
+	--lunarBar:SetSize(cfg.unit_size.Player.w, 5)
+	--lunarBar:SetStatusBarTexture(cfg.statusbar_texture)
+	--lunarBar:SetStatusBarColor(0, 0, 1)
+	--eclipseBar.LunarBar = lunarBar
+
+	lunarBar:SetPoint("LEFT", eclipseBar, "LEFT", 0, 0)
+	lunarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
+	lunarBar:SetStatusBarTexture(Viks.media.texture)
+	lunarBar:SetStatusBarColor(0.80, 0.80, 0.20)
 	eclipseBar.LunarBar = lunarBar
 	
 	local solarBar = CreateFrame('StatusBar', nil, eclipseBar)
-	solarBar:SetPoint('LEFT', lunarBar:GetStatusBarTexture(), 'RIGHT', 0, 0)
-	solarBar:SetSize(cfg.unit_size.Player.w, 5)
-	solarBar:SetStatusBarTexture(cfg.statusbar_texture)
-	solarBar:SetStatusBarColor(1, 3/5, 0)
-	eclipseBar.SolarBar = solarBar
+	--solarBar:SetPoint('LEFT', lunarBar:GetStatusBarTexture(), 'RIGHT', 0, 0)
+	--solarBar:SetSize(cfg.unit_size.Player.w, 5)
+	--solarBar:SetStatusBarTexture(cfg.statusbar_texture)
+	--solarBar:SetStatusBarColor(1, 3/5, 0)
 	
+	solarBar:SetPoint("LEFT", lunarBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+	solarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
+	solarBar:SetStatusBarTexture(Viks.media.texture)
+	solarBar:SetStatusBarColor(0.30, 0.30, 0.80)
+	eclipseBar.SolarBar = solarBar
+
+	eclipseBar.Text = T.SetFontString(solarBar, Viks.font.unit_frames_font, Viks.font.unit_frames_font_size, Viks.font.unit_frames_font_style)
+	eclipseBar.Text:SetPoint("CENTER", eclipseBar, "CENTER", -6, 0)
+				
 	local eclipseBarText = solarBar:CreateFontString(nil, 'OVERLAY')
-	eclipseBarText:SetPoint("CENTER", eclipseBar, "CENTER", 0, 0)	
+	eclipseBarText:SetPoint("LEFT", eclipseBar.Text, "RIGHT", 2, 0)
 	eclipseBarText:SetFont(cfg.oUFfont, 9, "OUTLINE")
 	self:Tag(eclipseBarText, '[pereclipse]%')
 	self.EclipseBar = eclipseBar
+	
+	eclipseBar:SetScript("OnShow", function() T.UpdateEclipse(self, false) end)
+	eclipseBar:SetScript("OnUpdate", function() T.UpdateEclipse(self, true) end)
+	eclipseBar:SetScript("OnHide", function() T.UpdateEclipse(self, false) end)
+	self.EclipseBar.PostUpdatePower = T.EclipseDirection
 end
 
 --WARLOCK
 lib.genShards = function(self)
-	if myclass == "WARLOCK" then
-		local wb = CreateFrame("Frame", "WarlockSpecBars", self)
-		wb:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 6)
-		wb:SetWidth(self:GetWidth()-5)
-		wb:SetHeight(6)
-		wb:CreateBackdrop("Default", "Shadow")
-					
-		wb:SetBackdropColor(0, 0, 0)
-		wb:SetBackdropBorderColor(0, 0, 0)	
-		--frame1px2_2(wb)
-		wb:SetFrameLevel(6)
-			for i = 1, 4 do
-				wb[i] = CreateFrame("StatusBar", "WarlockSpecBars"..i, wb)
-				wb[i]:SetHeight(6)
-				wb[i]:SetStatusBarTexture(cfg.statusbar_texture)
-						
-					if i == 1 then
-						wb[i]:SetWidth(30, 6)
-						wb[i]:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 2, 4)
-					else
-						wb[i]:SetWidth(30, 6)
-						wb[i]:SetPoint("LEFT", wb[i-1], "RIGHT", 1, 0)
-					end
-						wb[i].bg = wb[i]:CreateTexture(nil, 'ARTWORK')
-			end
-		wb:SetScript("OnShow", function(self) 
-		local f = self:GetParent()			
-		end)
-					
-		wb:SetScript("OnHide", function(self)
-		local f = self:GetParent()
-		end)
-					
-		self.WarlockSpecBars = wb				
-	end
+    if playerClass ~= "WARLOCK" then return end
+ 
+    local ShardsFrame = CreateFrame("Frame", self:GetName().."_WarlockSpecBar", self)
+	ShardsFrame:CreateBackdrop("Default")
+    ShardsFrame:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1,7)
+    ShardsFrame:SetHeight(7)
+    ShardsFrame:SetWidth(self:GetWidth()-2)
+    ShardsFrame:SetFrameLevel(4)
+    -- Tukz color scheme again
+    local Colors = {  
+    [1] = {109/255, 51/255, 188/255, 1},
+    [2] = {139/255, 51/255, 188/255, 1},
+    [3] = {179/255, 51/255, 188/255, 1},
+    [4] = {209/255, 51/255, 188/255, 1},
+    }
+    local totalShards = 4 
+        for i= 1, totalShards do
+            local Shards = CreateFrame("StatusBar", nil, ShardsFrame)
+            Shards:SetSize((ShardsFrame:GetWidth())/totalShards, 7)
+            Shards:SetStatusBarTexture(cfg.statusbar_texture)
+            Shards:SetFrameLevel(4)
+			Shards:SetStatusBarColor(unpack(Colors[i]))
+            local h = CreateFrame("Frame", nil, Shards)
+            h:SetFrameLevel(1)
+            h:SetPoint("TOPLEFT",-5,5)
+            h:SetPoint("BOTTOMRIGHT",5,-5)
+			--frame1px2_2(h)
+            
+            if (i == 1) then
+                Shards:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+            else
+                Shards:SetPoint("TOPLEFT", ShardsFrame[i-1], "TOPRIGHT", 1, 0)
+            end
+            
+            ShardsFrame[i] = Shards
+    end  
+    self.WarlockSpecBars = ShardsFrame
 end
+
 
 -- Paladins, HolyPowerbar
 lib.genHolyPower = function(self)
 	if playerClass ~= "PALADIN" then return end
-	local bars = CreateFrame("Frame", nil, self)
-	--bars:SetFrameStrata("LOW")
-	bars:SetFrameLevel(6)
-	bars:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0,6)
-	bars:SetWidth(self:GetWidth()-1)
-	bars:SetHeight(6)
-	for i = 1, 5 do					
-		bars[i]=CreateFrame("StatusBar", nil, bars)
-		bars[i]:SetHeight(bars:GetHeight())					
-		bars[i]:SetStatusBarTexture(cfg.statusbar_texture)
-		bars[i]:GetStatusBarTexture():SetHorizTile(false)
-		
-		bars[i].bg = bars[i]:CreateTexture(nil, 'BORDER')
-		bars[i]:SetStatusBarColor(228/255,225/255,16/255)
-		bars[i].bg:SetTexture(228/255,225/255,16/255)
-					
-		if i == 1 then
-			bars[i]:SetPoint("LEFT", bars)
-		else
-			bars[i]:SetPoint("LEFT", bars[i-1], "RIGHT", 1, 0)
-		end
-		
-		bars[i].bg:SetAllPoints(bars[i])
-		bars[i]:SetWidth((bars:GetWidth() - 4)/5)
-		bars[i].bg:SetTexture(cfg.statusbar_texture)					
-		bars[i].bg:SetAlpha(.15)
-	end
-				
-	bars.backdrop = CreateFrame("Frame", nil, bars)
-	frame1px2_2(bars.backdrop)
-	--bars.backdrop:SetBackdropBorderColor(.2,.2,.2,0)
-	bars.backdrop:SetPoint("TOPLEFT", -2, 2)
-	bars.backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
-	bars.backdrop:SetFrameLevel(bars:GetFrameLevel() - 1)
-	bars.Override = UpdateHoly
-	self.HolyPower = bars	
+			self.HolyPower = CreateFrame("Frame", self:GetName().."_HolyPowerBar", self)
+			self.HolyPower:CreateBackdrop("Default")
+			self.HolyPower:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+			self.HolyPower:SetSize(self:GetWidth()-2, 7)
+
+			for i = 1, 5 do
+				self.HolyPower[i] = CreateFrame("StatusBar", nil, self.HolyPower)
+				self.HolyPower[i]:SetSize((self:GetWidth()-6) / 5, 7)
+				if i == 1 then
+					self.HolyPower[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+				else
+					self.HolyPower[i]:SetPoint("TOPLEFT", self.HolyPower[i-1], "TOPRIGHT", 1, 0)
+				end
+				self.HolyPower[i]:SetStatusBarTexture(Viks.media.texture)
+				self.HolyPower[i]:SetStatusBarColor(0.89, 0.88, 0.1)
+
+				self.HolyPower[i].bg = self.HolyPower[i]:CreateTexture(nil, "BORDER")
+				self.HolyPower[i].bg:SetAllPoints()
+				self.HolyPower[i].bg:SetTexture(Viks.media.texture)
+				self.HolyPower[i].bg:SetVertexColor(0.89, 0.88, 0.1, 0.2)
+
+				self.HolyPower[i].width = self.HolyPower[i]:GetWidth()
+			end
+
+			self.HolyPower.Override = T.UpdateHoly
 end
 
 -- Deathknight, runebar
@@ -1630,113 +1636,84 @@ end
 
 -- Combo Points
 lib.genCPoints = function(self)
-	local bars = CreateFrame("Frame", nil, self)
-	bars:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 6)
-	bars:SetWidth(cfg.unit_size.Target.w-2)
-	bars:SetHeight(4)
-	bars:SetBackdropBorderColor(0, .38, .651, 1)
-	bars:SetBackdropColor(0,0,0,0)
-		
-	for i = 1, 5 do					
-		bars[i] = CreateFrame("StatusBar", self:GetName().."_Combo"..i, bars)
-		bars[i]:SetHeight(6)					
-		bars[i]:SetStatusBarTexture(cfg.statusbar_texture)
-		bars[i]:GetStatusBarTexture():SetHorizTile(false)
-							
-		if i == 1 then
-			bars[i]:SetPoint("LEFT", bars)
-		else
-			bars[i]:SetPoint("LEFT", bars[i-1], "RIGHT", 1, 0)
-		end
-		bars[i]:SetAlpha(0.15)
-		bars[i]:SetWidth((cfg.unit_size.Target.w - 4)/5)
-	end
-		
-	bars[1]:SetStatusBarColor(0.69, 0.31, 0.31)		
-	bars[2]:SetStatusBarColor(0.69, 0.31, 0.31)
-	bars[3]:SetStatusBarColor(0.65, 0.63, 0.35)
-	bars[4]:SetStatusBarColor(0.65, 0.63, 0.35)
-	bars[5]:SetStatusBarColor(0.33, 0.59, 0.33)
-		
-	self.CPoints = bars
-	self.CPoints.Override = ComboDisplay
-		
-	bars.FrameBackdrop = CreateFrame("Frame", nil, bars[1])
-	frame1px2_2(bars.FrameBackdrop)
-	bars.FrameBackdrop:SetBackdropBorderColor(unpack(cfg.bordercolor))
-	bars.FrameBackdrop:SetPoint("TOPLEFT", bars, "TOPLEFT", -2, 2)
-	bars.FrameBackdrop:SetPoint("BOTTOMRIGHT", bars, "BOTTOMRIGHT", 2, -2)
-	bars.FrameBackdrop:SetFrameLevel(bars:GetFrameLevel() - 1)
+				self.CPoints = CreateFrame("Frame", self:GetName().."_ComboBar", self)
+				self.CPoints:CreateBackdrop("Default")
+				self.CPoints:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+				self.CPoints:SetBackdropBorderColor(unpack(cfg.bordercolor))
+				self.CPoints:SetHeight(7)
+				self.CPoints:SetWidth(self:GetWidth()-3)
+
+				for i = 1, 5 do
+					self.CPoints[i] = CreateFrame("StatusBar", nil, self.CPoints)
+					self.CPoints[i]:SetSize((self.CPoints:GetWidth()-4) / 5, 7)
+					if i == 1 then
+						self.CPoints[i]:SetPoint("LEFT", self.CPoints, 0.5, 0)
+					else
+						self.CPoints[i]:SetPoint("LEFT", self.CPoints[i-1], "RIGHT", 1, 0)
+					end
+					self.CPoints[i]:SetStatusBarTexture(Viks.media.texture)
+				end
+
+				self.CPoints[1]:SetStatusBarColor(0.9, 0.1, 0.1)
+				self.CPoints[2]:SetStatusBarColor(0.9, 0.1, 0.1)
+				self.CPoints[3]:SetStatusBarColor(0.9, 0.9, 0.1)
+				self.CPoints[4]:SetStatusBarColor(0.9, 0.9, 0.1)
+				self.CPoints[5]:SetStatusBarColor(0.1, 0.9, 0.1)
+
+				self.CPoints.Override = T.UpdateComboPoint
 end
 
 lib.genHarmony = function(self)
 if playerClass ~= "MONK" then return end
-				
-				local hb = CreateFrame("Frame", "Harmony", self)
-				hb:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0,6)
-				hb:SetWidth(self:GetWidth()-1)
-				hb:SetHeight(6)
-				CreateShadowClassbar3(hb)
-				hb:SetBackdropBorderColor(0, .38, .651, 1)
-				hb:SetBackdropColor(.09,.09,.09,1)
-				hb:SetFrameLevel(4)
-				for i = 1, 5 do
-					hb[i] = CreateFrame("StatusBar", "HarmonyBar"..i, hb)
-					hb[i]:SetHeight(6)
-					hb[i]:SetStatusBarTexture(cfg.statusbar_texture)
-					
-					if i == 1 then
-							hb[i]:SetWidth((self:GetWidth()-1) / 5)
+			self.HarmonyBar = CreateFrame("Frame", self:GetName().."_HarmonyBar", self)
+			self.HarmonyBar:CreateBackdrop("Default")
+			self.HarmonyBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+			self.HarmonyBar:SetSize((self:GetWidth()-2), 7)
 
-						hb[i]:SetPoint("LEFT", hb, "LEFT", 0, 0)
-					else
-							hb[i]:SetWidth((self:GetWidth() / 5) - 1)
-					
-						hb[i]:SetPoint("LEFT", hb[i-1], "RIGHT", 1, 0)
-					end
-				hb[i]:SetAlpha(1)
+			for i = 1, 5 do
+				self.HarmonyBar[i] = CreateFrame("StatusBar", nil, self.HarmonyBar)
+				self.HarmonyBar[i]:SetSize((self.HarmonyBar:GetWidth()-4) / 5, 7)
+				if i == 1 then
+					self.HarmonyBar[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+				else
+					self.HarmonyBar[i]:SetPoint("TOPLEFT", self.HarmonyBar[i-1], "TOPRIGHT", 1, 0)
 				end
-		self.HarmonyBar = hb
+				self.HarmonyBar[i]:SetStatusBarTexture(Viks.media.texture)
+				self.HarmonyBar[i]:SetStatusBarColor(0.33, 0.63, 0.33)
+
+				self.HarmonyBar[i].bg = self.HarmonyBar[i]:CreateTexture(nil, "BORDER")
+				self.HarmonyBar[i].bg:SetAllPoints()
+				self.HarmonyBar[i].bg:SetTexture(Viks.media.texture)
+				self.HarmonyBar[i].bg:SetVertexColor(0.33, 0.63, 0.33, 0.2)
+			end
 end
 
 lib.genShadowOrbsBar = function(self)
 	if playerClass ~= "PRIEST" then return end
-	local shadoworbFrame = CreateFrame("Frame", nil, self)
-	shadoworbFrame:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, -5)
-	shadoworbFrame:SetHeight(4)
-	shadoworbFrame:SetWidth(self:GetWidth())
-	shadoworbFrame:SetFrameLevel(4)
-	
-	local Colors = {  --Coloring from Tukz-- I like the coloring so we are sticking with it!
-				[1] = {109/255, 51/255, 188/255, 1},
-				[2] = {139/255, 51/255, 188/255, 1},
-				[3] = {179/255, 51/255, 188/255, 1},
-	}
-	
-	
-	for i= 1, 3 do
-		local shadoworb = CreateFrame("StatusBar", nil, shadoworbFrame)
-		shadoworb:SetSize((self.Health:GetWidth() / 3)-4, 6)
-		shadoworb:SetStatusBarTexture(cfg.statusbar_texture)
-		shadoworb:SetFrameLevel(4)
-		shadoworb:SetStatusBarColor(unpack(Colors[i]))
-		
-			local h = CreateFrame("Frame", nil, shadoworb)
-			h:SetFrameLevel(1)
-			h:SetPoint("TOPLEFT",-5,5)
-			h:SetPoint("BOTTOMRIGHT",5,-5)
-			frame1px2_2(h)
-	
-		if (i == 1) then
-			shadoworb:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 4)
-		else
-			shadoworb:SetPoint("TOPLEFT", shadoworbFrame[i-1], "TOPRIGHT", 6, 0)
-		end
+			self.ShadowOrbsBar = CreateFrame("Frame", nil, self)
+			self.ShadowOrbsBar:CreateBackdrop("Default")
+			self.ShadowOrbsBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+			self.ShadowOrbsBar:SetHeight(7)
+			self.ShadowOrbsBar:SetWidth(self:GetWidth()-2)
+			
+			for i = 1, 5 do
+				self.ShadowOrbsBar[i] = CreateFrame("StatusBar", nil, self.ShadowOrbsBar)
+				self.ShadowOrbsBar[i]:SetSize((self.Health:GetWidth()-6) / 5, 7)
+				if i == 1 then
+					self.ShadowOrbsBar[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+				else
+					self.ShadowOrbsBar[i]:SetPoint("TOPLEFT", self.ShadowOrbsBar[i-1], "TOPRIGHT", 1, 0)
+				end
+				self.ShadowOrbsBar[i]:SetStatusBarTexture(Viks.media.texture)
+				self.ShadowOrbsBar[i]:SetStatusBarColor(0.70, 0.32, 0.75)
 
-		shadoworbFrame[i] = shadoworb
-	end
-	self.ShadowOrbs = shadoworbFrame
-	self.ShadowOrbs.Override = shadoworbOverride
+				self.ShadowOrbsBar[i].bg = self.ShadowOrbsBar[i]:CreateTexture(nil, "BORDER")
+				self.ShadowOrbsBar[i].bg:SetAllPoints()
+				self.ShadowOrbsBar[i].bg:SetTexture(Viks.media.texture)
+				self.ShadowOrbsBar[i].bg:SetVertexColor(0.70, 0.32, 0.75, 0.2)
+			end
+
+			self.ShadowOrbsBar = self.ShadowOrbsBar
 end
 	--f:SetBackdropColor(unpack(cfg.backdropcolor))
 	--f:SetBackdropBorderColor(unpack(cfg.bordercolor))
@@ -1822,6 +1799,34 @@ if cfg.TotemBars then
 	totems.backdrop:SetFrameLevel(totems:GetFrameLevel() - 1)
 	self.TotemBar = totems			
 	end
+end
+
+-- Vengeance bar
+lib.Vengeance = function(self)
+		self.VengeanceBar = CreateFrame("Frame", self:GetName().."_VengeanceBar", self)
+		self.VengeanceBar:CreateBackdrop("Default")
+		if (playerClass == "PALADIN" and Viks.unitframe_class_bar.holy == true)
+		or (playerClass == "DEATHKNIGHT" and Viks.unitframe_class_bar.rune == true)
+		or (playerClass == "MONK" and Viks.unitframe_class_bar.chi == true) then
+			self.VengeanceBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 21)
+		else
+			self.VengeanceBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 1, 7)
+		end
+		self.VengeanceBar:SetSize(self:GetWidth()-2, 7)
+
+		self.VengeanceBar.Bar = CreateFrame("StatusBar", nil, self.VengeanceBar)
+		self.VengeanceBar.Bar:SetPoint("LEFT", self.VengeanceBar, "LEFT", 0, 0)
+		self.VengeanceBar.Bar:SetSize(self.VengeanceBar:GetWidth()-2, 7)
+		self.VengeanceBar.Bar:SetStatusBarTexture(Viks.media.texture)
+		self.VengeanceBar.Bar:SetStatusBarColor(T.color.r, T.color.g, T.color.b)
+
+		self.VengeanceBar.bg = self.VengeanceBar.Bar:CreateTexture(nil, "BORDER")
+		self.VengeanceBar.bg:SetAllPoints()
+		self.VengeanceBar.bg:SetTexture(Viks.media.texture)
+		self.VengeanceBar.bg:SetVertexColor(T.color.r, T.color.g, T.color.b, 0.2)
+
+		self.VengeanceBar.Text = T.SetFontString(self.VengeanceBar.Bar, Viks.font.unit_frames_font, Viks.font.unit_frames_font_size, Viks.font.unit_frames_font_style)
+		self.VengeanceBar.Text:SetPoint("CENTER", self.VengeanceBar.Bar, "CENTER", 0, 0)
 end
 
 

@@ -11,7 +11,7 @@ lpanels:CreateLayout("Load For All", {
 	width = 180, height = 75,
 	text = {
 			{	string = L_PANELS_AFK, anchor_to = "TOP", y_off = -10,
-				shadow = 0, outline = 3, font = Viks.font.stats_font, size = Viks.font.stats_font_size + 2,
+				shadow = 0, outline = 3, font = Viks.font.stats_font, size = 8 + 2,
 			},
 			{	string = function()
 					if afk_timer then
@@ -20,14 +20,14 @@ lpanels:CreateLayout("Load For All", {
 					return format("%s:%02.f", mins, secs)
 					end
 				end, update = 0.1,
-				shadow = 0, outline = 3, font = Viks.font.stats_font, size = Viks.font.stats_font_size * 2,
+				shadow = 0, outline = 3, font = Viks.font.stats_font, size = 8 * 2,
 				anchor_to = "CENTER", color = "1 0.1 0.1"
 			},
 			{	string = L_PANELS_AFK_RCLICK, anchor_to = "BOTTOM", y_off = 12,
-				shadow = 0, outline = 3, font = Viks.font.stats_font, size = Viks.font.stats_font_size,
+				shadow = 0, outline = 3, font = Viks.font.stats_font, size = 8,
 			},
 			{	string = L_PANELS_AFK_LCLICK, anchor_to = "BOTTOM", y_off = 3,
-				shadow = 0, outline = 3, font = Viks.font.stats_font, size = Viks.font.stats_font_size,
+				shadow = 0, outline = 3, font = Viks.font.stats_font, size = 8,
 			}
 		},
 		OnLoad = function(self)

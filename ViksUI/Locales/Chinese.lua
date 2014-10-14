@@ -1,4 +1,4 @@
-﻿local T, Viks, L, _ = unpack(select(2, ...))
+﻿local T, C, L, _ = unpack(select(2, ...))
 if T.client ~= "zhCN" then return end
 
 ----------------------------------------------------------------------------------------
@@ -41,12 +41,6 @@ L_TOOLTIP_LOADING = "读取中..."
 L_TOOLTIP_ACH_STATUS = "你的状态:"
 L_TOOLTIP_ACH_COMPLETE = "你的状态: 完成 "
 L_TOOLTIP_ACH_INCOMPLETE = "你的状态: 未完成"
-L_TOOLTIP_ACH_NOT_EAT = "未食用"
-L_TOOLTIP_ACH_EAT = "已食用"
-L_TOOLTIP_ACH_NOT_DRINK = "未饮用"
-L_TOOLTIP_ACH_DRINK = "已饮用"
-L_TOOLTIP_ACH_NOT_EQUIP = "未装备"
-L_TOOLTIP_ACH_EQUIP = "已装备"
 L_TOOLTIP_SPELL_ID = "法术ID:"
 L_TOOLTIP_ITEM_ID = "物品ID:"
 L_TOOLTIP_WHO_TARGET = "以其为目标的"
@@ -76,7 +70,7 @@ L_MISC_SCROLL = "附魔卷轴"
 L_RAID_UTIL_DISBAND = "解散团队"
 
 -- Zone name
-L_ZONE_WINTERGRASP = "冬握湖"
+L_ZONE_WINTERGRASP = "冬拥湖"
 L_ZONE_TOLBARAD = "托尔巴拉德"
 L_ZONE_TOLBARADPEN = "托尔巴拉德半岛"
 L_ZONE_ARATHIBASIN = "阿拉希盆地"
@@ -100,9 +94,6 @@ L_UF_GHOST = "灵魂"
 L_UF_DEAD = "死亡"
 L_UF_OFFLINE = "离线"
 L_UF_MANA = "低法力值"
-L_UF_TRINKET_READY = "饰品准备: "
-L_UF_TRINKET_USED = "饰品使用: "
-L_UF_WOTF_USED = "被遗忘者的意志使用: "
 
 -- Map
 L_MAP_CURSOR = "指针: "
@@ -213,40 +204,10 @@ L_BIND_KEY = "按键"
 L_BIND_NO_SET = "没有绑定快捷键"
 
 -- Talent spec
-L_PLANNER_DEATHKNIGHT_1 = "鲜血"
-L_PLANNER_DEATHKNIGHT_2 = "冰霜"
-L_PLANNER_DEATHKNIGHT_3 = "邪恶"
-L_PLANNER_DRUID_1 = "平衡"
-L_PLANNER_DRUID_2 = "野性战斗"
-L_PLANNER_DRUID_3 = "守护者"
 L_PLANNER_DRUID_4 = "恢复"
-L_PLANNER_HUNTER_1 = "野兽掌握"
-L_PLANNER_HUNTER_2 = "射击"
-L_PLANNER_HUNTER_3 = "生存"
-L_PLANNER_MAGE_1 = "奥术"
-L_PLANNER_MAGE_2 = "火焰"
-L_PLANNER_MAGE_3 = "冰霜"
-L_PLANNER_MONK_1 = "酿酒"
 L_PLANNER_MONK_2 = "织雾"
-L_PLANNER_MONK_3 = "风行"
 L_PLANNER_PALADIN_1 = "神圣"
-L_PLANNER_PALADIN_2 = "防护"
-L_PLANNER_PALADIN_3 = "惩戒"
 L_PLANNER_PRIEST_1 = "戒律"
-L_PLANNER_PRIEST_2 = "神圣"
-L_PLANNER_PRIEST_3 = "暗影"
-L_PLANNER_ROGUE_1 = "刺杀"
-L_PLANNER_ROGUE_2 = "战斗"
-L_PLANNER_ROGUE_3 = "敏锐"
-L_PLANNER_SHAMAN_1 = "元素战斗"
-L_PLANNER_SHAMAN_2 = "增强"
-L_PLANNER_SHAMAN_3 = "恢复"
-L_PLANNER_WARLOCK_1 = "痛苦"
-L_PLANNER_WARLOCK_2 = "恶魔学识"
-L_PLANNER_WARLOCK_3 = "毁灭"
-L_PLANNER_WARRIOR_1 = "武器"
-L_PLANNER_WARRIOR_2 = "狂怒"
-L_PLANNER_WARRIOR_3 = "防护"
 
 -- BG stats
 L_DATATEXT_BASESASSAULTED = "基地突袭:"
@@ -265,9 +226,9 @@ L_DATATEXT_CARTS_CONTROLLED = "车辆控制："
 
 -- Info text
 L_INFO_ERRORS = "目前没有错误."
-L_INFO_INVITE = "接受邀请: "
-L_INFO_DUEL = "拒绝决斗请求: "
-L_INFO_PET_DUEL = "拒绝宠物对战请求： "
+L_INFO_INVITE = "接受邀请 "
+L_INFO_DUEL = "拒绝决斗请求 "
+L_INFO_PET_DUEL = "拒绝宠物对战请求 "
 L_INFO_DISBAND = "解散团队..."
 L_INFO_SETTINGS_DBM = "键入 /settings dbm, 载入 DBM 的设定."
 L_INFO_SETTINGS_DXE = "键入 /settings dxe, 载入 DXE 的设定."
@@ -279,21 +240,21 @@ L_INFO_SKIN_DISABLED1 = "介面样式启用 "
 L_INFO_SKIN_DISABLED2 = " 已禁用."
 
 -- Popups
-L_POPUP_INSTALLUI = "该角色首次使用ViksUI.你必须重新加载UI来配置."
-L_POPUP_RESETUI = "你确定要重新加载ViksUI?"
+L_POPUP_INSTALLUI = "该角色首次使用ShestakUI.你必须重新加载UI来配置."
+L_POPUP_RESETUI = "你确定要重新加载ShestakUI?"
 L_POPUP_RESETSTATS = "你确定要重置本次游戏时间和金币收益统计数据吗?"
 L_POPUP_SWITCH_RAID = "Select Raid layout."
 L_POPUP_DISBAND_RAID = "你确定要解散团队?"
-L_POPUP_DISABLEUI = "ViksUI并不支援此分辨率, 你想要停用ViksUI吗? (若果您想要尝试其他分辨率, 请按取消)"
+L_POPUP_DISABLEUI = "ShestakUI并不支援此分辨率, 你想要停用ShestakUI吗? (若果您想要尝试其他分辨率, 请按取消)"
 L_POPUP_SETTINGS_ALL = "应用所有的插件设置? (DBM/DXE, Skada and MSBT)"
 L_POPUP_SETTINGS_DBM = "需要改变DBM描点及风格化元素."
 L_POPUP_SETTINGS_DXE = "需要改变DXE描点及风格化元素."
 L_POPUP_SETTINGS_BW = "需要改变BigWigs描点及风格化元素."
-L_POPUP_ARMORY = "军械库"
+L_POPUP_ARMORY = "英雄榜"
 L_POPUP_CURRENCY_CAP = "你拥有的最高级货币为"
 
 -- Welcome message
-L_WELCOME_LINE_1 = "欢迎使用ViksUI "
+L_WELCOME_LINE_1 = "欢迎使用ShestakUI "
 L_WELCOME_LINE_2_1 = "输入/cfg进行插件设置,或者访问http://shestak.org"
 L_WELCOME_LINE_2_2 = "得到更多信息."
 
@@ -378,7 +339,7 @@ L_STATS_TOOLTIP_EXPERIENCE = "未达最高等级时,提示将显示经验值讯�
 
 -- Slash commands
 L_SLASHCMD_HELP = {
-	"Available slash commands:",
+	"Available slash commands:", -- Needs review
 	"/rl - 重载界面.",
 	"/rc - 就位确认.",
 	"/gm - 打开GM面板.",
@@ -408,7 +369,7 @@ L_SLASHCMD_HELP = {
 	"/tt - 密语当前目标.",
 	"/ainv - 自动接受 公会+好友 组队邀请.",
 	"/testuf - 测试头像面板.",
-	"/cfg - 打开ViksUI设置界面.",
+	"/cfg - 打开shestakui设置界面.",
 }
 
 -- ExploreMap

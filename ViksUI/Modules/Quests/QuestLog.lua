@@ -1,5 +1,6 @@
 local T, Viks, L, _ = unpack(select(2, ...))
 
+--[[ WOD Error
 ----------------------------------------------------------------------------------------
 --	Quest level(yQuestLevel by Yleaf)
 ----------------------------------------------------------------------------------------
@@ -7,13 +8,13 @@ local function questlevel()
 	local buttons = QuestLogScrollFrame.buttons
 	local numButtons = #buttons
 	local scrollOffset = HybridScrollFrame_GetOffset(QuestLogScrollFrame)
-	local numEntries, numQuests = GetNumQuestLogEntries()
+	local numEntries = GetNumQuestLogEntries()
 
 	for i = 1, numButtons do
 		local questIndex = i + scrollOffset
 		local questLogTitle = buttons[i]
 		if questIndex <= numEntries then
-			local title, level, questTag, suggestedGroup, isHeader, isCollapsed, isComplete, isDaily = GetQuestLogTitle(questIndex)
+			local title, level, _, isHeader = GetQuestLogTitle(questIndex)
 			if not isHeader then
 				questLogTitle:SetText("["..level.."] "..title)
 				QuestLogTitleButton_Resize(questLogTitle)
@@ -21,6 +22,7 @@ local function questlevel()
 		end
 	end
 end
+
 hooksecurefunc("QuestLog_Update", questlevel)
 QuestLogScrollFrameScrollBar:HookScript("OnValueChanged", questlevel)
 
@@ -29,7 +31,7 @@ QuestLogScrollFrameScrollBar:HookScript("OnValueChanged", questlevel)
 ----------------------------------------------------------------------------------------
 hooksecurefunc("QuestLogTitleButton_OnClick", function(self, button)
 	local questIndex = self:GetID()
-	local questName = self:GetText()
+
 	if IsModifiedClick() then
 		if self.isHeader then return end
 		if IsControlKeyDown() then
@@ -84,3 +86,5 @@ hooksecurefunc("QuestLog_UpdateQuestCount", function()
 	end
 	QuestLogCount:SetWidth(width + 15)
 end)
+
+--]]

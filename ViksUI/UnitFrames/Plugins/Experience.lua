@@ -115,7 +115,7 @@ local function Enable(self, unit)
 		end
 
 		if(not experience.noTooltip) then
-			experience:EnableMouse()
+			experience:EnableMouse(true)
 			experience:HookScript('OnLeave', GameTooltip_Hide)
 			experience:HookScript('OnEnter', SetTooltip)
 		end

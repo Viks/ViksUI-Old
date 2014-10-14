@@ -56,38 +56,167 @@ PVPReadyDialog.enterButton:SetPoint("BOTTOM", PVPReadyDialog, "BOTTOM", 0, 25)
 --	Spin camera while afk(by Telroth and Eclipse)
 ----------------------------------------------------------------------------------------
 if Viks.misc.afk_spin_camera == true then
-	local SpinCam = CreateFrame("Frame")
+local PName = UnitName("player")
+local PLevel = UnitLevel("player")
+local PClass = UnitClass("player")
+local PRace = UnitRace("player")
+local PFaction = UnitFactionGroup("player")
+local color = RAID_CLASS_COLORS[T.Class]
+local Version = tonumber(GetAddOnMetadata("ViksUI", "Version"))
 
-	local OnEvent = function(self, event, unit)
-		if event == "PLAYER_FLAGS_CHANGED" then
-			if unit == "player" then
-				if UnitIsAFK(unit) then
-					SpinStart()
-				else
-					SpinStop()
-				end
+local PGuild
+if(IsInGuild()) then PGuild = select(1, GetGuildInfo("player")) else PGuild = " " end
+
+T.AFK_LIST = {
+	"Mouseover minimap shows coords and locations.",
+	"Small yellow square on minimap shows micromenu.",
+	"Right click the minimap for trackingmenu.",
+	"Farm Mode: Toggle with mapbutton (lower left on minimap, hidden) or with /fm or /farmmode",
+	"By right-clicking on a quest or achievment at the objective tracker, you can retrieve the wowhead link.",
+	"You can type /ui to move the frames from the Interface.",
+	"You can type /uihelp to show some supported commands.",
+	"/testuf shows UF unitframes",
+	"Right click on X button on bags to access soring/stacking. Works with bank to (use same button)",
+	"You can see the source of raid buffs, by clicking on raidbuffreminder. Click again to hide",
+	"You can find much information about something on screen with /fstack command",
+	"You can toggle few things on/off (Helm, Cloak, Auto Loot, Overlapping) on top panel fram. (Under location text)",	
+}
+
+local ViksUIAFKPanel = CreateFrame("Frame", "ViksUIAFKPanel", nil)
+ViksUIAFKPanel:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", -2, -2)
+ViksUIAFKPanel:SetPoint("TOPRIGHT", UIParent, "BOTTOMRIGHT", 2, 150)
+ViksUIAFKPanel:SetTemplate("Transparent")
+ViksUIAFKPanel:Hide()
+
+local ViksUIAFKPanelTop = CreateFrame("Frame", "ViksUIAFKPanelTop", nil)
+ViksUIAFKPanelTop:SetPoint("TOPLEFT", UIParent, "TOPLEFT",-2, 2)
+ViksUIAFKPanelTop:SetPoint("BOTTOMRIGHT", UIParent, "TOPRIGHT", 2, -80)
+ViksUIAFKPanelTop:SetTemplate("Transparent")
+ViksUIAFKPanelTop:SetFrameStrata("FULLSCREEN")
+ViksUIAFKPanelTop:Hide()
+
+local ViksUIAFKPanelTopIcon = CreateFrame("Frame", "ViksUIAFKPanelTopIcon", ViksUIAFKPanelTop)
+ViksUIAFKPanelTopIcon:SetWidth(128)
+ViksUIAFKPanelTopIcon:SetHeight(64)
+ViksUIAFKPanelTopIcon:SetPoint("CENTER", ViksUIAFKPanelTop, "BOTTOM", 0, -20)
+--ViksUIAFKPanelTopIcon:SetTemplate("Default")
+
+local t = ViksUIAFKPanelTopIcon:CreateTexture(nil,"ARTWORK")
+t:SetTexture("Interface\\AddOns\\ViksUI\\Media\\textures\\viksui.blp")
+t:SetPoint("TOPLEFT", 2, -2)
+t:SetPoint("BOTTOMRIGHT", -2, 2)
+ViksUIAFKPanelTopIcon.texture = t
+ViksUIAFKPanelTopIcon:SetPoint("CENTER", ViksUIAFKPanelTop, "BOTTOM", 0, -20)
+ViksUIAFKPanelTopIcon:Show()
+
+ViksUIAFKPanelTop.ViksUIText = ViksUIAFKPanelTop:CreateFontString(nil, "OVERLAY")
+ViksUIAFKPanelTop.ViksUIText:SetPoint("CENTER", ViksUIAFKPanelTop, "CENTER", 0, 0)
+ViksUIAFKPanelTop.ViksUIText:SetFont(Viks["media"].pxfontHeader, 40, "OUTLINE")
+ViksUIAFKPanelTop.ViksUIText:SetText("|cffc41f3bViksUI Version" .. Version)
+
+ViksUIAFKPanelTop.DateText = ViksUIAFKPanelTop:CreateFontString(nil, "OVERLAY")
+ViksUIAFKPanelTop.DateText:SetPoint("BOTTOMLEFT", ViksUIAFKPanelTop, "BOTTOMRIGHT", -100, 44)
+ViksUIAFKPanelTop.DateText:SetFont(Viks["media"].font, 15, "OUTLINE")
+
+ViksUIAFKPanelTop.ClockText = ViksUIAFKPanelTop:CreateFontString(nil, "OVERLAY")
+ViksUIAFKPanelTop.ClockText:SetPoint("BOTTOMLEFT", ViksUIAFKPanelTop, "BOTTOMRIGHT", -100, 20)
+ViksUIAFKPanelTop.ClockText:SetFont(Viks["media"].font, 20, "OUTLINE")
+
+ViksUIAFKPanelTop.PlayerNameText = ViksUIAFKPanelTop:CreateFontString(nil, "OVERLAY")
+ViksUIAFKPanelTop.PlayerNameText:SetPoint("LEFT", ViksUIAFKPanelTop, "LEFT", 25, 15)
+ViksUIAFKPanelTop.PlayerNameText:SetFont(Viks["media"].font, 28, "OUTLINE")
+ViksUIAFKPanelTop.PlayerNameText:SetText(PName)
+ViksUIAFKPanelTop.PlayerNameText:SetTextColor(T.color.r, T.color.g, T.color.b)
+
+ViksUIAFKPanelTop.GuildText = ViksUIAFKPanelTop:CreateFontString(nil, "OVERLAY")
+ViksUIAFKPanelTop.GuildText:SetPoint("LEFT", ViksUIAFKPanelTop, "LEFT", 25, -3)
+ViksUIAFKPanelTop.GuildText:SetFont(Viks["media"].font, 15, "OUTLINE")
+ViksUIAFKPanelTop.GuildText:SetText("|cffc41f3b" .. PGuild .. "|r")
+
+ViksUIAFKPanelTop.PlayerInfoText = ViksUIAFKPanelTop:CreateFontString(nil, "OVERLAY")
+ViksUIAFKPanelTop.PlayerInfoText:SetPoint("LEFT", ViksUIAFKPanelTop, "LEFT", 25, -20)
+ViksUIAFKPanelTop.PlayerInfoText:SetFont(Viks["media"].font, 15, "OUTLINE")
+ViksUIAFKPanelTop.PlayerInfoText:SetText(LEVEL .. " " .. PLevel .. " " .. PFaction .. " " .. PClass)
+
+local interval = 0
+ViksUIAFKPanelTop:SetScript("OnUpdate", function(self, elapsed)
+	interval = interval - elapsed
+	if interval <= 0 then
+		ViksUIAFKPanelTop.ClockText:SetText(format("%s", date("%H|cffc41f3b:|r%M|cffc41f3b:|r%S")))
+		ViksUIAFKPanelTop.DateText:SetText(format("%s", date("|cffc41f3b%a|r %b/%d")))
+		interval = 0.5
+	end
+end)
+
+local OnEvent = function(self, event, unit)
+	if event == "PLAYER_FLAGS_CHANGED" then
+		if unit == "player" then
+			if UnitIsAFK(unit) and not UnitIsDead(unit) then
+				SpinStart()
+				ViksUIAFKPanel:Show()
+				ViksUIAFKPanelTop:Show()
+				Minimap:Hide()
+			else
+				SpinStop()
+				ViksUIAFKPanel:Hide()
+				ViksUIAFKPanelTop:Hide()
+				Minimap:Show()
 			end
-		elseif event == "PLAYER_LEAVING_WORLD" then
-			SpinStop()
+		end
+	elseif event == "PLAYER_LEAVING_WORLD" then
+		SpinStop()
+	elseif event == "PLAYER_DEAD" then
+		SpinStop()
+		ViksUIAFKPanel:Hide()
+		ViksUIAFKPanelTop:Hide()
+		Minimap:Show()
+	end
+end
+
+ViksUIAFKPanel:RegisterEvent("PLAYER_ENTERING_WORLD")
+ViksUIAFKPanel:RegisterEvent("PLAYER_LEAVING_WORLD")
+ViksUIAFKPanel:RegisterEvent("PLAYER_FLAGS_CHANGED")
+ViksUIAFKPanel:RegisterEvent("PLAYER_DEAD")
+ViksUIAFKPanel:SetScript("OnEvent", OnEvent)
+
+local texts = T.AFK_LIST
+local interval = #texts
+
+local ViksUIAFKScrollFrame = CreateFrame("ScrollingMessageFrame", "ViksUIAFKScrollFrame", ViksUIAFKPanel)
+ViksUIAFKScrollFrame:SetSize(ViksUIAFKPanel:GetWidth(), ViksUIAFKPanel:GetHeight())
+ViksUIAFKScrollFrame:SetPoint("CENTER", ViksUIAFKPanel, "CENTER", 0, 60)
+ViksUIAFKScrollFrame:SetFont(Viks["media"].font, 20, "OUTLINE")
+ViksUIAFKScrollFrame:SetShadowColor(0, 0, 0, 0)
+ViksUIAFKScrollFrame:SetFading(false)
+ViksUIAFKScrollFrame:SetFadeDuration(0)
+ViksUIAFKScrollFrame:SetTimeVisible(1)
+ViksUIAFKScrollFrame:SetMaxLines(1)
+ViksUIAFKScrollFrame:SetSpacing(2)
+ViksUIAFKScrollFrame:SetScript("OnUpdate", function(self, time)
+	interval = interval - (time / 30)
+	for index, name in pairs(T.AFK_LIST) do
+		if interval < index then
+			ViksUIAFKScrollFrame:AddMessage(T.AFK_LIST[index], 1, 1, 1)
+			tremove(texts, index)
 		end
 	end
-	SpinCam:RegisterEvent("PLAYER_ENTERING_WORLD")
-	SpinCam:RegisterEvent("PLAYER_LEAVING_WORLD")
-	SpinCam:RegisterEvent("PLAYER_FLAGS_CHANGED")
-	SpinCam:SetScript("OnEvent", OnEvent)
 
-	function SpinStart()
-		spinning = true
-		MoveViewRightStart(0.1)
-		UIParent:Hide()
-	end
+	if interval < 0 then self:SetScript("OnUpdate", nil) end
+end)
 
-	function SpinStop()
-		if not spinning then return end
-		spinning = nil
-		MoveViewRightStop()
-		UIParent:Show()
-	end
+ViksUIAFKPanel:SetScript("OnShow", function(self) UIFrameFadeIn(UIParent, .5, 1, 0) end)
+ViksUIAFKPanel:SetScript("OnHide", function(self) UIFrameFadeOut(UIParent, .5, 0, 1) end)
+
+function SpinStart()
+	spinning = true
+	MoveViewRightStart(.1)
+end
+
+function SpinStop()
+	if(not spinning) then return end
+	spinning = nil
+	MoveViewRightStop()
+end
 end
 
 ----------------------------------------------------------------------------------------
@@ -197,6 +326,19 @@ gtframe:SetText(GUILD)
 gtframe:SetPoint("LEFT", _G["FriendsFrameTab"..n - 1], "RIGHT", -15, 0)
 PanelTemplates_DeselectTab(gtframe)
 gtframe:SetScript("OnClick", function() ToggleGuildFrame() end)
+
+----------------------------------------------------------------------------------------
+--	Force quit
+----------------------------------------------------------------------------------------
+local CloseWoW = CreateFrame("Frame")
+CloseWoW:RegisterEvent("CHAT_MSG_SYSTEM")
+CloseWoW:SetScript("OnEvent", function(self, event, msg)
+	if event == "CHAT_MSG_SYSTEM" then
+		if msg and msg == IDLE_MESSAGE then
+			ForceQuit()
+		end
+	end
+end)
 
 ----------------------------------------------------------------------------------------
 --	Old achievements filter

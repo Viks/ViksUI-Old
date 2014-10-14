@@ -4,7 +4,6 @@ if Viks.aura.player_auras ~= true then return end
 ----------------------------------------------------------------------------------------
 --	Style player buff(by Tukz)
 ----------------------------------------------------------------------------------------
-local mainhand, _, _, offhand = GetWeaponEnchantInfo()
 local rowbuffs = 16
 
 local GetFormattedTime = function(s)
@@ -218,7 +217,7 @@ end
 
 local function UpdateDebuffAnchors(buttonName, index)
 	_G[buttonName..index]:Show()
-	local debuff = _G[buttonName..index]
+	--local debuff = _G[buttonName..index]
 	StyleDeBuffs(buttonName, index)
 end
 

@@ -142,7 +142,7 @@ local backdrop = {
 }
 
 local border = {
-    bgFile = [=[Interface\AddOns\ViksUI\Media\white.tga]=],
+    bgFile = [=[Interface\AddOns\ViksUI\Media\textures\white2.tga]=],
     insets = {top = -2, left = -2, bottom = -2, right = -2},
 }
 
@@ -492,7 +492,7 @@ local style = function(self)
     -- Highlight tex
     local hl = self.Health:CreateTexture(nil, "OVERLAY")
     hl:SetAllPoints(self)
-    hl:SetTexture([=[Interface\AddOns\ViksUI\Media\white.tga]=])
+    hl:SetTexture([=[Interface\AddOns\ViksUI\Media\textures\white2.tga]=])
     hl:SetVertexColor(1,1,1,.1)
     hl:SetBlendMode("ADD")
     hl:Hide()
@@ -521,7 +521,7 @@ local style = function(self)
     -- Raid Icons
     local ricon = self.Health:CreateTexture(nil, 'OVERLAY')
     ricon:SetPoint("TOP", self, 0, 5)
-	ricon:SetTexture("Interface\\AddOns\\ViksUI\\Media\\raidicons")	
+	ricon:SetTexture("Interface\\AddOns\\ViksUI\\Media\\Other\\raidicons")	
     ricon:SetSize(Viks.raidframes.leadersize+2, Viks.raidframes.leadersize+2)
     self.RaidIcon = ricon
 
@@ -656,7 +656,7 @@ local style25 = function(self)
     -- Highlight tex
     local hl = self.Health:CreateTexture(nil, "OVERLAY")
     hl:SetAllPoints(self)
-    hl:SetTexture([=[Interface\AddOns\ViksUI\Media\white.tga]=])
+    hl:SetTexture([=[Interface\AddOns\ViksUI\Media\textures\white2.tga]=])
     hl:SetVertexColor(1,1,1,.1)
     hl:SetBlendMode("ADD")
     hl:Hide()
@@ -685,7 +685,7 @@ local style25 = function(self)
     -- Raid Icons
     local ricon = self.Health:CreateTexture(nil, 'OVERLAY')
     ricon:SetPoint("TOP", self, 0, 5)
-	ricon:SetTexture("Interface\\AddOns\\ViksUI\\Media\\raidicons")	
+	ricon:SetTexture("Interface\\AddOns\\ViksUI\\Media\\Other\\raidicons")	
     ricon:SetSize(Viks.raidframes.leadersize+2, Viks.raidframes.leadersize+2)
     self.RaidIcon = ricon
 
@@ -819,7 +819,7 @@ local style40 = function(self)
     -- Highlight tex
     local hl = self.Health:CreateTexture(nil, "OVERLAY")
     hl:SetAllPoints(self)
-    hl:SetTexture([=[Interface\AddOns\ViksUI\Media\white.tga]=])
+    hl:SetTexture([=[Interface\AddOns\ViksUI\Media\textures\white2.tga]=])
     hl:SetVertexColor(1,1,1,.1)
     hl:SetBlendMode("ADD")
     hl:Hide()
@@ -848,7 +848,7 @@ local style40 = function(self)
     -- Raid Icons
     local ricon = self.Health:CreateTexture(nil, 'OVERLAY')
     ricon:SetPoint("TOP", self, 0, 5)
-	ricon:SetTexture("Interface\\AddOns\\ViksUI\\Media\\raidicons")	
+	ricon:SetTexture("Interface\\AddOns\\ViksUI\\Media\\Other\\raidicons")	
     ricon:SetSize(Viks.raidframes.leadersize+2, Viks.raidframes.leadersize+2)
     self.RaidIcon = ricon
 

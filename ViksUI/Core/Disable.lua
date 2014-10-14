@@ -61,7 +61,9 @@ if IsAddOnLoaded("Dominos") or IsAddOnLoaded("Bartender4") or IsAddOnLoaded("Raz
 end
 
 if IsAddOnLoaded("Mapster") then
-	Viks.map.enable = false
+	C.map.explore_map = false
+	C.map.fog_of_war = false
+	C.map.map_boss_count = false
 end
 
 if IsAddOnLoaded("Prat-3.0") or IsAddOnLoaded("Chatter") then
@@ -125,7 +127,6 @@ end
 
 if IsAddOnLoaded("PhoenixStyle") then
 	Viks.announcements.toys = false
-	Viks.announcements.pull_countdown = false
 end
 
 if IsAddOnLoaded("Overachiever") then

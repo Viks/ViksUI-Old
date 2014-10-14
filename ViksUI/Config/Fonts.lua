@@ -8,7 +8,7 @@
 ----------------------------------------------------------------------------------------
 -- Viks["font"] = {
 --		-- Stats font
---		["stats_font"] = "Interface\\AddOns\\ViksUI\\Media\\Fonts\\Normal.ttf",
+--		["stats_font"] = "Interface\\AddOns\\ViksUI\\Media\\Font\\Normal.ttf",
 -- 		["stats_font_size"] = 11,
 --		["stats_font_style"] = "",
 --		["stats_font_shadow"] = true,
@@ -21,7 +21,7 @@
 Viks["font"] = {
 	-- Stats font
 	["stats_font"] = Viks.media.pxfont,
-	["stats_font_size"] = 8,
+	["stats_font_size"] = 12,
 	["stats_font_style"] = "OUTLINEMONOCHROME",
 	["stats_font_shadow"] = false,
 

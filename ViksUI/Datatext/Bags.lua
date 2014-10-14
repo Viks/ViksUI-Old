@@ -41,5 +41,5 @@ if Viks.datatext.Bags and Viks.datatext.Bags > 0 then
 	Stat:RegisterEvent("PLAYER_LOGIN")
 	Stat:RegisterEvent("BAG_UPDATE")
 	Stat:SetScript("OnEvent", OnEvent)
-	Stat:SetScript("OnMouseDown", function() OpenAllBags() end)
+	Stat:SetScript("OnMouseDown", function() ToggleAllBags() end)
 end

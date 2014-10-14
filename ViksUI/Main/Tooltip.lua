@@ -1,3 +1,4 @@
+--[[
 local T, Viks, L, _ = unpack(select(2, ...))
 -- credits : Aezay (TipTac) and Caellian for some parts of code.
 if not Viks.tooltip.enable then return end
@@ -535,10 +536,8 @@ GameTooltip:HookScript("OnTooltipSetItem", attachItemTooltip)
 ItemRefTooltip:HookScript("OnTooltipSetItem", attachItemTooltip)
 ItemRefShoppingTooltip1:HookScript("OnTooltipSetItem", attachItemTooltip)
 ItemRefShoppingTooltip2:HookScript("OnTooltipSetItem", attachItemTooltip)
-ItemRefShoppingTooltip3:HookScript("OnTooltipSetItem", attachItemTooltip)
 ShoppingTooltip1:HookScript("OnTooltipSetItem", attachItemTooltip)
 ShoppingTooltip2:HookScript("OnTooltipSetItem", attachItemTooltip)
-ShoppingTooltip3:HookScript("OnTooltipSetItem", attachItemTooltip)
 end
 
 ----------------------------------------------------------------------------------------
@@ -1209,3 +1208,4 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
 		GameTooltip:AddLine(ROLE..": "..GetLFDRole(unit))
 	end
 end)
+--]]

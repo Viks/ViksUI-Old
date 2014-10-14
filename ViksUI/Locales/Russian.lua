@@ -1,4 +1,4 @@
-﻿local T, Viks, L, _ = unpack(select(2, ...))
+﻿local T, C, L, _ = unpack(select(2, ...))
 if T.client ~= "ruRU" then return end
 
 ----------------------------------------------------------------------------------------
@@ -41,12 +41,6 @@ L_TOOLTIP_LOADING = "Загрузка..."
 L_TOOLTIP_ACH_STATUS = "Ваш статус:"
 L_TOOLTIP_ACH_COMPLETE = "Ваш статус: Получено "
 L_TOOLTIP_ACH_INCOMPLETE = "Ваш статус: Не завершено"
-L_TOOLTIP_ACH_NOT_EAT = "Не съедено"
-L_TOOLTIP_ACH_EAT = "Съедено"
-L_TOOLTIP_ACH_NOT_DRINK = "Не выпито"
-L_TOOLTIP_ACH_DRINK = "Выпито"
-L_TOOLTIP_ACH_NOT_EQUIP = "Не одето"
-L_TOOLTIP_ACH_EQUIP = "Одето"
 L_TOOLTIP_SPELL_ID = "Номер заклинания:"
 L_TOOLTIP_ITEM_ID = "Номер предмета:"
 L_TOOLTIP_WHO_TARGET = "Выбран целью"
@@ -100,9 +94,6 @@ L_UF_GHOST = "Призрак"
 L_UF_DEAD = "Мёртв"
 L_UF_OFFLINE = "Не в сети"
 L_UF_MANA = "Мало маны"
-L_UF_TRINKET_READY = "Аксессуар готов: "
-L_UF_TRINKET_USED = "Аксессуар задействован: "
-L_UF_WOTF_USED = "WotF задействован: "
 
 -- Map
 L_MAP_CURSOR = "Курсор: "
@@ -213,40 +204,10 @@ L_BIND_KEY = "Клавиша"
 L_BIND_NO_SET = "Не назначено"
 
 -- Talent spec
-L_PLANNER_DEATHKNIGHT_1 = "Кровь"
-L_PLANNER_DEATHKNIGHT_2 = "Лед"
-L_PLANNER_DEATHKNIGHT_3 = "Нечестивость"
-L_PLANNER_DRUID_1 = "Баланс"
-L_PLANNER_DRUID_2 = "Сила зверя"
-L_PLANNER_DRUID_3 = "Страж"
 L_PLANNER_DRUID_4 = "Исцеление"
-L_PLANNER_HUNTER_1 = "Повелитель зверей"
-L_PLANNER_HUNTER_2 = "Стрельба"
-L_PLANNER_HUNTER_3 = "Выживание"
-L_PLANNER_MAGE_1 = "Тайная магия"
-L_PLANNER_MAGE_2 = "Огонь"
-L_PLANNER_MAGE_3 = "Лед"
-L_PLANNER_MONK_1 = "Хмелевар"
 L_PLANNER_MONK_2 = "Ткач туманов"
-L_PLANNER_MONK_3 = "Танцующий с ветром"
 L_PLANNER_PALADIN_1 = "Свет"
-L_PLANNER_PALADIN_2 = "Защита"
-L_PLANNER_PALADIN_3 = "Воздаяние"
 L_PLANNER_PRIEST_1 = "Послушание"
-L_PLANNER_PRIEST_2 = "Свет"
-L_PLANNER_PRIEST_3 = "Тьма"
-L_PLANNER_ROGUE_1 = "Ликвидация"
-L_PLANNER_ROGUE_2 = "Бой"
-L_PLANNER_ROGUE_3 = "Скрытность"
-L_PLANNER_SHAMAN_1 = "Стихии"
-L_PLANNER_SHAMAN_2 = "Совершенствование"
-L_PLANNER_SHAMAN_3 = "Исцеление"
-L_PLANNER_WARLOCK_1 = "Колдовство"
-L_PLANNER_WARLOCK_2 = "Демонология"
-L_PLANNER_WARLOCK_3 = "Разрушение"
-L_PLANNER_WARRIOR_1 = "Оружие"
-L_PLANNER_WARRIOR_2 = "Неистовство"
-L_PLANNER_WARRIOR_3 = "Защита"
 
 -- BG stats
 L_DATATEXT_BASESASSAULTED = "Штурмы баз:"
@@ -265,9 +226,9 @@ L_DATATEXT_CARTS_CONTROLLED = "Захваты вагонеток:"
 
 -- Info text
 L_INFO_ERRORS = "Ошибок не обнаружено."
-L_INFO_INVITE = "Приглашение принято от: "
-L_INFO_DUEL = "Дуэль отклонена от: "
-L_INFO_PET_DUEL = "Битва питомцев отклонена от: "
+L_INFO_INVITE = "Приглашение принято от "
+L_INFO_DUEL = "Дуэль отклонена от "
+L_INFO_PET_DUEL = "Битва питомцев отклонена от "
 L_INFO_DISBAND = "Роспуск группы..."
 L_INFO_SETTINGS_DBM = "Введите /settings dbm, чтобы применить настройки DBM."
 L_INFO_SETTINGS_DXE = "Введите /settings dxe, чтобы применить настройки DXE."
@@ -373,7 +334,7 @@ L_STATS_TOTAL_MEMORY_USAGE = "Всего использовано памяти:"
 L_STATS_NOT_TO_SELL = "Введите /junk, чтобы настроить какие предметы не продавать."
 L_STATS_WATCH_CURRENCY = "Показывает отображаемую валюту в подсказке."
 L_STATS_WATCH_FACTIONS = "Просмотр фракций из окна репутации."
-L_STATS_TOOLTIP_TIME_PLAYED = "Когда уровень максимальный, подсказка будет показывать время игры персонажей."
+L_STATS_TOOLTIP_TIME_PLAYED = "Когда уровень максимальный, подсказка будет показывать время игры персонажами."
 L_STATS_TOOLTIP_EXPERIENCE = "Когда уровень не максимальный, подсказка будет показывать подробности опыта."
 
 -- Slash commands
@@ -395,7 +356,7 @@ L_SLASHCMD_HELP = {
 	"/moveui - Перемещение элементов интерфейса.",
 	"/resetui - Сброс общих настроек на стандартные.",
 	"/resetuf - Сброс позиций юнит фреймов.",
-	"/resetconfig - Сброс настроек ViksUI_Config.",
+	"/resetconfig - Сброс настроек ShestakUI_Config.",
 	"/resetstats - Сброс статистики золота и проведенного времени.",
 	"/settings ADDON_NAME - Применение настроек для модификаций (дбм и прочие).",
 	"/ls, /litestats - Помощь для инфо-текстов.",
@@ -407,7 +368,7 @@ L_SLASHCMD_HELP = {
 	"/threat - Тест списка угрозы.",
 	"/tt - Шепнуть цели.",
 	"/ainv - Включение автоматического приглашения.",
-	"/testuf - Тест юнит фреймов",
+	"/testuf - Тест юнит фреймов.",
 	"/cfg - Открыть настройки интерфейса.",
 }
 

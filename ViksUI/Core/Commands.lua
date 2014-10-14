@@ -42,7 +42,7 @@ SLASH_CLEARCOMBAT2 = "/сдс"
 --	Description of the slash commands
 ----------------------------------------------------------------------------------------
 SlashCmdList.UIHELP = function()
-	for i, v in ipairs(L_SLASHCMD_HELP) do DEFAULT_CHAT_FRAME:AddMessage(("%s"):format(tostring(v)), 1, 1, 0) end
+	for i, v in ipairs(L_SLASHCMD_HELP) do print("|cffffff00"..("%s"):format(tostring(v)).."|r") end
 end
 SLASH_UIHELP1 = "/uihelp"
 SLASH_UIHELP2 = "/helpui"
@@ -176,7 +176,7 @@ SLASH_DBMTEST2 = "/виьеуые"
 --	Switch to heal layout
 ----------------------------------------------------------------------------------------
 SlashCmdList.HEAL = function()
-	SavedOptions.RaidLayout = "HEAL"
+	SavedOptionsPerChar.RaidLayout = "HEAL"
 	ReloadUI()
 end
 SLASH_HEAL1 = "/heal"
@@ -186,7 +186,7 @@ SLASH_HEAL2 = "/руфд"
 --	Switch to dps layout
 ----------------------------------------------------------------------------------------
 SlashCmdList.DPS = function()
-	SavedOptions.RaidLayout = "DPS"
+	SavedOptionsPerChar.RaidLayout = "DPS"
 	ReloadUI()
 end
 SLASH_DPS1 = "/dps"
@@ -271,6 +271,11 @@ SlashCmdList.TEST_ACHIEVEMENT = function()
 	LootWonAlertFrame_ShowAlert(GetItemInfo(6948), -1, 1, 100)
 	ChallengeModeAlertFrame_ShowAlert()
 	AlertFrame_AnimateIn(ScenarioAlertFrame1)
+	--StorePurchaseAlertFrame_ShowAlert(select(10, GetItemInfo(6948)), GetItemInfo(6948), 6948)
+	--LootUpgradeFrame_ShowAlert(GetItemInfo(6948))
+	--GarrisonBuildingAlertFrame_ShowAlert(T.name)
+	--GarrisonMissionAlertFrame_ShowAlert(missionID)
+	--GarrisonFollowerAlertFrame_ShowAlert(followerID, name, displayID, level, quality, isUpgraded)
 	AlertFrame_FixAnchors()
 end
 SLASH_TEST_ACHIEVEMENT1 = "/tach"

@@ -37,14 +37,12 @@ local guildMotDString = "%s |cffaaaaaa- |cffffffff%s"
 local levelNameString = "|cff%02x%02x%02x%d|r |cff%02x%02x%02x%s|r %s"
 local levelNameStatusString = "|cff%02x%02x%02x%d|r %s %s"
 local nameRankString = "%s |cff999999-|cffffffff %s"
-local guildXpCurrentString = gsub(join("", RGBToHex(ttsubh.r, ttsubh.g, ttsubh.b), GUILD_EXPERIENCE_CURRENT), ": ", ":|r |cffffffff", 1)
-local guildXpDailyString = gsub(join("", RGBToHex(ttsubh.r, ttsubh.g, ttsubh.b), GUILD_EXPERIENCE_DAILY), ": ", ":|r |cffffffff", 1)
 local standingString = join("", RGBToHex(ttsubh.r, ttsubh.g, ttsubh.b), "%s:|r |cFFFFFFFF%s/%s (%s%%)")
 local moreMembersOnlineString = join("", "+ %d ", FRIENDS_LIST_ONLINE, "...")
 local noteString = join("", "|cff999999   ", LABEL_NOTE, ":|r %s")
 local officerNoteString = join("", "|cff999999   ", GUILD_RANK1_DESC, ":|r %s")
 local friendOnline, friendOffline = gsub(ERR_FRIEND_ONLINE_SS,"\124Hplayer:%%s\124h%[%%s%]\124h",""), gsub(ERR_FRIEND_OFFLINE_S,"%%s","")
-local guildTable, guildXP, guildMotD = {}, {}, ""
+local guildTable, guildMotD = {}, {}, ""
 
 local Stat = CreateFrame("Frame")
 Stat:EnableMouse(true)
@@ -104,17 +102,6 @@ local function BuildGuildTable()
 end
 
 
-local function UpdateGuildXP()
-	local currentXP, remainingXP = UnitGetGuildXP("player")
-	local nextLevelXP = currentXP + remainingXP
-	
-	-- prevent 4.3 division / 0
-	if nextLevelXP == 0 or maxDailyXP == 0 then return end
-	
-	local percentTotal = tostring(math.ceil((currentXP / nextLevelXP) * 100))
-	
-	guildXP[0] = { currentXP, nextLevelXP, percentTotal }
-end
 
 local function UpdateGuildMessage()
 	guildMotD = GetGuildRosterMOTD()
@@ -136,7 +123,7 @@ local function Update(self, event, ...)
 		-- when we enter the world and guildframe is not available then
 		-- load guild frame, update guild message and guild xp
 		if event == "PLAYER_ENTERING_WORLD" then
-			if not GuildFrame and IsInGuild() then LoadAddOn("Blizzard_GuildUI") UpdateGuildMessage() UpdateGuildXP() end
+			if not GuildFrame and IsInGuild() then LoadAddOn("Blizzard_GuildUI") UpdateGuildMessage() end
 		end
 		-- an event occured that could change the guild roster, so request update, and wait for guild roster update to occur
 		if event ~= "GUILD_ROSTER_UPDATE" and event~="PLAYER_GUILD_UPDATE" then GuildRoster() return end
@@ -224,7 +211,6 @@ Stat:SetScript("OnEnter", function(self)
 	
 	
 	local guildName, guildRank = GetGuildInfo('player')
-	local guildLevel = GetGuildLevel()
 
 	GameTooltip:SetOwner(self, "ANCHOR_TOP", -20, 6)
 	
@@ -237,15 +223,6 @@ Stat:SetScript("OnEnter", function(self)
 	
 	local col = RGBToHex(ttsubh.r, ttsubh.g, ttsubh.b)
 	GameTooltip:AddLine(' ')
-	if GetGuildLevel() ~= 25 then
-		if guildXP[0] and guildXP[1] then
-			local currentXP, nextLevelXP, percentTotal = unpack(guildXP[0])
-			local dailyXP, maxDailyXP, percentDaily = unpack(guildXP[1])
-					
-			GameTooltip:AddLine(format(guildXpCurrentString, ShortValue(currentXP), ShortValue(nextLevelXP), percentTotal))
-			GameTooltip:AddLine(format(guildXpDailyString, ShortValue(dailyXP), ShortValue(maxDailyXP), percentDaily))
-		end
-	end
 	
 	local _, _, standingID, barMin, barMax, barValue = GetGuildFactionInfo()
 	if standingID ~= 8 then -- Not Max Rep

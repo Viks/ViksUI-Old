@@ -12,6 +12,7 @@ if Viks.minimapp.enable then
 mult = T.mult
 
 
+
 -- Minimap
 position = "CENTER"        -- Initial Position
 
@@ -118,11 +119,16 @@ GuildInstanceDifficulty:ClearAllPoints()
 GuildInstanceDifficulty:SetPoint("TOPLEFT", Minimap, 0, 0)
 GuildInstanceDifficulty:SetScale(0.75)
 
+-- Garrison icon
+GarrisonLandingPageMinimapButton:ClearAllPoints()
+GarrisonLandingPageMinimapButton:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 3, 2)
+GarrisonLandingPageMinimapButton:SetSize(32, 32)
+
 if Viks.minimapp.Picomenu then
 ----------------------------------------------------------------------------------------
 -- Picomenu: MainMenuBar replacement by Neal, butchered by Qupe 
 ----------------------------------------------------------------------------------------
-local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", UIParent, "UIDropDownMenuTemplate")
+local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", Minimap, "UIDropDownMenuTemplate")
 local menuList = {
     {
         text = MAINMENU_BUTTON,
@@ -165,7 +171,7 @@ local menuList = {
     },
     {
         text = ACHIEVEMENT_BUTTON,
-        icon = 'Interface\\AddOns\\ViksUI\\Media\\picomenuAchievement',
+        icon = 'Interface\\AddOns\\ViksUI\\Media\\Other\\picomenuAchievement',
         func = function() 
             securecall(ToggleAchievementFrame) 
         end,
@@ -175,7 +181,7 @@ local menuList = {
         text = QUESTLOG_BUTTON,
         icon = 'Interface\\GossipFrame\\ActiveQuestIcon',
         func = function() 
-            securecall(ToggleFrame, QuestLogFrame) 
+            securecall(ToggleQuestLog()) 
         end,
         notCheckable = true,
     },
@@ -201,10 +207,7 @@ local menuList = {
         icon = 'Interface\\MINIMAP\\TRACKING\\BattleMaster',
         func = function() 
 		if T.level >= SHOW_PVP_LEVEL then
-			if not PVPUIFrame then
-				PVP_LoadUI()
-			end
-			PVPUIFrame_ShowFrame()
+				TogglePVPUI()
 		else
 			if Viks.error.white == false then
 				UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_PVP_LEVEL), 1, 0.1, 0.1)
@@ -219,7 +222,7 @@ local menuList = {
         text = DUNGEONS_BUTTON,
         icon = 'Interface\\MINIMAP\\TRACKING\\None',
         func = function() 
-            securecall(ToggleLFDParentFrame)
+            securecall(PVEFrame_ToggleFrame())
         end,
         notCheckable = true,
     },
@@ -235,15 +238,10 @@ local menuList = {
         text = RAID,
         icon = 'Interface\\TARGETINGFRAME\\UI-TargetingFrame-Skull',
         func = function() 
-            securecall(ToggleFriendsFrame, 4)
+            securecall(ToggleFrame(RaidBrowserFrame))
         end,
         notCheckable = true,
     },
-	{
-		text = LOOKING_FOR_RAID, notCheckable = 1, func = function()
-                ToggleRaidFrame()
-        end
-	},
     {
         text = ENCOUNTER_JOURNAL,
         icon = 'Interface\\MINIMAP\\TRACKING\\Profession',
@@ -279,25 +277,26 @@ local menuList = {
 }
 
 
-local f = CreateFrame('Button', nil, PicoMenuBar)
+
+local f = CreateFrame('Button', Minimap, PicoMenuBar)
 f:SetFrameStrata('MEDIUM')
-f:SetToplevel(true)
-f:SetSize(11,8)
+--f:SetToplevel(true)
+f:SetSize(14,10)
 f:SetPoint('BOTTOMLEFT', Minimap, 'BOTTOMLEFT', -.5,2)
 f:RegisterForClicks('Anyup')
 f:RegisterEvent('ADDON_LOADED')
 
-f:SetNormalTexture('Interface\\AddOns\\ViksUI\\Media\\picomenuNormal')
-f:GetNormalTexture():SetSize(11,8)
+f:SetNormalTexture('Interface\\AddOns\\ViksUI\\Media\\Other\\picomenuNormal')
+f:GetNormalTexture():SetSize(14,10)
 
-f:SetHighlightTexture('Interface\\AddOns\\ViksUI\\Media\\picomenuHighlight')
+f:SetHighlightTexture('Interface\\AddOns\\ViksUI\\Media\\Other\\picomenuHighlight')
 f:GetHighlightTexture():SetAllPoints(f:GetNormalTexture())
 
 f:SetScript('OnMouseDown', function(self)
     self:GetNormalTexture():ClearAllPoints()
     self:GetNormalTexture():SetPoint('CENTER', 1, -1)
 end)
-
+f:SetParent(Minimap)
 f:SetScript('OnMouseUp', function(self, button)
     self:GetNormalTexture():ClearAllPoints()
     self:GetNormalTexture():SetPoint('CENTER')
@@ -408,6 +407,7 @@ end
 ----------------------------------------------------------------------------------------
 -- Style Zone and Coord panels for Minimap
 ----------------------------------------------------------------------------------------
+
 
 local m_zone = CreateFrame("Frame",nil,UIParent)
 CreatePanel(m_zone, 0, 16, "TOPLEFT", Minimap, "TOPLEFT", 2,-2)

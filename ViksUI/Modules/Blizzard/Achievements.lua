@@ -12,7 +12,7 @@ AchievementAnchor:SetPoint(unpack(Viks.position.achievement))
 local POSITION, ANCHOR_POINT, YOFFSET = "BOTTOM", "TOP", -9
 
 local function fixAnchors()
-	local point = select(1, AchievementAnchor:GetPoint())
+	local point = AchievementAnchor:GetPoint()
 
 	if string.find(point, "TOP") or point == "CENTER" or point == "LEFT" or point == "RIGHT" then
 		POSITION = "TOP"
@@ -70,6 +70,54 @@ local function AlertFrame_SetMoneyWonAnchors(alertAnchor)
 	end
 end
 hooksecurefunc("AlertFrame_SetMoneyWonAnchors", AlertFrame_SetMoneyWonAnchors)
+
+local function AlertFrame_SetStorePurchaseAnchors(alertAnchor)
+	local frame = StorePurchaseAlertFrame
+	if frame:IsShown() then
+		frame:ClearAllPoints()
+		frame:SetPoint(POSITION, alertAnchor, ANCHOR_POINT, 0, YOFFSET)
+	end
+end
+hooksecurefunc("AlertFrame_SetStorePurchaseAnchors", AlertFrame_SetStorePurchaseAnchors)
+
+local function AlertFrame_SetGarrisonBuildingAlertFrameAnchors(alertAnchor)
+	local frame = GarrisonBuildingAlertFrame
+	if frame:IsShown() then
+		frame:ClearAllPoints()
+		frame:SetPoint(POSITION, alertAnchor, ANCHOR_POINT, 0, YOFFSET)
+	end
+end
+hooksecurefunc("AlertFrame_SetGarrisonBuildingAlertFrameAnchors", AlertFrame_SetGarrisonBuildingAlertFrameAnchors)
+
+local function AlertFrame_SetGarrisonMissionAlertFrameAnchors(alertAnchor)
+	local frame = GarrisonMissionAlertFrame
+	if frame:IsShown() then
+		frame:ClearAllPoints()
+		frame:SetPoint(POSITION, alertAnchor, ANCHOR_POINT, 0, YOFFSET)
+	end
+end
+hooksecurefunc("AlertFrame_SetGarrisonMissionAlertFrameAnchors", AlertFrame_SetGarrisonMissionAlertFrameAnchors)
+
+local function AlertFrame_SetGarrisonFollowerAlertFrameAnchors(alertAnchor)
+	local frame = GarrisonFollowerAlertFrame
+	if frame:IsShown() then
+		frame:ClearAllPoints()
+		frame:SetPoint(POSITION, alertAnchor, ANCHOR_POINT, 0, YOFFSET)
+	end
+end
+hooksecurefunc("AlertFrame_SetGarrisonFollowerAlertFrameAnchors", AlertFrame_SetGarrisonFollowerAlertFrameAnchors)
+
+local function AlertFrame_SetLootUpgradeFrameAnchors(alertAnchor)
+	for i = 1, #LOOT_UPGRADE_ALERT_FRAMES do
+		local frame = LOOT_UPGRADE_ALERT_FRAMES[i]
+		if frame:IsShown() then
+			frame:ClearAllPoints()
+			frame:SetPoint(POSITION, alertAnchor, ANCHOR_POINT, 0, YOFFSET)
+			alertAnchor = frame
+		end
+	end
+end
+hooksecurefunc("AlertFrame_SetLootUpgradeFrameAnchors", AlertFrame_SetLootUpgradeFrameAnchors)
 
 local function AlertFrame_SetAchievementAnchors(alertAnchor)
 	if AchievementAlertFrame1 then

@@ -10,7 +10,6 @@ frame:SetScript("OnUpdate", function(self, elapsed)
 
 	if self.elapsed and self.elapsed > 0.1 then
 		if FrameStackTooltip then
-			local noscalemult = T.mult * Viks.general.UiScale
 			FrameStackTooltip:SetBackdrop({
 				bgFile = Viks.media.blank, edgeFile = Viks.media.blank, edgeSize = T.noscalemult,
 				insets = {left = -T.noscalemult, right = -T.noscalemult, top = -T.noscalemult, bottom = -T.noscalemult}

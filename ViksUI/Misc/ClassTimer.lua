@@ -217,7 +217,7 @@ local CLASS_FILTERS = {
 			player = {
 				CreateSpellEntry( 59052 ), -- Freezing Fog
 				CreateSpellEntry( 51124 ), -- Killing Machine
-				CreateSpellEntry( 49016 ), -- Unholy Frenzy
+				--Wod CreateSpellEntry( 49016 ), -- Unholy Frenzy
 				CreateSpellEntry( 57330 ), -- Horn of Winter
 				CreateSpellEntry( 70654 ), -- Blood Armor
 				CreateSpellEntry( 77535 ), -- Blood Shield
@@ -344,7 +344,7 @@ local CLASS_FILTERS = {
 		},
 		MAGE = {
 			target = { 
-				CreateSpellEntry( 44457 ), -- Living Bomb
+				CreateSpellEntry( 112948 ), -- Living Bomb
 				CreateSpellEntry( 118 ), -- Polymorph
 				CreateSpellEntry( 28271 ), -- Polymorph Turtle
 				CreateSpellEntry( 31589 ), -- Slow
@@ -453,6 +453,7 @@ local CLASS_FILTERS = {
 				CreateSpellEntry( 81207 ), -- Chakra Renew
 				CreateSpellEntry( 81209 ), -- Chakra Smite
 				CreateSpellEntry( 81206 ), -- Prayer of Healing
+				CreateSpellEntry( 104423 ), -- Windsong
 			},
 			procs = {
 				CreateSpellEntry( 63735 ), -- Serendipity
@@ -1356,12 +1357,30 @@ elseif ( LAYOUT == 4 ) then
 
 	local playerFrame = CreateAuraBarFrame( playerDataSource,  oUF_Player );
 	playerFrame:SetHiddenHeight( -yOffset );
-	if ( playerClass == "DRUID" or playerClass == "DEATHKNIGHT" or playerClass == "SHAMAN" or playerClass == "WARLOCK"  or playerClass == "PALADIN" or myclass == "MONK" or myclass == "PRIEST") then
-		playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 0, 18 );
-		playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", 0, 18 );
+	if ( playerClass == "DEATHKNIGHT" or playerClass == "SHAMAN" or playerClass == "WARLOCK"  or playerClass == "PALADIN" or myclass == "MONK") then
+		playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 1, 20 );
+		playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", -1, 20 );
 	else
-		playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 0, 8 );
-		playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", 0, 8 );
+		playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 1, 8 );
+		playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", -1, 8 );
+	end
+	if ( playerClass == "PRIEST") then
+		if GetSpecialization() == 3 then
+			playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 1, 20 );
+			playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", -1, 20 );
+		else
+			playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 1, 8 );
+			playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", -1, 8 );
+		end
+	end
+	if ( playerClass == "PALADIN") then
+		if GetSpecialization() == 2 and Viks.unitframe_class_bar.vengeance then
+			playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 1, 28 );
+			playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", -1, 28 );
+		else
+			playerFrame:SetPoint( "BOTTOMLEFT",  oUF_Player, "TOPLEFT", 1, 20 );
+			playerFrame:SetPoint( "BOTTOMRIGHT",  oUF_Player, "TOPRIGHT", -1, 20 );
+		end
 	end
 	playerFrame:Show();
 
@@ -1373,11 +1392,11 @@ elseif ( LAYOUT == 4 ) then
 	
 	local targetFrame = CreateAuraBarFrame( targetDataSource,  oUF_ViksTarget );
 	if ( playerClass == "ROGUE" or playerClass == "DRUID") then
-		targetFrame:SetPoint( "BOTTOMLEFT",  oUF_ViksTarget, "TOPLEFT", 2, 16);
-		targetFrame:SetPoint( "BOTTOMRIGHT",  oUF_ViksTarget, "TOPRIGHT", -2, 16);
+		targetFrame:SetPoint( "BOTTOMLEFT",  oUF_ViksTarget, "TOPLEFT", 1, 20);
+		targetFrame:SetPoint( "BOTTOMRIGHT",  oUF_ViksTarget, "TOPRIGHT", -2, 20);
 	else
-		targetFrame:SetPoint( "BOTTOMLEFT",  oUF_ViksTarget, "TOPLEFT", 0, 8);
-		targetFrame:SetPoint( "BOTTOMRIGHT",  oUF_ViksTarget, "TOPRIGHT", 0, 8);
+		targetFrame:SetPoint( "BOTTOMLEFT",  oUF_ViksTarget, "TOPLEFT", 1, 8);
+		targetFrame:SetPoint( "BOTTOMRIGHT",  oUF_ViksTarget, "TOPRIGHT", -1, 8);
 	end
 	targetFrame:Show();
 else

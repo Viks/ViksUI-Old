@@ -4,16 +4,16 @@
 --	LiteStats configuration file
 --	BACKUP THIS FILE BEFORE UPDATING!
 ----------------------------------------------------------------------------------------
-local _, _, _, cBN = GetAddOnInfo("cargBags_Nivaya")
+local cBN = IsAddOnLoaded("cargBags_Nivaya")
 local ctab = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS
 local function class(string)
 	local color = ctab[T.class]
-	return format("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, string or "")
+	return format("|cff%02x%02x%02x%s|r", .001 * 255, .38 * 255, .651 * 255, string or "")
 end
 
 LPSTAT_FONT = {
 	font = Viks.font.stats_font,				-- Path to your font
-	color = {1, 1, 1},						-- {red, green, blue} or "CLASS"
+	color = "CLASS",						-- {red, green, blue} or "CLASS"
 	size = Viks.font.stats_font_size,			-- Point font size
 	alpha = 1,								-- Alpha transparency
 	outline = 3,							-- Thin outline. 0 = no outline.
@@ -105,8 +105,8 @@ LPSTAT_CONFIG = {
 			["Защитники Тол Барада"] = "Тол Барад",
 			["Гидраксианские Повелители Вод"] = "Повелители Вод",
 		},
-		anchor_frame = "Durability", anchor_to = "left", anchor_from = "right",
-		x_off = Viks.stats.durability and 3 or 0, y_off = 0, tip_frame = "UIParent", tip_anchor = "BOTTOMLEFT", tip_x = 21, tip_y = 20
+		anchor_frame = "RChatTab", anchor_to = "right", anchor_from = "right",
+		x_off = 0, y_off = 0, tip_frame = "RChatTab", tip_anchor = "BOTTOMRIGHT", tip_x = -30, tip_y = 20
 	},
 -- Bottomright block
 	Coords = {

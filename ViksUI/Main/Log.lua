@@ -27,9 +27,6 @@ ViksOnLogon:SetScript("OnEvent", function(self, event)
 	if (ViksDataPerChar == nil) then ViksDataPerChar = {} end
 	
 		SetCVar("useUiScale", 1)
-		if Viks.general.MultisampleProtect == true then
-			SetMultisampleFormat(1)
-		end
 		if Viks.general.UiScale > 1 then Viks.general.UiScale = 1 end
 		if Viks.general.UiScale < 0.64 then Viks.general.UiScale = 0.64 end
 		SetCVar("uiScale", Viks.general.UiScale)

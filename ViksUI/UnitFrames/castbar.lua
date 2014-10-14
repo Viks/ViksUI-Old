@@ -5,7 +5,7 @@ local cast = CreateFrame("Frame")
 
 local channelingTicks = {
 	-- warlock
-	[GetSpellInfo(1120)] = 5, -- drain soul
+	--WoD[GetSpellInfo(1120)] = 5, -- drain soul
 	[GetSpellInfo(689)] = 5, -- drain life
 	[GetSpellInfo(5740)] = 4, -- rain of fire
 	-- druid
@@ -18,7 +18,7 @@ local channelingTicks = {
 	-- mage
 	[GetSpellInfo(5143)] = 5, -- arcane missiles
 	[GetSpellInfo(10)] = 5, -- blizzard
-	[GetSpellInfo(12051)] = 4, -- evocation
+	--WoD[GetSpellInfo(12051)] = 4, -- evocation
 	-- shaman
 	[GetSpellInfo(61882)] = 8 -- earthquake
 }

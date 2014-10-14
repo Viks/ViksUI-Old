@@ -12,7 +12,7 @@ function MBFTOGGLE()
 		button:SetWidth(20)
 		button:SetPoint("LEFT", CPMinimb2,"LEFT", 4, 2)
 				
-		local buttontext = button:CreateFontString(nil,"OVERLAY",nil)
+		local buttontext = button:CreateFontString(nil,"BACKGROUND",nil)
 		buttontext:SetFont(Viks.media.pxfont,Viks.media.pxfontsize,"OUTLINE")
 		buttontext:SetText("MB")
 		buttontext:SetPoint("CENTER", 0, -1)

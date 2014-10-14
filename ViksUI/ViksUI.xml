@@ -16,7 +16,6 @@
 	<Script file="Core\GUI.lua"/>
 	<Script file="Core\PixelPerfect.lua"/>
 	<Script file="Main\Style.lua"/>
-	<Script file="Main\Panels.lua"/>
 	
 		
 	<Include file="Libs\oUF\oUF.xml"/>
@@ -63,9 +62,7 @@
 	<Include file="UnitFrames\uf.xml"/>
 	<Include file="UnitFrames\template.xml"/>
 	<Include file="UnitFrames\Raid\load.xml"/>
-	
-	<Include file="Addonskins\load_addonskins.xml"/>
-	
+		
 	<Script file="Modules\Misc\AddOnsList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\Archaeology.lua"/>
@@ -140,35 +137,16 @@
 
 	
 	<Script file="Main\Minimap.lua"/>
-	<Script file="Main\Map.lua"/>
-	<Script file="Main\SkinFrame.lua"/>
-	<Script file="Main\Tooltip.lua"/>
-	<Script file="Main\Chat.lua"/>
-	<Script file="Main\Chatbar.lua"/>
-	<Script file="Main\Bags.lua"/>
 	<Script file="Main\Cooldown.lua"/>
-	<Script file="Main\Buffs.lua"/>
-	<Script file="Main\Bind.lua"/>
-	<Script file="Main\Nameplates.lua"/>
-	<Script file="Main\Loot.lua"/>
-	<Script file="Main\Lootroll.lua"/>
-	<Script file="Main\Mail.lua"/>
 	<Script file="Main\Fonts.lua"/>
 	<Script file="Main\Log.lua"/>
 	<Script file="Main\Style.lua"/>
 	<Script file="Main\miscS.lua"/>
 	
-
 	<Script file="Misc\Threatbar.lua"/>
 	<Script file="Misc\ClassTimer.lua"/>
 	<Script file="Misc\Filger.lua"/>
-	<Script file="Misc\Addonmanager.lua"/>
-	<Script file="Misc\RaidUtility.lua"/>
-	<Script file="Misc\Togglemenu.lua"/>
 	<Script file="Misc\MarkBar.lua"/>
-	<Script file="Misc\Reminder.lua"/>
-	<Script file="Misc\raidBuffReminder.lua"/>
-	<Script file="Misc\WatchFrame.lua"/>
 	<Script file="Misc\MBFToggle.lua"/>
 	<Script file="Misc\align.lua"/>
 	<Script file="Misc\RaidCooldowns.lua"/>
@@ -187,7 +165,7 @@
 	<Script file="Datatext\Avoidance.lua"/>
 	<Script file="Datatext\Crit.lua"/>
 	<Script file="Datatext\Haste.lua"/>
-	<Script file="Datatext\Hit.lua"/>
+	<Script file="Datatext\versatility.lua"/>
 	<Script file="Datatext\Mastery.lua"/>
 	<Script file="Datatext\Power.lua"/>
 	<Script file="Datatext\Regen.lua"/>
@@ -197,21 +175,6 @@
 	<Script file="Datatext\location.lua"/>
 	<Include file="Skins\skins.xml"/>
 	
-	<Script file="Actionbars\Hide.lua"/>
-	<Script file="Actionbars\Bar1.lua"/>
-	<Script file="Actionbars\Bar2.lua"/>
-	<Script file="Actionbars\Bar3.lua"/>
-	<Script file="Actionbars\Bar4.lua"/>
-	<Script file="Actionbars\Bar5.lua"/>
-	<Script file="Actionbars\BarPet.lua"/>
-	<Script file="Actionbars\BarShift.lua"/>
-	<Script file="Actionbars\BarTotem.lua"/>
-	<Script file="Actionbars\BarVehicle.lua"/>
-	<Script file="Actionbars\Style.lua"/>
-	<Script file="Actionbars\Others.lua"/>
-	<Script file="Actionbars\Movers.lua"/>
-	<Script file="Actionbars\Microbar.lua"/>
-	<Script file="Actionbars\Range.lua"/>
 	
 	<Script file="Modules\Announcements\BadGear.lua"/>
 	<Script file="Modules\Announcements\Drinking.lua"/>
@@ -328,4 +291,18 @@
 	<Script file="Modules\Skins\WeakAuras.lua"/>
 	<Script file="Modules\Skins\tmp.lua"/>
 	<Script file="Modules\Automation\tmp.lua"/>
+	<Script file="Modules\Tooltip\Tooltip.lua"/>
+	<Script file="Modules\Tooltip\HyperLink.lua"/>
+	<Script file="Modules\Tooltip\Achievement.lua"/>
+	<Script file="Modules\Tooltip\Talents.lua"/>
+	<Script file="Modules\Tooltip\ItemIcons.lua"/>
+	<Script file="Modules\Tooltip\ItemLevel.lua"/>
+	<Script file="Modules\Tooltip\MultiItemRef.lua"/>
+	<Script file="Modules\Tooltip\PvPRating.lua"/>
+	<Script file="Modules\Tooltip\RuFix.lua"/>
+	<Script file="Modules\Tooltip\SpellID.lua"/>
+	<Script file="Modules\Tooltip\ItemCount.lua"/>
+	<Script file="Modules\Tooltip\UnitRole.lua"/>
+	<Script file="Modules\Tooltip\CheckItemTransmogrify.lua"/>
+	<Script file="Modules\Tooltip\InstanceLockCompare.lua"/>
 </Ui>

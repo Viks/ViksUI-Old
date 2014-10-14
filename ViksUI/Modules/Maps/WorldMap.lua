@@ -1,159 +1,58 @@
 local T, Viks, L, _ = unpack(select(2, ...))
-
 ----------------------------------------------------------------------------------------
 --	Floors scroll
 ----------------------------------------------------------------------------------------
 WorldMapButton:SetScript("OnMouseWheel", function(self, delta)
-	local level = GetCurrentMapDungeonLevel() - delta
-	if level >= 1 and level <= GetNumDungeonMapLevels() then
-		SetDungeonMapLevel(level)
-		PlaySound("UChatScrollButton")
+	if IsModifierKeyDown() then
+		local level = GetCurrentMapDungeonLevel() - delta
+		if level >= 1 then
+			SetDungeonMapLevel(level)
+			PlaySound("UChatScrollButton")
+		end
+	else
+		WorldMapScrollFrame_OnMouseWheel(self, delta)
 	end
 end)
 
 ----------------------------------------------------------------------------------------
---	WorldMap style(m_Map by Monolit)
+--	Font replacement
 ----------------------------------------------------------------------------------------
-if Viks.map.enable ~= true or IsAddOnLoaded("Aurora") then return end
+WorldMapFrameAreaLabel:SetFont(Viks.media.font, 30)
+WorldMapFrameAreaLabel:SetShadowOffset(2, -2)
+WorldMapFrameAreaLabel:SetTextColor(0.9, 0.83, 0.64)
 
-WORLDMAP_WINDOWED_SIZE = Viks.map.scale
+WorldMapFrameAreaPetLevels:SetFont(Viks.media.font, 30)
+WorldMapFrameAreaPetLevels:SetShadowOffset(2, -2)
 
-local mapbg = CreateFrame("Frame", nil, WorldMapDetailFrame)
-mapbg:SetTemplate("Default", "Shadow")
-
-local SmallerMap = GetCVarBool("miniWorldMap")
-if SmallerMap == nil then
-	SetCVar("miniWorldMap", 1)
-end
-
--- Styling World Map
-local SmallerMapSkin = function()
-	mapbg:SetScale(1 / WORLDMAP_WINDOWED_SIZE)
-	mapbg:SetPoint("TOPLEFT", WorldMapDetailFrame, -2, 2)
-	mapbg:SetPoint("BOTTOMRIGHT", WorldMapDetailFrame, 2, -2)
-	mapbg:SetFrameStrata("MEDIUM")
-	mapbg:SetFrameLevel(20)
-
-	WorldMapButton:SetAllPoints(WorldMapDetailFrame)
-	WorldMapFrame:SetFrameStrata("MEDIUM")
-	WorldMapFrame:SetClampedToScreen(true)
-	WorldMapFrame:SetClampRectInsets(12, 227, -31, -134)
-	WorldMapFrame:ClearAllPoints()
-	WorldMapFrame:SetPoint(unpack(Viks.position.map))
-
-	WorldMapDetailFrame:SetFrameStrata("MEDIUM")
-	-- WorldMapPing:SetAlpha(0)
-	WorldMapPlayerUpper:EnableMouse(false)
-	WorldMapPlayerLower:EnableMouse(false)
-
-	WorldMapTitleButton:Show()
-	WorldMapTitleButton:SetFrameStrata("MEDIUM")
-	WorldMapTooltip:SetFrameStrata("TOOLTIP")
-
-	WorldMapFrameMiniBorderLeft:Hide()
-	WorldMapFrameMiniBorderRight:Hide()
-	WorldMapFrameCloseButton:Hide()
-	WorldMapFrameSizeUpButton:Hide()
-	WorldMapFrameSizeDownButton:Hide()
-
-	WorldMapFrameTitle:ClearAllPoints()
-	WorldMapFrameTitle:SetParent(WorldMapDetailFrame)
-	WorldMapFrameTitle:SetPoint("TOP", WorldMapDetailFrame, 0, -3)
-	WorldMapFrameTitle:SetFont(Viks.media.font, 17)
-
-	T.SkinCheckBox(WorldMapTrackQuest)
-	WorldMapTrackQuest:ClearAllPoints()
-	WorldMapTrackQuest:SetPoint("BOTTOMLEFT", WorldMapButton, "BOTTOMLEFT", 0, 0)
-
-	WorldMapFrameAreaLabel:SetFont(Viks.media.font, 40)
-	WorldMapFrameAreaLabel:SetShadowOffset(2, -2)
-	WorldMapFrameAreaLabel:SetTextColor(0.9, 0.83, 0.64)
-
-	WorldMapFrameAreaDescription:SetFont(Viks.media.font, 40)
-	WorldMapFrameAreaDescription:SetShadowOffset(2, -2)
-
-	WorldMapFrameAreaPetLevels:SetFont(Viks.media.font, 32)
-	WorldMapFrameAreaPetLevels:SetShadowOffset(2, -2)
-
-	MapBarFrame.Description:SetFont(Viks.media.font, 17)
-	MapBarFrame.Description:SetShadowOffset(1, -1)
-
-	MapBarFrame.Title:SetFont(Viks.media.font, 17)
-	MapBarFrame.Title:SetShadowOffset(1, -1)
-
-	WorldMapLevelDropDown:SetAlpha(0)
-	WorldMapLevelDropDown:SetScale(0.00001)
-
-	WorldMapShowDropDown:SetScale(WORLDMAP_WINDOWED_SIZE)
-	WorldMapShowDropDown:ClearAllPoints()
-	WorldMapShowDropDown:SetPoint("TOPRIGHT", WorldMapButton, "TOPRIGHT", 10, -3)
-	WorldMapShowDropDown:SetFrameStrata("HIGH")
-end
-hooksecurefunc("WorldMap_ToggleSizeDown", function() SmallerMapSkin() end)
-
-local frame = CreateFrame("Frame")
-frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-frame:RegisterEvent("PLAYER_REGEN_ENABLED")
-frame:RegisterEvent("PLAYER_REGEN_DISABLED")
-frame:SetScript("OnEvent", function(self, event)
-	if event == "PLAYER_ENTERING_WORLD" then
-		BlackoutWorld:Hide()
-		BlackoutWorld.Show = function() end
-		BlackoutWorld.Hide = function() end
-
-		WorldMapBlobFrame.Show = function() end
-		WorldMapBlobFrame.Hide = function() end
-		WorldMapQuestPOI_OnLeave = function()
-			WorldMapTooltip:Hide()
-		end
-		WorldMap_ToggleSizeDown()
-		if FeedbackUIMapTip then
-			FeedbackUIMapTip:Hide()
-			FeedbackUIMapTip.Show = function() end
-		end
-	elseif event == "PLAYER_REGEN_DISABLED" then
-		WorldMapFrameSizeUpButton:Disable()
-		WorldMap_ToggleSizeDown()
-		WorldMapBlobFrame:DrawBlob(WORLDMAP_SETTINGS.selectedQuestId, false)
-		WorldMapBlobFrame:DrawBlob(WORLDMAP_SETTINGS.selectedQuestId, true)
-	elseif event == "PLAYER_REGEN_ENABLED" then
-		WorldMapFrameSizeUpButton:Enable()
-	end
-end)
+WorldMapFrameAreaDescription:SetFont(Viks.media.font, 30)
+WorldMapFrameAreaDescription:SetShadowOffset(2, -2)
 
 ----------------------------------------------------------------------------------------
---	Creating coords
+--	Creating coordinate
 ----------------------------------------------------------------------------------------
 local coords = CreateFrame("Frame", "CoordsFrame", WorldMapFrame)
-coords.PlayerText = WorldMapButton:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-coords.PlayerText:SetFont(Viks.media.font, 17)
+coords:SetFrameLevel(90)
+coords.PlayerText = coords:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+coords.PlayerText:SetPoint("BOTTOMLEFT", WorldMapFrame.UIElementsFrame, "BOTTOMLEFT", 5, 5)
 coords.PlayerText:SetJustifyH("LEFT")
 coords.PlayerText:SetText(UnitName("player")..": 0,0")
-if IsAddOnLoaded("_NPCScan.Overlay") then
-	coords.PlayerText:SetPoint("TOPLEFT", WorldMapButton, "TOPLEFT", 3, -50)
-else
-	coords.PlayerText:SetPoint("TOPLEFT", WorldMapButton, "TOPLEFT", 3, -3)
-end
 
-coords.MouseText = WorldMapButton:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-coords.MouseText:SetFont(Viks.media.font, 17)
+coords.MouseText = coords:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 coords.MouseText:SetJustifyH("LEFT")
-coords.MouseText:SetPoint("TOPLEFT", coords.PlayerText, "BOTTOMLEFT", 0, -3)
+coords.MouseText:SetPoint("BOTTOMLEFT", coords.PlayerText, "TOPLEFT", 0, 5)
 coords.MouseText:SetText(L_MAP_CURSOR..": 0,0")
 
 local int = 0
-coords:SetScript("OnUpdate", function(self, elapsed)
+WorldMapFrame:HookScript("OnUpdate", function(self, elapsed)
 	int = int + 1
-
 	if int >= 3 then
-		local inInstance, _ = IsInInstance()
-		local x,y = GetPlayerMapPosition("player")
+		local x, y = GetPlayerMapPosition("player")
 		x = math.floor(100 * x)
 		y = math.floor(100 * y)
 		if x ~= 0 and y ~= 0 then
-			self.PlayerText:SetText(UnitName("player")..": "..x..","..y)
+			coords.PlayerText:SetText(UnitName("player")..": "..x..","..y)
 		else
-			self.PlayerText:SetText(UnitName("player")..": ".."|cffff0000"..L_MAP_BOUNDS.."|r")
+			coords.PlayerText:SetText(UnitName("player")..": ".."|cffff0000"..L_MAP_BOUNDS.."|r")
 		end
 
 		local scale = WorldMapDetailFrame:GetEffectiveScale()
@@ -164,14 +63,13 @@ coords:SetScript("OnUpdate", function(self, elapsed)
 		local adjustedX = (x / scale - (centerX - (width/2))) / width
 		local adjustedY = (centerY + (height/2) - y / scale) / height
 
-		if adjustedX >= 0 and adjustedY >= 0 and adjustedX <= 1 and adjustedY <= 1 then
+		if adjustedX >= 0  and adjustedY >= 0 and adjustedX <= 1 and adjustedY <= 1 then
 			adjustedX = math.floor(100 * adjustedX)
 			adjustedY = math.floor(100 * adjustedY)
 			coords.MouseText:SetText(L_MAP_CURSOR..adjustedX..","..adjustedY)
 		else
 			coords.MouseText:SetText(L_MAP_CURSOR.."|cffff0000"..L_MAP_BOUNDS.."|r")
 		end
-
 		int = 0
 	end
 end)

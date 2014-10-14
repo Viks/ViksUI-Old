@@ -1,4 +1,4 @@
-﻿local T, Viks, L, _ = unpack(select(2, ...))
+﻿local T, C, L, _ = unpack(select(2, ...))
 if T.client ~= "esES" and T.client ~= "esMX" then return end
 
 ----------------------------------------------------------------------------------------
@@ -41,12 +41,6 @@ L_TOOLTIP_LOADING = "Cargando..."
 L_TOOLTIP_ACH_STATUS = "Estado:"
 L_TOOLTIP_ACH_COMPLETE = "Estado: Completado "
 L_TOOLTIP_ACH_INCOMPLETE = "Estado: Incompleto"
-L_TOOLTIP_ACH_NOT_EAT = "Not Eaten" -- Needs review
-L_TOOLTIP_ACH_EAT = "Eaten" -- Needs review
-L_TOOLTIP_ACH_NOT_DRINK = "Not Consumed" -- Needs review
-L_TOOLTIP_ACH_DRINK = "Consumed" -- Needs review
-L_TOOLTIP_ACH_NOT_EQUIP = "Not Equipped" -- Needs review
-L_TOOLTIP_ACH_EQUIP = "Equipped" -- Needs review
 L_TOOLTIP_SPELL_ID = "ID del hechizo:"
 L_TOOLTIP_ITEM_ID = "ID del objeto:"
 L_TOOLTIP_WHO_TARGET = "Marcado por"
@@ -100,9 +94,6 @@ L_UF_GHOST = "Fantasma"
 L_UF_DEAD = "Muerto"
 L_UF_OFFLINE = "Desconectado"
 L_UF_MANA = "Mana bajo"
-L_UF_TRINKET_READY = "Abalorio listo: "
-L_UF_TRINKET_USED = "Abalorio usado: "
-L_UF_WOTF_USED = "WotF usado: "
 
 -- Map
 L_MAP_CURSOR = "Cursor: "
@@ -213,40 +204,10 @@ L_BIND_KEY = "Tecla"
 L_BIND_NO_SET = "No tiene asignación"
 
 -- Talent spec
-L_PLANNER_DEATHKNIGHT_1 = "Sangre"
-L_PLANNER_DEATHKNIGHT_2 = "Escarcha"
-L_PLANNER_DEATHKNIGHT_3 = "Profana"
-L_PLANNER_DRUID_1 = "Equilibrio"
-L_PLANNER_DRUID_2 = "Feral"
-L_PLANNER_DRUID_3 = "Guardián"
 L_PLANNER_DRUID_4 = "Restauración"
-L_PLANNER_HUNTER_1 = "Dominio de bestias"
-L_PLANNER_HUNTER_2 = "Puntería"
-L_PLANNER_HUNTER_3 = "Supervivencia"
-L_PLANNER_MAGE_1 = "Arcano"
-L_PLANNER_MAGE_2 = "Fuego"
-L_PLANNER_MAGE_3 = "Escarcha"
-L_PLANNER_MONK_1 = "Maestro cervecero"
 L_PLANNER_MONK_2 = "Tejedor de niebla"
-L_PLANNER_MONK_3 = "Viajero del viento"
 L_PLANNER_PALADIN_1 = "Sagrado"
-L_PLANNER_PALADIN_2 = "Protección"
-L_PLANNER_PALADIN_3 = "Reprensión"
 L_PLANNER_PRIEST_1 = "Disciplina"
-L_PLANNER_PRIEST_2 = "Sagrado"
-L_PLANNER_PRIEST_3 = "Sombras"
-L_PLANNER_ROGUE_1 = "Asesinato"
-L_PLANNER_ROGUE_2 = "Combate"
-L_PLANNER_ROGUE_3 = "Sutileza"
-L_PLANNER_SHAMAN_1 = "Elemental"
-L_PLANNER_SHAMAN_2 = "Mejora"
-L_PLANNER_SHAMAN_3 = "Restauración"
-L_PLANNER_WARLOCK_1 = "Aflicción"
-L_PLANNER_WARLOCK_2 = "Demonología"
-L_PLANNER_WARLOCK_3 = "Destrucción"
-L_PLANNER_WARRIOR_1 = "Armas"
-L_PLANNER_WARRIOR_2 = "Furia"
-L_PLANNER_WARRIOR_3 = "Protección"
 
 -- BG stats
 L_DATATEXT_BASESASSAULTED = "Bases Asaltadas:"
@@ -265,9 +226,9 @@ L_DATATEXT_CARTS_CONTROLLED = "Vagonetas Controladas:"
 
 -- Info text
 L_INFO_ERRORS = "Ningún error aun."
-L_INFO_INVITE = "Invitación aceptada de: "
-L_INFO_DUEL = "Duelo rechazado de: "
-L_INFO_PET_DUEL = "Declined pet duel request from: " -- Needs review
+L_INFO_INVITE = "Invitación aceptada de "
+L_INFO_DUEL = "Duelo rechazado de "
+L_INFO_PET_DUEL = "Declined pet duel request from " -- Needs review
 L_INFO_DISBAND = "Deshaciendo banda..."
 L_INFO_SETTINGS_DBM = "Escribe /settings dbm, para aplicar las preferencias del DBM."
 L_INFO_SETTINGS_DXE = "Escribe /settings dxe, para aplicar las preferencias del DXE."
@@ -395,7 +356,7 @@ L_SLASHCMD_HELP = {
 	"/moveui - Permite mover los elementos de la interfaz.",
 	"/resetui - Reinicia la configuración general a la por defecto.",
 	"/resetuf - Reinicia los marcos de unidades a su posición por defecto.",
-	"/resetconfig - Reinicia la configuración de ViksUI_Config.",
+	"/resetconfig - Reinicia la configuración de ShestakUI_Config.",
 	"/resetstats - Reinicia las estadísticas de oro y tiempo empleado.",
 	"/settings ADDON_NAME - Aplica la configuración a msbt, dbm, skada, o a todos los addons (con 'all').",
 	"/ls, /litestats - Ayuda para LiteStats.",

@@ -1,6 +1,6 @@
 local _, ns = ...
 local oUF = ns.oUF or oUF
-assert(oUF, "oUF_Freebgrid was unable to locate oUF install.")
+assert(oUF, "ViksUI was unable to locate oUF install.")
 
 local glowBorder = {
     bgFile = [=[Interface\ChatFrame\ChatFrameBackground]=],

@@ -13,10 +13,10 @@ frame:SetScript("OnEvent", function(self, event, addon)
 	end
 
 	if addon == "Blizzard_PetJournal" then
-		MountJournalSearchBox:Kill()
+		--WOD MountJournalSearchBox:Kill()
 	end
 
-	if Viks.unitframes.enable and (SavedOptions and (SavedOptions.RaidLayout == "HEAL" or SavedOptions.RaidLayout == "DPS")) then
+	if Viks.unitframes.enable and (SavedOptionsPerChar and (SavedOptionsPerChar.RaidLayout == "HEAL" or SavedOptionsPerChar.RaidLayout == "DPS")) then
 		InterfaceOptionsFrameCategoriesButton11:SetScale(0.00001)
 		InterfaceOptionsFrameCategoriesButton11:SetAlpha(0)
 		if not InCombatLockdown() then
@@ -37,6 +37,14 @@ frame:SetScript("OnEvent", function(self, event, addon)
 	HelpOpenTicketButtonTutorial:Kill()
 	TalentMicroButtonAlert:Kill()
 	CompanionsMicroButtonAlert:Kill()
+	ReagentBankHelpBox:Kill()
+	BagHelpBox:Kill()
+	PremadeGroupsPvETutorialAlert:Kill()
+	SetCVarBitfield("closedInfoFrames", LE_FRAME_TUTORIAL_WORLD_MAP_FRAME, true)
+	SetCVarBitfield("closedInfoFrames", LE_FRAME_TUTORIAL_PET_JOURNAL, true)
+	SetCVarBitfield("closedInfoFrames", LE_FRAME_TUTORIAL_GARRISON_BUILDING, true)
+
+	InterfaceOptionsActionBarsPanelCountdownCooldowns:Kill()
 
 	if Viks.chat.enable then
 		InterfaceOptionsSocialPanelChatStyle:Kill()
@@ -80,14 +88,18 @@ frame:SetScript("OnEvent", function(self, event, addon)
 	if Viks.combattext.enable then
 		InterfaceOptionsCombatTextPanelFCTDropDown:Kill()
 		if Viks.combattext.blizz_head_numbers ~= true then
-			SetCVar("CombatLogPeriodicSpells", 0)
-			SetCVar("PetMeleeDamage", 0)
 			SetCVar("CombatDamage", 0)
+			SetCVar("PetMeleeDamage", 0)
 			SetCVar("CombatHealing", 0)
+			SetCVar("CombatLogPeriodicSpells", 0)
+			SetCVar("CombatHealingAbsorbTarget", 0)
 			InterfaceOptionsCombatTextPanelTargetDamage:Kill()
 			InterfaceOptionsCombatTextPanelPeriodicDamage:Kill()
 			InterfaceOptionsCombatTextPanelPetDamage:Kill()
 			InterfaceOptionsCombatTextPanelHealing:Kill()
+			InterfaceOptionsCombatTextPanelHealingAbsorbTarget:Kill()
 		end
 	end
+
+	SetCVar("countdownForCooldowns", 0)
 end)

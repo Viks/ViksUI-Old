@@ -1,6 +1,6 @@
 local T, Viks, L, _ = unpack(select(2, ...))
---[[
-if Viks.skins.blizzard_frames ~= true then return end
+if Viks.skins.blizzard_frames ~= true or Viks.skins.bartender ~= true then return end
+
 ----------------------------------------------------------------------------------------
 --	Bartender skin
 ----------------------------------------------------------------------------------------
@@ -129,4 +129,3 @@ frame:SetScript("OnEvent", function(self, event, addon)
 	end	
 hooksecurefunc("ActionButton_Update", StyleNormalButton)
 end)
---]]

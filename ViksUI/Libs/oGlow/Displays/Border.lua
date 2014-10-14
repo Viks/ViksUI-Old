@@ -1,4 +1,4 @@
-local T, Viks, L, _ = unpack(select(2, ...))
+local T, C, L, _ = unpack(select(2, ...))
 
 local colorTable = setmetatable(
 	{},
@@ -13,7 +13,7 @@ local colorTable = setmetatable(
 local createBorder = function(self, point)
 	local bc = self.oGlowBorder
 	if not bc then
-		if Viks.skins.blizzard_frames == true or IsAddOnLoaded("Aurora") then
+		if C.skins.blizzard_frames == true or IsAddOnLoaded("Aurora") then
 			if not self:IsObjectType("Frame") then
 				bc = CreateFrame("Frame", nil, self:GetParent())
 			else
@@ -21,7 +21,7 @@ local createBorder = function(self, point)
 			end
 
 			bc:SetBackdrop({
-				edgeFile = Viks.media.blank,
+				edgeFile = C.media.blank,
 				edgeSize = 1,
 			})
 
@@ -59,7 +59,7 @@ local borderDisplay = function(frame, color)
 		local rgb = colorTable[color]
 
 		if rgb then
-			if Viks.skins.blizzard_frames == true or IsAddOnLoaded("Aurora") then
+			if C.skins.blizzard_frames == true or IsAddOnLoaded("Aurora") then
 				bc:SetBackdropBorderColor(rgb[1], rgb[2], rgb[3])
 				if bc.backdrop then
 					bc.backdrop:SetBackdropBorderColor(rgb[1], rgb[2], rgb[3])

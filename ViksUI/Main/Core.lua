@@ -175,7 +175,7 @@ local function SetTex(f, t, texture)
 	local tex = f:CreateTexture(nil, "BORDER")
 	tex:SetPoint("TOPLEFT", f, "TOPLEFT", 2, -2)
 	tex:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -2, 2)
-	tex:SetTexture("Interface\\Addons\\ViksUI\\media\\Other\\statusbar3")
+	tex:SetTexture("Interface\\Addons\\ViksUI\\Media\\Other\\statusbar3")
 	tex:SetVertexColor(unpack(Viks.media.backdropcolor))
 	tex:SetDrawLayer("BORDER", -8)
 	f.tex = tex
@@ -185,7 +185,7 @@ local function SetTex(f, t, texture)
 end
 
 local shadows = {
-	edgeFile = "Interface\\AddOns\\ViksUI\\media\\Other\\glowTex", 
+	edgeFile = "Interface\\AddOns\\ViksUI\\Media\\Other\\glowTex", 
 	edgeSize = 4,
 	insets = { left = 3, right = 3, top = 3, bottom = 3 }
 }
@@ -230,7 +230,7 @@ local function SetTex2(f, t, texture)
 	local tex = f:CreateTexture(nil, "BORDER")
 	tex:SetPoint("TOPLEFT", f, "TOPLEFT", 2, -2)
 	tex:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -2, 2)
-	tex:SetTexture("Interface\\Addons\\ViksUI\\media\\Other\\statusbar3")
+	tex:SetTexture("Interface\\Addons\\ViksUI\\Media\\Other\\statusbar3")
 	tex:SetVertexColor(unpack(Viks.media.backdropcolor))
 	tex:SetDrawLayer("BORDER", -8)
 	f.tex = tex
@@ -604,6 +604,7 @@ local frames = {
   -- "ParentFrameName.XX" as frame name. more than one level is supported, e.g. "Foo.Bar.Baz")
 
   -- Blizzard Frames
+  ["DraenorZoneAbilityFrame"] = false,
   ["SpellBookFrame"] = false,
   ["QuestLogFrame"] = false,
   ["QuestLogDetailFrame"] = false,

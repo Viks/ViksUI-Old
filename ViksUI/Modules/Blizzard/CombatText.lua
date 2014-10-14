@@ -617,9 +617,6 @@ SLASH_XCT2 = "/чсе"
 local SQ
 if Viks.combattext.merge_aoe_spam then
 	if Viks.combattext.damage or Viks.combattext.healing then
-		if not Viks.combattext.merge_aoe_spam_time or Viks.combattext.merge_aoe_spam_time < 1 then
-			Viks.combattext.merge_aoe_spam_time = 1
-		end
 		local pairs = pairs
 		SQ = {}
 		for k, v in pairs(T.aoespam) do
@@ -644,7 +641,7 @@ if Viks.combattext.merge_aoe_spam then
 				tslu = 0
 				local utime = time()
 				for k, v in pairs(SQ) do
-					if not SQ[k]["locked"] and SQ[k]["queue"] > 0 and SQ[k]["utime"] + Viks.combattext.merge_aoe_spam_time <= utime then
+					if not SQ[k]["locked"] and SQ[k]["queue"] > 0 and SQ[k]["utime"] <= utime then
 						if SQ[k]["count"] > 1 then
 							count = " |cffFFFFFF x "..SQ[k]["count"].."|r"
 						else
@@ -690,9 +687,9 @@ if Viks.combattext.damage then
 			if eventType == "SWING_DAMAGE" then
 				local amount, _, _, _, _, _, critical = select(12, ...)
 				if amount >= Viks.combattext.treshold then
-					msg = amount
+					local rawamount = amount
 					if critical then
-						msg = "|cffFF0000"..Viks.combattext.crit_prefix.."|r"..msg.."|cffFF0000"..Viks.combattext.crit_postfix.."|r"
+						amount = "|cffFF0000"..Viks.combattext.crit_prefix.."|r"..amount.."|cffFF0000"..Viks.combattext.crit_postfix.."|r"
 					end
 					if Viks.combattext.icons then
 						if (sourceGUID == UnitGUID("pet")) or (sourceFlags == gflags) then
@@ -700,9 +697,23 @@ if Viks.combattext.damage then
 						else
 							icon = GetSpellTexture(6603)
 						end
-						msg = msg.." \124T"..icon..":"..Viks.combattext.icon_size..":"..Viks.combattext.icon_size..":0:0:64:64:5:59:5:59\124t"
+						msg = " \124T"..icon..":"..Viks.combattext.icon_size..":"..Viks.combattext.icon_size..":0:0:64:64:5:59:5:59\124t"
 					end
-					xCT4:AddMessage(msg)
+					local color = {1, 1, 1}
+					if Viks.combattext.merge_aoe_spam and Viks.combattext.merge_melee then
+						local spellId = 6603
+						SQ[spellId]["locked"] = true
+						SQ[spellId]["queue"] = ct.SpamQueue(spellId, rawamount)
+						SQ[spellId]["msg"] = msg
+						SQ[spellId]["color"] = color
+						SQ[spellId]["count"] = SQ[spellId]["count"] + 1
+						if SQ[spellId]["count"] == 1 then
+							SQ[spellId]["utime"] = time() + T.aoespam[spellId]
+						end
+						SQ[spellId]["locked"] = false
+						return
+					end
+					xCT4:AddMessage(amount..""..msg, unpack(color))
 				end
 			elseif eventType == "RANGE_DAMAGE" then
 				local spellId, _, _, amount, _, _, _, _, _, critical = select(12, ...)
@@ -744,17 +755,20 @@ if Viks.combattext.damage then
 					else
 						msg = ""
 					end
-					if Viks.combattext.merge_aoe_spam and T.aoespam[spellId] then
-						SQ[spellId]["locked"] = true
-						SQ[spellId]["queue"] = ct.SpamQueue(spellId, rawamount)
-						SQ[spellId]["msg"] = msg
-						SQ[spellId]["color"] = color
-						SQ[spellId]["count"] = SQ[spellId]["count"] + 1
-						if SQ[spellId]["count"] == 1 then
-							SQ[spellId]["utime"] = time()
+					if Viks.combattext.merge_aoe_spam then
+						spellId = T.merge[spellId] or spellId
+						if T.aoespam[spellId] then
+							SQ[spellId]["locked"] = true
+							SQ[spellId]["queue"] = ct.SpamQueue(spellId, rawamount)
+							SQ[spellId]["msg"] = msg
+							SQ[spellId]["color"] = color
+							SQ[spellId]["count"] = SQ[spellId]["count"] + 1
+							if SQ[spellId]["count"] == 1 then
+								SQ[spellId]["utime"] = time() + T.aoespam[spellId]
+							end
+							SQ[spellId]["locked"] = false
+							return
 						end
-						SQ[spellId]["locked"] = false
-						return
 					end
 					xCT4:AddMessage(amount..""..msg, unpack(color))
 				end
@@ -773,6 +787,7 @@ if Viks.combattext.damage then
 				xCT4:AddMessage(missType)
 			elseif eventType == "SPELL_MISSED" or eventType == "RANGE_MISSED" then
 				local spellId, _, _, missType = select(12, ...)
+				if missType == "IMMUNE" and spellId == 118895 then return end
 				if Viks.combattext.icons then
 					icon = GetSpellTexture(spellId)
 					missType = misstypes[missType].." \124T"..icon..":"..Viks.combattext.icon_size..":"..Viks.combattext.icon_size..":0:0:64:64:5:59:5:59\124t"
@@ -828,8 +843,10 @@ if Viks.combattext.damage then
 				end
 				xCT3:AddMessage(ACTION_SPELL_INTERRUPT..": "..effect..msg, unpack(color))
 			elseif eventType == "PARTY_KILL" and Viks.combattext.killingblow then
-				local tname = select(9, ...)
-				xCT3:AddMessage(ACTION_PARTY_KILL..": "..tname, 0.2, 1, 0.2)
+				local destGUID, tname = select(8, ...)
+				local classIndex = select(2, GetPlayerInfoByGUID(destGUID))
+				local color = classIndex and RAID_CLASS_COLORS[classIndex] or {r = 0.2, g = 1, b = 0.2}
+				xCT3:AddMessage("|cff33FF33"..ACTION_PARTY_KILL..": |r"..tname, color.r, color.g, color.b)
 			end
 		end
 	end
@@ -866,7 +883,7 @@ if Viks.combattext.healing then
 							color = {0.1, 1, 0.1}
 						else
 							color = {0.1, 0.65, 0.1}
-						end 
+						end
 						if Viks.combattext.icons then
 							icon = GetSpellTexture(spellId)
 						else
@@ -874,21 +891,24 @@ if Viks.combattext.healing then
 						end
 						if icon then
 							msg = " \124T"..icon..":"..Viks.combattext.icon_size..":"..Viks.combattext.icon_size..":0:0:64:64:5:59:5:59\124t"
-						elseif(Viks.combattext.icons)then
+						elseif Viks.combattext.icons then
 							msg=" \124T"..ct.blank..":"..Viks.combattext.icon_size..":"..Viks.combattext.icon_size..":0:0:64:64:5:59:5:59\124t"
 						end
-						if Viks.combattext.merge_aoe_spam and T.aoespam[spellId] then
-							SQ[spellId]["locked"] = true
-							SQ[spellId]["queue"] = ct.SpamQueue(spellId, rawamount)
-							SQ[spellId]["msg"] = msg
-							SQ[spellId]["color"] = color
-							SQ[spellId]["count"] = SQ[spellId]["count"] + 1
-							if SQ[spellId]["count"] == 1 then
-								SQ[spellId]["utime"] = time()
+						if Viks.combattext.merge_aoe_spam then
+							spellId = T.merge[spellId] or spellId
+							if T.aoespam[spellId] then
+								SQ[spellId]["locked"] = true
+								SQ[spellId]["queue"] = ct.SpamQueue(spellId, rawamount)
+								SQ[spellId]["msg"] = msg
+								SQ[spellId]["color"] = color
+								SQ[spellId]["count"] = SQ[spellId]["count"] + 1
+								if SQ[spellId]["count"] == 1 then
+									SQ[spellId]["utime"] = time() + T.aoespam[spellId]
+								end
+								SQ[spellId]["locked"] = false
+								return
 							end
-							SQ[spellId]["locked"] = false
-							return
-						end 
+						end
 						xCT4:AddMessage(amount..""..msg, unpack(color))
 					end
 				end

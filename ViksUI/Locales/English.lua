@@ -1,4 +1,5 @@
-﻿----------------------------------------------------------------------------------------
+﻿local T, Viks, L, _ = unpack(select(2, ...))
+----------------------------------------------------------------------------------------
 --	Localization for enUS and enGB client
 ----------------------------------------------------------------------------------------
 -- Announce your Lightwell
@@ -50,7 +51,7 @@ L_MISC_BUY_STACK = "Alt-Click to buy a stack"
 L_MISC_ONECLICK_BUYOUT = "Shift-Right-Click to buyout the selected item without confirmation"
 L_MISC_ONECLICK_BID = "Shift-Right-Click to bid on the selected item without confirmation"
 L_MISC_ONECLICK_CANCEL = "Shift-Right-Click to cancel on the selected item without confirmation"
-L_MISC_UI_OUTDATED = "Your version of ViksUI is out of date. You can download the latest version from www.wowinterface.com"
+L_MISC_UI_OUTDATED = "Your version of ViksUI is out of date. You can download the latest version from www.shestak.org"
 L_MISC_HEADER_MARK = "Mouseover Raid Icons"
 L_MISC_BINDER_OPEN = "Mouse Bindings"
 L_MISC_MOUNTS_GROUND = "Ground"
@@ -90,7 +91,6 @@ L_UF_GHOST = "Ghost"
 L_UF_DEAD = "Dead"
 L_UF_OFFLINE = "Offline"
 L_UF_MANA = "Low mana"
-
 
 -- Map
 L_MAP_CURSOR = "Cursor: "
@@ -201,40 +201,10 @@ L_BIND_KEY = "Key"
 L_BIND_NO_SET = "No bindings set"
 
 -- Talent spec
-L_PLANNER_DEATHKNIGHT_1 = "Blood"
-L_PLANNER_DEATHKNIGHT_2 = "Frost"
-L_PLANNER_DEATHKNIGHT_3 = "Unholy"
-L_PLANNER_DRUID_1 = "Balance"
-L_PLANNER_DRUID_2 = "Feral Combat"
-L_PLANNER_DRUID_3 = "Guardian"
 L_PLANNER_DRUID_4 = "Restoration"
-L_PLANNER_HUNTER_1 = "Beast Mastery"
-L_PLANNER_HUNTER_2 = "Marksmanship"
-L_PLANNER_HUNTER_3 = "Survival"
-L_PLANNER_MAGE_1 = "Arcane"
-L_PLANNER_MAGE_2 = "Fire"
-L_PLANNER_MAGE_3 = "Frost"
-L_PLANNER_MONK_1 = "Brewmaster"
 L_PLANNER_MONK_2 = "Mistweaver"
-L_PLANNER_MONK_3 = "Windwalker"
 L_PLANNER_PALADIN_1 = "Holy"
-L_PLANNER_PALADIN_2 = "Protection"
-L_PLANNER_PALADIN_3 = "Retribution"
 L_PLANNER_PRIEST_1 = "Discipline"
-L_PLANNER_PRIEST_2 = "Holy"
-L_PLANNER_PRIEST_3 = "Shadow"
-L_PLANNER_ROGUE_1 = "Assassination"
-L_PLANNER_ROGUE_2 = "Combat"
-L_PLANNER_ROGUE_3 = "Subtlety"
-L_PLANNER_SHAMAN_1 = "Elemental"
-L_PLANNER_SHAMAN_2 = "Enhancement"
-L_PLANNER_SHAMAN_3 = "Restoration"
-L_PLANNER_WARLOCK_1 = "Affliction"
-L_PLANNER_WARLOCK_2 = "Demonology"
-L_PLANNER_WARLOCK_3 = "Destruction"
-L_PLANNER_WARRIOR_1 = "Arms"
-L_PLANNER_WARRIOR_2 = "Fury"
-L_PLANNER_WARRIOR_3 = "Protection"
 
 -- BG stats
 L_DATATEXT_BASESASSAULTED = "Bases Assaulted:"
@@ -253,9 +223,9 @@ L_DATATEXT_CARTS_CONTROLLED = "Carts Controlled:"
 
 -- Info text
 L_INFO_ERRORS = "No error yet."
-L_INFO_INVITE = "Accepted invite from: "
-L_INFO_DUEL = "Declined duel request from: "
-L_INFO_PET_DUEL = "Declined pet duel request from: "
+L_INFO_INVITE = "Accepted invite from "
+L_INFO_DUEL = "Declined duel request from "
+L_INFO_PET_DUEL = "Declined pet duel request from "
 L_INFO_DISBAND = "Disbanding group..."
 L_INFO_SETTINGS_DBM = "Type /settings dbm, to apply the settings DBM."
 L_INFO_SETTINGS_DXE = "Type /settings dxe, to apply the settings DXE."
@@ -273,7 +243,7 @@ L_POPUP_RESETSTATS = "Are you sure you want to reset statistics for time spent i
 L_POPUP_SWITCH_RAID = "Select Raid layout."
 L_POPUP_DISBAND_RAID = "Are you sure you want to disband the group?"
 L_POPUP_DISABLEUI = "ViksUI doesn't work for this resolution, do you want to disable ViksUI? (Cancel if you want to try another resolution)"
-L_POPUP_SETTINGS_ALL = "Apply settings for all modifications? (DBM/DXE, Skada and MSBT)"
+L_POPUP_SETTINGS_ALL = "Apply settings for all modifications? (DBM, Skada, Bartender, Masque, MBF and MSBT)"
 L_POPUP_SETTINGS_DBM = "Need to change the position of elements DBM."
 L_POPUP_SETTINGS_DXE = "Need to change the position of elements DXE."
 L_POPUP_SETTINGS_BW = "Need to change the position of elements BigWigs."
@@ -282,8 +252,8 @@ L_POPUP_CURRENCY_CAP = "You get maximum value of"
 
 -- Welcome message
 L_WELCOME_LINE_1 = "Welcome to ViksUI "
-L_WELCOME_LINE_2_1 = "Type /cfg to config interface"
-L_WELCOME_LINE_2_2 = "for more informations."
+L_WELCOME_LINE_2_1 = "Type /cfg to config interface, or visit http://shestak.org"
+L_WELCOME_LINE_2_2 = "for more information."
 
 -- Combat text
 L_COMBATTEXT_KILLING_BLOW = "Killing Blow"
@@ -383,7 +353,7 @@ L_SLASHCMD_HELP = {
 	"/moveui - Allows the movement of interface elements.",
 	"/resetui - Resets general settings to default.",
 	"/resetuf - Resets the unit frames to their default position.",
-	"/resetconfig - Resets ViksUI_Config settings.",
+	"/resetconfig - Resets ShestakUI_Config settings.",
 	"/resetstats - Resets the statistics of gold and time spent.",
 	"/settings ADDON_NAME - Applies settings to msbt, dbm, skada, or all addons.",
 	"/ls, /litestats - Help for LiteStats.",
@@ -397,7 +367,6 @@ L_SLASHCMD_HELP = {
 	"/ainv - Enables automatic invitation.",
 	"/testuf - Unit frame test.",
 	"/cfg - Opens interface settings.",
-	"/arch - Toggles Archaeology frame if enabled.",
 }
 
 -- ExploreMap
@@ -495,4 +464,121 @@ L_EXTRA_ZONEACHID = {
 	["Isle of Quel'Danas"]				= {X =  868, A =    0, H =    0},
 	["Ahn'Qiraj: The Fallen Kingdom"]	= {X =    0, A =    0, H =    0},
 	["Wintergrasp"]						= {X =    0, A =    0, H =    0},
+}
+
+------------------------------------------------
+L.DataText = {} -- Data Text Locales
+------------------------------------------------
+
+-- There's globalstrings for most of these datatexts btw, We shouldn't need to localize most of them
+-- Something we could do is a "Global" locale file, for stuff we don't need localized by users. Just an idea.
+
+L.DataText.AvoidanceBreakdown = "Avoidance Breakdown"
+L.DataText.Level = "Lvl"
+L.DataText.Boss = "Boss"
+L.DataText.Miss = "Miss"
+L.DataText.Dodge = "Dodge"
+L.DataText.Block = "Block"
+L.DataText.Parry = "Parry"
+L.DataText.Avoidance = "Avoidance"
+L.DataText.AvoidanceShort = "Avd: "
+L.DataText.Memory = "Memory"
+L.DataText.Hit = "Hit"
+L.DataText.Power = "Power"
+L.DataText.Mastery = "Mastery"
+L.DataText.Crit = "Crit"
+L.DataText.Regen = "Regen"
+L.DataText.Versatility = "Versatility"
+L.DataText.Leech = "Leech"
+L.DataText.Multistrike = "Multistrike"
+L.DataText.Session = "Session: "
+L.DataText.Earned = "Earned:"
+L.DataText.Spent = "Spent:"
+L.DataText.Deficit = "Deficit:"
+L.DataText.Profit = "Profit:"
+L.DataText.Character = "Character: "
+L.DataText.Server = "Server: "
+L.DataText.Gold = "Gold"
+L.DataText.TotalGold = "Total: "
+L.DataText.GoldShort = "|cffffd700g|r"
+L.DataText.SilverShort = "|cffc7c7cfs|r"
+L.DataText.CopperShort = "|cffeda55fc|r"
+L.DataText.Talents = "Talents"
+L.DataText.NoTalent = "No Talents"
+L.DataText.Download = "Download: "
+L.DataText.Bandwidth = "Bandwidth: "
+L.DataText.Guild = "Guild"
+L.DataText.NoGuild = "No Guild"
+L.DataText.Bags = "Bags"
+L.DataText.BagSlots = "Bags Slots"
+L.DataText.Friends = "Friends"
+L.DataText.Online = "Online: "
+L.DataText.Armor = "Armor"
+L.DataText.Durability = "Durability"
+L.DataText.Earned = "Earned:"
+L.DataText.Spent = "Spent:"
+L.DataText.Deficit = "Deficit:"
+L.DataText.Profit = "Profit:"
+L.DataText.TimeTo = "Time to"
+L.DataText.FriendsList = "Friends list:"
+L.DataText.Spell = "SP"
+L.DataText.AttackPower = "AP"
+L.DataText.Haste = "Haste"
+L.DataText.DPS = "DPS"
+L.DataText.HPS = "HPS"
+L.DataText.Session = "Session: "
+L.DataText.Character = "Character: "
+L.DataText.Server = "Server: "
+L.DataText.Total = "Total: "
+L.DataText.SavedRaid = "Saved Raid(s)"
+L.DataText.Currency = "Currency"
+L.DataText.FPS = " FPS & "
+L.DataText.MS = " MS"
+L.DataText.FPSAndMS = "FPS & MS"
+L.DataText.Critical = " Crit"
+L.DataText.Heal = " Heal"
+L.DataText.Time = "Time"
+L.DataText.ServerTime = "Server Time: "
+L.DataText.LocalTime = "Local Time: "
+L.DataText.Mitigation = "Mitigation By Level: "
+L.DataText.Healing = "Healing: "
+L.DataText.Damage = "Damage: "
+L.DataText.Honor = "Honor: "
+L.DataText.KillingBlow = "Killing Blows: "
+L.DataText.StatsFor = "Stats for "
+L.DataText.HonorableKill = "Honorable Kills:"
+L.DataText.Death = "Deaths:"
+L.DataText.HonorGained = "Honor Gained:"
+L.DataText.DamageDone = "Damage Done:"
+L.DataText.HealingDone = "Healing Done:"
+L.DataText.BaseAssault = "Bases Assaulted:"
+L.DataText.BaseDefend = "Bases Defended:"
+L.DataText.TowerAssault = "Towers Assaulted:"
+L.DataText.TowerDefend = "Towers Defended:"
+L.DataText.FlagCapture = "Flags Captured:"
+L.DataText.FlagReturn = "Flags Returned:"
+L.DataText.GraveyardAssault = "Graveyards Assaulted:"
+L.DataText.GraveyardDefend = "Graveyards Defended:"
+L.DataText.DemolisherDestroy = "Demolishers Destroyed:"
+L.DataText.GateDestroy = "Gates Destroyed:"
+L.DataText.TotalMemory = "Total Memory Usage:"
+L.DataText.ControlBy = "Controlled by:"
+L.DataText.CallToArms = "Call to Arms" 
+L.DataText.ArmError = "Could not get Call To Arms information."
+L.DataText.NoDungeonArm = "No dungeons are currently offering a Call To Arms."
+L.DataText.CartControl = "Carts Controlled:"
+L.DataText.VictoryPts = "Victory Points:"
+L.DataText.OrbPossession = "Orb Possessions:"
+L.DataText.Slots = {
+	[1] = {1, "Head", 1000},
+	[2] = {3, "Shoulder", 1000},
+	[3] = {5, "Chest", 1000},
+	[4] = {6, "Waist", 1000},
+	[5] = {9, "Wrist", 1000},
+	[6] = {10, "Hands", 1000},
+	[7] = {7, "Legs", 1000},
+	[8] = {8, "Feet", 1000},
+	[9] = {16, "Main Hand", 1000},
+	[10] = {17, "Off Hand", 1000},
+	[11] = {18, "Ranged", 1000}
 }

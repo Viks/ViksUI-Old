@@ -248,4 +248,4 @@ SlashCmdList.BWTEST = function(msg)
 	end
 end
 SLASH_BWTEST1 = "/bwtest"
-SLASH_BWTEST2 = "/טצוףûו"
+SLASH_BWTEST2 = "/??????"

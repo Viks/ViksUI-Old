@@ -137,19 +137,7 @@ DBMSkin:SetScript("OnEvent", function(self, event, addon)
 					bar.ApplyPosition = function()
 						if Viks.unitframes.enable ~= true then return end
 						self.mainAnchor:ClearAllPoints()
-						if Viks.unitframes.portrait_enable == true then
-							if bar.owner.options.IconRight then
-								self.mainAnchor:SetPoint("BOTTOMRIGHT", "oUF_Player", "BOTTOMLEFT", -(138 + Viks.unitframes.portrait_width), -69)
-							else
-								self.mainAnchor:SetPoint("BOTTOMRIGHT", "oUF_Player", "BOTTOMLEFT", -(110 + Viks.unitframes.portrait_width), -69)
-							end
-						else
-							if bar.owner.options.IconRight then
-								self.mainAnchor:SetPoint("BOTTOMRIGHT", "oUF_Player", "BOTTOMLEFT", -131, -69)
-							else
-								self.mainAnchor:SetPoint("BOTTOMRIGHT", "oUF_Player", "BOTTOMLEFT", -103, -69)
-							end
-						end
+						self.mainAnchor:SetPoint("BOTTOMLEFT", RChatTab, "BOTTOMLEFT", 122, 0)
 					end
 					bar:ApplyPosition()
 				end
@@ -300,7 +288,7 @@ end)
 ----------------------------------------------------------------------------------------
 function T.UploadDBM()
 	DBM_SavedOptions.Enabled = true
-	DBM_SavedOptions.ShowMinimapButton = Viks.skins.minimap_buttons and true or false
+	DBM_SavedOptions.ShowMinimapButton = true
 	DBM_SavedOptions.WarningIconLeft = false
 	DBM_SavedOptions.WarningIconRight = false
 	DBM_SavedOptions["WarningColors"] = {
@@ -311,16 +299,29 @@ function T.UploadDBM()
 	}
 	DBM_SavedOptions.HealthFrameGrowUp = false
 	DBM_SavedOptions.HealthFrameWidth = 200
-	DBM_SavedOptions.HPFrameX = -107
+	DBM_SavedOptions.HPFrameX = 100
 	DBM_SavedOptions.HPFramePoint = "RIGHT"
-	DBM_SavedOptions.RangeFrameX = -46
-	DBM_SavedOptions.RangeFramePoint = "RIGHT"
+	DBM_SavedOptions.RangeFrameX = 244
+	DBM_SavedOptions.RangeFramePoint = "LEFT"
 	DBM_SavedOptions.ShowSpecialWarnings = true
 	DBM_SavedOptions.SpecialWarningFont = Viks.media.font
-	DBM_SavedOptions.SpecialWarningFontSize = 79
-	DBM_SavedOptions.SpecialWarningX = -45
-	DBM_SavedOptions.SpecialWarningY = -72
-
+	DBM_SavedOptions.SpecialWarningFontSize = 50
+	DBM_SavedOptions.SpecialWarningX = 0
+	DBM_SavedOptions.SpecialWarningY = 75
+	DBM_SavedOptions.InfoFrameX = -268
+	DBM_SavedOptions.RangeFrameX = 244
+	DBM_SavedOptions.RangeFrameY = 101
+	DBM_SavedOptions.SpecialWarningFlashAlph3 = 0.4
+	DBM_SavedOptions.InfoFramePoint = "RIGHT"
+	DBM_SavedOptions.InfoFrameY = 123
+	DBM_SavedOptions.RangeFrameRadarPoint = "RIGHT"
+	DBM_SavedOptions.RangeFrameRadarX = -389
+	DBM_SavedOptions.HPFrameMaxEntries = 5
+	DBM_SavedOptions.RangeFramePoint = "LEFT"
+	DBM_SavedOptions.RangeFrameRadarY = 76
+	DBM_SavedOptions.RangeFrameFrames = "radar"
+	DBM_SavedOptions.HPFrameX = -111
+	
 	DBT_PersistentOptions["DBM"].StartColorR = T.color.r
 	DBT_PersistentOptions["DBM"].StartColorG = T.color.g
 	DBT_PersistentOptions["DBM"].StartColorB = T.color.b
@@ -333,7 +334,6 @@ function T.UploadDBM()
 	DBT_PersistentOptions["DBM"].BarYOffset = 7
 	DBT_PersistentOptions["DBM"].Font = Viks.font.stylization_font
 	DBT_PersistentOptions["DBM"].FontSize = Viks.font.stylization_font_size
-	DBT_SavedOptions["DBM"].Width = 186
 	DBT_PersistentOptions["DBM"].Width = 189
 	DBT_PersistentOptions["DBM"].TimerX = 143
 	DBT_PersistentOptions["DBM"].TimerPoint = "BOTTOMLEFT"
@@ -343,19 +343,18 @@ function T.UploadDBM()
 	DBT_PersistentOptions["DBM"].Texture = Viks.media.texture
 	DBT_PersistentOptions["DBM"].IconRight = false
 	DBT_PersistentOptions["DBM"].HugeBarXOffset = 0
-	DBT_PersistentOptions["DBM"].HugeBarsEnabled = false
-	DBT_PersistentOptions["DBM"].HugeWidth = 189
-	DBT_PersistentOptions["DBM"].HugeTimerX = 7
+	DBT_PersistentOptions["DBM"].HugeBarsEnabled = true
+	DBT_PersistentOptions["DBM"].HugeWidth = 268
+	DBT_PersistentOptions["DBM"].HugeTimerX = 14
 	DBT_PersistentOptions["DBM"].HugeTimerPoint = "CENTER"
 	DBT_PersistentOptions["DBM"].HugeBarYOffset = 7
+	
 
-
-		DBM_SavedOptions.HPFrameY = 66
-		DBM_SavedOptions.RangeFrameY = 189
-		DBT_SavedOptions["DBM"].TimerY = 163
-		DBT_SavedOptions["DBM"].HugeTimerY = -237
-
-	DBM_SavedOptions.InstalledBars = Viks.actionbar.bottombars
+	DBM_SavedOptions.HPFrameY = 209
+	DBM_SavedOptions.RangeFrameY = 101
+	DBT_PersistentOptions["DBM"].TimerY = 139
+	DBT_PersistentOptions["DBM"].HugeTimerY = -240
+	DBM_SavedOptions.InstalledBars = 2
 end
 
 StaticPopupDialogs.SETTINGS_DBM = {
@@ -369,6 +368,7 @@ StaticPopupDialogs.SETTINGS_DBM = {
 	preferredIndex = 5,
 }
 
+
 ----------------------------------------------------------------------------------------
 --	On logon function
 ----------------------------------------------------------------------------------------
@@ -378,7 +378,7 @@ OnLogon:SetScript("OnEvent", function(self, event)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
 	if IsAddOnLoaded("DBM-Core") then
-		if DBM_SavedOptions.InstalledBars ~= Viks.actionbar.bottombars then
+		if DBM_SavedOptions.InstalledBars ~= 2 then			
 			StaticPopup_Show("SETTINGS_DBM")
 		end
 	end

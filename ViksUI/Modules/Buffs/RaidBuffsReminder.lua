@@ -208,3 +208,207 @@ do
 	CreateButton("Spell5Frame", StaminaFrame, false)
 	CreateButton("Spell6Frame", Spell5Frame, false)
 end
+
+----------------------------------------------------------------------------------------------
+
+
+
+-- Adding in ALL RAID BUFFS
+local AllBuffs = {
+	["10ap"] = {
+		6673,						-- Battle Shout
+		19506,						-- Trueshot Aura
+		57330,						-- Horn of Winter
+	},
+	["10as"] = {
+		55610,						-- Unholy Aura
+		113742,						-- Swiftblade's Cunning
+		128432,						-- Cackling Howl (Hunterpet)
+		128433,						-- Serpent's Swiftness (Hunterpet)
+	},
+	["10sp"] = {
+		1459,						-- Arcane Brilliance
+		61316,						-- Dalaran Brilliance
+		109773,						-- Dark Intent
+	},
+	["5sh"] = {
+		24907,						-- Moonkin Aura
+		49868,						-- Mind Quickening
+		135678,						-- Energizing Spores
+	},
+	["5csc"] = {
+		1459,						-- Arcane Brilliance
+		17007,						-- Leader of the Pack
+		24604,						-- Furious Howl (Hunterpet)
+		61316,						-- Dalaran Brilliance
+		90309,						-- Terrifying Roar (Hunterpet)
+		116781,						-- Legacy of the White Tiger
+	},
+	["3kmr"] = {
+		19740,						-- Blessing of Might
+		93435,						-- Roar of Courage (Hunterpet)
+		116956,						-- Grace of Air
+		128997,						-- Spirit Beast Blessing
+		155522,						-- Power of the Grave
+	},
+	["5sai"] = {
+		1126,						-- Mark of the Wild
+		20217,						-- Blessing of Kings
+		90363,						-- Embrace of the Shale Spider (Hunterpet)
+		115921,						-- Legacy of the Emperor
+	},
+	["10s"] = {
+		469,						-- Commanding Shout
+		21562,						-- Power Word: Fortitude
+		90364,						-- Qiraji Fortitude
+		109773,						-- Dark Intent
+	},
+}
+
+local function LabelType(bufftype)
+	if bufftype == "10ap" then
+		return "+ Attack Power"
+	elseif bufftype == "10as" then
+		return "+ Melee & Ranged Attack Speed"
+	elseif bufftype == "10sp" then
+		return "+ Spell Power"
+	elseif bufftype == "5sh" then
+		return "+ Spell Haste"
+	elseif bufftype == "5csc" then
+		return "+ Critical Strike Chance"
+	elseif bufftype == "3kmr" then
+		return "+ Mastery Rating"
+	elseif bufftype == "5sai" then
+		return "+ Strength, Agility, Intellect"
+	elseif bufftype == "10s" then
+		return "+ Stamina"
+	else
+		return "ERROR"
+	end
+end
+
+-- Buff Check Functions
+local function AnotherOnAuraChange(self, event, arg1, unit)
+	for key, value in pairs(AllBuffs) do
+		for i, v in ipairs(value) do
+			local spellname = select(1, GetSpellInfo(v))
+			_G[key.."mini"..i].spell = v
+			if UnitAura("player", spellname) then _G[key.."mini"..i]:SetAlpha(1) else _G[key.."mini"..i]:SetAlpha(0.2) end
+		end
+
+		for i, v in ipairs(value) do
+			local spellname = select(1, GetSpellInfo(v))
+			_G[key.."Frame"].spell = v
+			if UnitAura("player", spellname) then
+				_G[key.."Frame"]:SetAlpha(1)
+				_G[key.."Frame"].t:SetTexture(select(3, GetSpellInfo(v)))
+				break
+			else
+				_G[key.."Frame"]:SetAlpha(0.2)
+				_G[key.."Frame"].t:SetTexture(select(3, GetSpellInfo(v)))
+			end
+		end
+	end
+end
+
+local bufftrackersummary = CreateFrame("Frame", "BuffTrackerSummary", UIParent)
+if T.Client == "deDE" then BuffTrackerSummary:SetSize(565, 250) else bufftrackersummary:SetSize(500, 250) end
+bufftrackersummary:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+bufftrackersummary:SetTemplate("Transparent")
+bufftrackersummary:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+bufftrackersummary:RegisterEvent("UNIT_INVENTORY_CHANGED")
+bufftrackersummary:RegisterEvent("UNIT_AURA")
+bufftrackersummary:RegisterEvent("PLAYER_REGEN_ENABLED")
+bufftrackersummary:RegisterEvent("PLAYER_REGEN_DISABLED")
+bufftrackersummary:RegisterEvent("PLAYER_ENTERING_WORLD")
+bufftrackersummary:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
+bufftrackersummary:RegisterEvent("CHARACTER_POINTS_CHANGED")
+bufftrackersummary:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+bufftrackersummary:SetScript("OnEvent", AnotherOnAuraChange)
+
+--DERP BLIZZ, cant make good spell id's
+local str = "spell:%s"
+local BadTotems = {
+	[8076] = 8075,
+	[8972] = 8071,
+	[5677] = 5675,
+}
+local SetupTooltip = function(self)
+	GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, 0)
+
+	if BadTotems[self.spell] then GameTooltip:SetHyperlink(format(str, BadTotems[self.spell])) else GameTooltip:SetHyperlink(format(str, self.spell)) end
+	GameTooltip:Show()
+end
+
+local function CreateBuffArea(bufftype, relativeTo, column)
+	local bigButton = CreateFrame("Frame", bufftype.."Frame", BuffTrackerSummary)
+	if column == 1 then
+		bigButton:SetSize(40, 40)
+		bigButton:SetPoint("TOPLEFT", BuffTrackerSummary, "TOPLEFT", 14, -14)
+		bigButton:SetTemplate("Default")
+	elseif column == 2 then
+		bigButton:SetSize(40, 40)
+		bigButton:SetPoint("TOPLEFT", BuffTrackerSummary, "TOPLEFT", 280, -14)
+		bigButton:SetTemplate("Default")
+	else
+		bigButton:SetSize(40, 40)
+		bigButton:SetPoint("TOPLEFT", relativeTo, "BOTTOMLEFT", 0, -16)
+		bigButton:SetTemplate("Default")
+	end
+	bigButton.t = bigButton:CreateTexture(bufftype..".t", "OVERLAY")
+	bigButton.t:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+	bigButton.t:SetPoint("TOPLEFT", 2, -2)
+	bigButton.t:SetPoint("BOTTOMRIGHT", -2, 2)
+
+	local littlebutton = {}
+	for i, v in pairs(AllBuffs[bufftype]) do
+		littlebutton[i] = CreateFrame("Frame", bufftype.."mini"..i, bufftrackersummary)		
+		if i == 1 then
+			littlebutton[i]:SetSize(20, 20)
+			littlebutton[i]:SetPoint("BOTTOMLEFT", bigButton, "BOTTOMRIGHT", 3, 0)
+			littlebutton[i]:SetTemplate("Default")
+		else
+			littlebutton[i]:SetSize(20, 20)
+			littlebutton[i]:SetPoint("LEFT", littlebutton[i-1], "RIGHT", 3, 0)
+			littlebutton[i]:SetTemplate("Default")
+		end
+		littlebutton[i].t = littlebutton[i]:CreateTexture(nil, "OVERLAY")
+		littlebutton[i].t:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		littlebutton[i].t:SetPoint("TOPLEFT", 2, -2)
+		littlebutton[i].t:SetPoint("BOTTOMRIGHT", -2, 2)
+		littlebutton[i].t:SetTexture(select(3, GetSpellInfo(v)))
+
+		littlebutton[i]:EnableMouse(true)
+		littlebutton[i]:SetScript("OnEnter", SetupTooltip)
+		littlebutton[i]:SetScript("OnLeave", GameTooltip_Hide)
+	end
+	bigButton.text = bigButton:CreateFontString(nil, "OVERLAY")
+	bigButton.text:SetPoint("TOPLEFT", bigButton, "TOPRIGHT", 3, -1)
+	bigButton.text:SetFont(Viks.media.font, 13)
+	bigButton.text:SetText(LabelType(bufftype))
+	bigButton:EnableMouse(true)
+	bigButton:SetScript("OnEnter", SetupTooltip)
+	bigButton:SetScript("OnLeave", GameTooltip_Hide)
+end
+
+--ORDER MATTERS!
+CreateBuffArea("10ap", nil, 1)
+CreateBuffArea("10as", "10apFrame", nil)
+CreateBuffArea("10sp", "10asFrame", nil)
+CreateBuffArea("5sh", "10spFrame", nil)
+CreateBuffArea("5csc", "5shFrame", 2)
+CreateBuffArea("3kmr", "5cscFrame", nil)
+CreateBuffArea("5sai", "3kmrFrame", nil)
+CreateBuffArea("10s", "5saiFrame", nil)
+
+bufftrackersummary:Hide()
+
+
+local function ToggleBuffTracker()
+	if bufftrackersummary:IsShown() then
+		bufftrackersummary:Hide()
+	else
+		bufftrackersummary:Show()
+	end
+end
+raidbuff_reminder:SetScript("OnMouseDown", ToggleBuffTracker)

@@ -1,5 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<!-- Install -->
-	<Script file="addonssettings\Bartender4.lua"/>
-	<Script file="addonssettings\Masque.lua"/>
-</Ui>

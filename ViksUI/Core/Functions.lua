@@ -3,6 +3,13 @@ local T, Viks, L, _ = unpack(select(2, ...))
 ----------------------------------------------------------------------------------------
 --	Number value function
 ----------------------------------------------------------------------------------------
+-- Add comma's to a number
+T.Comma = function(num)
+	local Left, Number, Right = match(num, "^([^%d]*%d)(%d*)(.-)$")
+	
+	return 	Left .. reverse(gsub(reverse(Number), "(%d%d%d)", "%1,")) .. Right
+end
+
 T.Round = function(number, decimals)
 	if not decimals then decimals = 0 end
 	return (("%%.%df"):format(decimals)):format(number)
@@ -19,10 +26,8 @@ T.ShortValue = function(value)
 		return ("%.0fk"):format(value / 1e3)
 	elseif value >= 1e3 then
 		return ("%.1fk"):format(value / 1e3):gsub("%.?0+([km])$", "%1")
-
 	else
 		return value
-
 	end
 end
 
@@ -183,7 +188,7 @@ function T.SkinTab(tab, bg)
 	end
 end
 
-function T.SkinNextPrevButton(btn, horizonal, left)
+function T.SkinNextPrevButton(btn, horizontal, left)
 	local normal, pushed, disabled
 	local isPrevButton = btn:GetName() and (string.find(btn:GetName(), "Left") or string.find(btn:GetName(), "Prev") or string.find(btn:GetName(), "Decrement") or string.find(btn:GetName(), "Back")) or left
 
@@ -227,7 +232,7 @@ function T.SkinNextPrevButton(btn, horizonal, left)
 	btn:SetSize(btn:GetWidth() - 7, btn:GetHeight() - 7)
 
 	if normal and pushed and disabled then
-		if horizonal then
+		if horizontal then
 			btn:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
 			btn:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down")
 			btn:SetDisabledTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled")
@@ -278,11 +283,18 @@ function T.SkinRotateButton(btn)
 	btn:GetHighlightTexture():SetAllPoints(btn:GetNormalTexture())
 end
 
-function T.SkinEditBox(frame)
-	if _G[frame:GetName().."Left"] then _G[frame:GetName().."Left"]:Kill() end
-	if _G[frame:GetName().."Middle"] then _G[frame:GetName().."Middle"]:Kill() end
-	if _G[frame:GetName().."Right"] then _G[frame:GetName().."Right"]:Kill() end
-	if _G[frame:GetName().."Mid"] then _G[frame:GetName().."Mid"]:Kill() end
+function T.SkinEditBox(frame, width, height)
+	if _G[frame:GetName()] then
+		if _G[frame:GetName().."Left"] then _G[frame:GetName().."Left"]:Kill() end
+		if _G[frame:GetName().."Middle"] then _G[frame:GetName().."Middle"]:Kill() end
+		if _G[frame:GetName().."Right"] then _G[frame:GetName().."Right"]:Kill() end
+		if _G[frame:GetName().."Mid"] then _G[frame:GetName().."Mid"]:Kill() end
+	end
+
+	if frame.Left then frame.Left:Kill() end
+	if frame.Right then frame.Right:Kill() end
+	if frame.Middle then frame.Middle:Kill() end
+
 	frame:CreateBackdrop("Overlay")
 
 	if frame:GetName() and (frame:GetName():find("Gold") or frame:GetName():find("Silver") or frame:GetName():find("Copper")) then
@@ -294,6 +306,8 @@ function T.SkinEditBox(frame)
 			frame.backdrop:SetPoint("BOTTOMRIGHT", -13, 0)
 		end
 	end
+	if width then frame:SetWidth(width) end
+	if height then frame:SetHeight(height) end
 end
 
 function T.SkinDropDownBox(frame, width)
@@ -890,6 +904,44 @@ T.UpdatePvPStatus = function(self, elapsed)
 	end
 end
 
+T.UpdateShadowOrb = function(self, event, unit, powerType)
+	if self.unit ~= unit or (powerType and powerType ~= "SHADOW_ORBS") then return end
+	local num = UnitPower(unit, SPELL_POWER_SHADOW_ORBS)
+	local numMax = UnitPowerMax("player", SPELL_POWER_SHADOW_ORBS)
+	local barWidth = self.ShadowOrbsBar:GetWidth()
+	local spacing = select(4, self.ShadowOrbsBar[4]:GetPoint())
+	local lastBar = 0
+
+	if numMax ~= self.ShadowOrbsBar.maxPower then
+		if numMax == 3 then
+			self.ShadowOrbsBar[4]:Hide()
+			self.ShadowOrbsBar[5]:Hide()
+			for i = 1, 3 do
+				if i ~= 3 then
+					self.ShadowOrbsBar[i]:SetWidth(barWidth / 3)
+					lastBar = lastBar + (barWidth / 3 + spacing)
+				else
+					self.ShadowOrbsBar[i]:SetWidth(barWidth - lastBar)
+				end
+			end
+		else
+			self.ShadowOrbsBar[4]:Show()
+			self.ShadowOrbsBar[5]:Show()
+			for i = 1, 5 do
+				self.ShadowOrbsBar[i]:SetWidth(self.ShadowOrbsBar[i].width)
+			end
+		end
+		self.ShadowOrbsBar.maxPower = numMax
+	end
+
+	for i = 1, 5 do
+		if i <= num then
+			self.ShadowOrbsBar[i]:SetAlpha(1)
+		else
+			self.ShadowOrbsBar[i]:SetAlpha(0.2)
+		end
+	end
+end
 T.UpdateHoly = function(self, event, unit, powerType)
 	if self.unit ~= unit or (powerType and powerType ~= "HOLY_POWER") then return end
 	local num = UnitPower(unit, SPELL_POWER_HOLY_POWER)
@@ -1286,7 +1338,7 @@ T.PostCreateAura = function(element, button)
 
 	if Viks.aura.show_spiral == true then
 		element.disableCooldown = false
-		button.cd:SetReverse()
+		button.cd:SetReverse(true)
 		button.cd:SetPoint("TOPLEFT", button, "TOPLEFT", 2, -2)
 		button.cd:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -2, 2)
 		button.parent = CreateFrame("Frame", nil, button)
@@ -1330,6 +1382,7 @@ T.PostUpdateIcon = function(icons, unit, icon, index, offset, filter, isDebuff, 
 		else
 			icon:SetBackdropBorderColor(unpack(Viks.media.bordercolor))
 		end
+		icon.icon:SetDesaturated(false)
 	end
 
 	if duration and duration > 0 and Viks.aura.show_timer == true then
@@ -1374,7 +1427,7 @@ T.CreateAuraWatchIcon = function(self, icon)
 	icon.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	icon.icon:SetDrawLayer("ARTWORK")
 	if icon.cd then
-		icon.cd:SetReverse()
+		icon.cd:SetReverse(true)
 	end
 	icon.overlay:SetTexture()
 end
@@ -1432,4 +1485,4 @@ T.CreateAuraWatch = function(self, unit)
 	end
 
 	self.AuraWatch = auras
-end
+end	

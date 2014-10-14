@@ -197,7 +197,7 @@ local function SetupChat(self)
 	else
 		var = 0
 	end
-	ChatTypeInfo.SAY.sticky = varb
+	ChatTypeInfo.SAY.sticky = var
 	ChatTypeInfo.PARTY.sticky = var
 	ChatTypeInfo.PARTY_LEADER.sticky = var
 	ChatTypeInfo.GUILD.sticky = var
@@ -240,12 +240,11 @@ local function SetupChatPosAndFont(self)
 			end
 			FCF_SavePositionAndDimensions(chat)
 		elseif i == 2 then
-			if Viks.chat.combatlog == true then
+			if Viks.chat.combatlog ~= true then
 				FCF_DockFrame(chat)
-			else
-				FCF_UnDockFrame(chat)
-				chat:ClearAllPoints()
-				chat:SetPoint("TOPRIGHT", UIParent, "BOTTOMLEFT", -200, -200)
+				ChatFrame2Tab:EnableMouse(false)
+				ChatFrame2Tab:SetText("LOG")
+				ChatFrame2Tab:SetScale(0.001)
 			end
 		end
 	end

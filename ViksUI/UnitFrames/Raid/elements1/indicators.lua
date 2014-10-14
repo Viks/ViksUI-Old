@@ -3,8 +3,8 @@ local _, ns = ...
 local oUF =  ns.oUF or oUF
 
 local _, class = UnitClass("player")
-local indicator = "Interface\\AddOns\\ViksUI\\Media\\squares.ttf"
-local symbols =  "Interface\\AddOns\\ViksUI\\Media\\PIZZADUDEBULLETS.ttf"
+local indicator = "Interface\\AddOns\\ViksUI\\Media\\Font\\squares.ttf"
+local symbols =  "Interface\\AddOns\\ViksUI\\Media\\Font\\PIZZADUDEBULLETS.ttf"
 
 local update = .25
 

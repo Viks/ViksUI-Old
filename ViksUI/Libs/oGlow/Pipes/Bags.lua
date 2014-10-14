@@ -1,5 +1,5 @@
-local T, Viks, L, _ = unpack(select(2, ...))
-if Viks.bag.enable == true then return end
+local T, C, L, _ = unpack(select(2, ...))
+if C.bag.enable == true then return end
 
 local hook
 local _E

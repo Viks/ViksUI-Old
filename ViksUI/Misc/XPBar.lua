@@ -21,7 +21,7 @@ local Anchor = { "TOP", PetBattleHider, "BOTTOM", -0.5 , 32.5 }
 --Fonts
 local showText = true -- Set to false to hide text
 local mouseoverText = true -- Set to true to only show text on mouseover
-local font,fontsize,flags = Viks.media.font, Viks.media.fontsize, "OUTLINEMONOCHROME"
+local font,fontsize,flags = Viks.media.pxfont, 12, "OUTLINEMONOCHROME"
 
 --Textures
 local barTex = Viks.media.texture
@@ -143,7 +143,7 @@ mouseFrame:EnableMouse(true)
 --Create XP Text
 local Text = mouseFrame:CreateFontString(aName.."Text", "OVERLAY")
 Text:SetFont(font, fontsize, flags)
-Text:SetPoint("CENTER", mouseFrame, "CENTER", 0, 1)
+Text:SetPoint("CENTER", mouseFrame, "CENTER", 0, 0)
 if mouseoverText == true then
 	Text:SetAlpha(0)
 end
@@ -156,9 +156,9 @@ xpBar:SetFrameLevel(2)
 mouseFrame:SetFrameLevel(3)
 
 local function updateStatus()
-	local XP, maxXP = UnitXP("player"), UnitXPMax("player")
-	local restXP = GetXPExhaustion()
-	local percXP = floor(XP/maxXP*100)
+	local XP, maxXP, restXP = UnitXP("player"), UnitXPMax("player"), GetXPExhaustion()
+	if not maxXP or maxXP == 0 then return end
+	local percXP = math.floor((XP / maxXP) * 100)
 	
 	if IsMaxLevel() then
 		xpBar:Hide()
@@ -169,7 +169,7 @@ local function updateStatus()
 		else
 			backdrop:Show()
 		end
-	else		
+	else
 		xpBar:SetMinMaxValues(min(0, XP), maxXP)
 		xpBar:SetValue(XP)
 			

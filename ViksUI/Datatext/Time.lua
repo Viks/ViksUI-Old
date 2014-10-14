@@ -8,7 +8,7 @@ pxfontsize = Viks.media.pxfontsize
 
 DataTextTooltipAnchor = function(self)
 	local panel = self:GetParent()
-	local anchor = "ANCHOR_TOP"
+	local anchor = "ANCHOR_BOTTOMLEFT"
 	local xoff = 0
 	local yoff = 4
 	return anchor, panel, xoff, yoff
@@ -94,7 +94,7 @@ if Viks.datatext.Wowtime == true then
 		local anchor, panel, xoff, yoff = DataTextTooltipAnchor(Text)
 		OnLoad = function(self) RequestRaidInfo() end
 		
-		GameTooltip:SetOwner(panel, anchor, xoff, yoff)
+		GameTooltip:SetOwner(CPMinimb2, "ANCHOR_BOTTOMLEFT", -4, 16)
 		GameTooltip:ClearLines()
 		local pvp = GetNumWorldPVPAreas()
 		for i=1, pvp do
@@ -116,7 +116,7 @@ if Viks.datatext.Wowtime == true then
 		end
 		GameTooltip:AddLine(" ")
 		
-		if( UnitLevel( "player" ) == 90 ) then
+		if( UnitLevel( "player" ) >= 90 ) then
 		local Sha = IsQuestFlaggedCompleted( 32099 )
 		local Galleon = IsQuestFlaggedCompleted( 32098 )
 		local Oondasta = IsQuestFlaggedCompleted( 32519 )
