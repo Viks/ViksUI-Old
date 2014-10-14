@@ -66,7 +66,6 @@ if o == "ViksConfigUImediaproc_sound" then o = "Sound for procs" end
 -- general
 if o == "ViksConfigUIgeneral" then o = "GENERAL" end
 if o == "ViksConfigUIgeneralAutoScale" then o = "Auto UI Scale" end
-if o == "ViksConfigUIgeneralMultisampleProtect" then o = "Multisample protection (clean 1px border)" end
 if o == "ViksConfigUIgeneralUiScale" then o = "UI Scale (if auto-scale is disabled)" end
 if o == "ViksConfigUIgeneralAutoRepair" then o = "Auto Repair items" end
 if o == "ViksConfigUIgeneralAutoRepairG" then o = "Auto Repair items uses Guild Repair" end

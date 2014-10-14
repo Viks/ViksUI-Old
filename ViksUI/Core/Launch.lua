@@ -595,9 +595,6 @@ OnLogon:SetScript("OnEvent", function(self, event)
 		StaticPopup_Show("DISABLE_UI")
 	else
 		SetCVar("useUiScale", 1)
-		if Viks.general.MultisampleProtect == true and GetCVar("gxMultisample") ~= "1" then
-			--WOD SetMultisampleFormat(1)
-		end
 		if Viks.general.UiScale > 1.28 then Viks.general.UiScale = 1.28 end
 		if Viks.general.UiScale < 0.64 then Viks.general.UiScale = 0.64 end
 

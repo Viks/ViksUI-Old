@@ -3,7 +3,6 @@
 	ViksL.option_general = "Общее"
 	ViksL.option_general_uiscale = "Автоматически масштабировать интерфейс"
 	ViksL.option_general_override = "Использовать раскладку для высокого разрешения при низком разрешении"
-	ViksL.option_general_multisample = "Ровные края шириной 1 пиксель"
 	ViksL.option_general_customuiscale = "Масштаб интерфейса (если автомасштабирование отключено)"
 	ViksL.option_general_AutoRepair = "Автоматическая починка"
 	ViksL.option_general_AutoGreed = "Автоматический Greed от зеленых вещей"												

@@ -39,7 +39,6 @@ Viks["media"] = {
 Viks["general"] = {
 	["AutoScale"] = true,  					-- mainly enabled for users that don't want to mess with the config file
 	["UiScale"] = 0.96,						-- set your value (between 0.64 and 1) of your uiscale if autoscale is off
-	["MultisampleProtect"] = true,    		-- i don't recommend this because of shitty border but, voila!
 	["welcome_message"] = true,					-- Enable welcome message in chat
 	["BlizzardsErrorFrameHiding"] = false,
 }	
