@@ -116,7 +116,7 @@ local function OnEvent(self, event, arg1, arg2)
 			end
 		end
 		self:Show()
-		if canplaysound == true then PlaySoundFile(C.media.warning_sound, "Master") end
+		if canplaysound == true then PlaySoundFile(Viks.media.warning_sound, "Master") end
 	elseif ((combat and UnitAffectingCombat("player")) or (instance and difficultyID ~= 0)) and
 	reversecheck == true and not UnitInVehicle("player") then
 		if negate_reversecheck and negate_reversecheck == GetSpecialization() then self:Hide() return end
@@ -125,7 +125,7 @@ local function OnEvent(self, event, arg1, arg2)
 			local _, _, icon, _, _, _, _, unitCaster = UnitBuff("player", name)
 			if name and icon and unitCaster == "player" then
 				self:Show()
-				if canplaysound == true then PlaySoundFile(C.media.warning_sound, "Master") end
+				if canplaysound == true then PlaySoundFile(Viks.media.warning_sound, "Master") end
 				return
 			end
 		end

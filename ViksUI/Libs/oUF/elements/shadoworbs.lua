@@ -63,6 +63,7 @@ local function Enable(self, unit)
 
 		sb.Visibility = CreateFrame("Frame", nil, sb)
 		sb.Visibility:RegisterEvent("PLAYER_TALENT_UPDATE")
+		sb.Visibility:RegisterEvent("PLAYER_ENTERING_WORLD")
 		sb.Visibility:SetScript("OnEvent", function(frame, event, unit) Visibility(self, event, unit) end)
 
 		return true
@@ -75,6 +76,7 @@ local function Disable(self)
 		self:UnregisterEvent('UNIT_POWER', Path)
 		self:UnregisterEvent('UNIT_DISPLAYPOWER', Path)
 		sb.Visibility:UnregisterEvent("PLAYER_TALENT_UPDATE")
+		sb.Visibility:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	end
 end
 
