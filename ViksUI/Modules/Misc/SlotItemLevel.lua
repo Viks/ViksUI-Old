@@ -36,7 +36,7 @@ local function UpdateButtonsText(frame)
 	for _, slot in pairs(slots) do
 		local id = GetInventorySlotInfo(slot)
 		local item
-		local text = _G[frame..slot]
+		local text = _G[frame..slot].t
 
 		if frame == "Inspect" then
 			item = GetInventoryItemLink("target", id)
@@ -49,7 +49,7 @@ local function UpdateButtonsText(frame)
 		elseif item then
 			local oldilevel = text:GetText()
 			local _, _, heirloom, ilevel = GetItemInfo(item)
-			local upgrade = item:match(":(%d+)\124h%[")
+			local upgrade = item:match("item:%d+:%d+:%d+:%d+:%d+:%d+:%-?%d+:%-?%d+:%d+:(%d+)")
 
 			if ilevel then
 				if ilevel ~= oldilevel then
