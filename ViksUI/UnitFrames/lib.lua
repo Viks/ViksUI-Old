@@ -1073,8 +1073,6 @@ lib.gen_castbar = function(f)
 	h2:SetFrameLevel(0)
 	h2:SetPoint("TOPLEFT",i,"TOPLEFT",-5,5)
 	h2:SetPoint("BOTTOMRIGHT",i,"BOTTOMRIGHT",5,-5)
-	frame(h2)
-	CreateShadow1_1(h2)
 
 	if f.mystyle == "player" then
 		--Latency (Only for Player Unit)
