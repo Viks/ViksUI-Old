@@ -172,6 +172,11 @@ SlashCmdList.DBMTEST = function() if IsAddOnLoaded("DBM-Core") then DBM:DemoMode
 SLASH_DBMTEST1 = "/dbmtest"
 SLASH_DBMTEST2 = "/виьеуые"
 
+
+SlashCmdList.VBT = function()
+	Bartender4.db:SetProfile("ViksUI")
+end
+SLASH_VBT1 = "/vbt"
 ----------------------------------------------------------------------------------------
 --	Switch to heal layout
 ----------------------------------------------------------------------------------------
