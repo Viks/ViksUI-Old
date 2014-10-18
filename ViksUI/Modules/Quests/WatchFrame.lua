@@ -1,12 +1,5 @@
-
 local T, Viks, L, _ = unpack(select(2, ...))
 if Viks.misc.WatchFrame then
-local _, class = UnitClass("player")
-local r, g, b = unpack(Viks.media.pxcolor1)
-
-local lST = "Wowhead"
-local lQ = "http://www.wowhead.com/quest=%d"
-local lA = "http://www.wowhead.com/achievement=%d"
 
 ----------------------------------------------------------------------------------------
 --	Move ObjectiveTrackerFrame
@@ -15,14 +8,13 @@ local frame = CreateFrame("Frame", "WatchFrameAnchor", UIParent)
 frame:SetPoint("TOPRIGHT", CPMinimb1, "BOTTOMLEFT", 0, 10)
 frame:SetHeight(150)
 frame:SetWidth(224)
-frame:SetClampedToScreen(true)
-frame:SetMovable(true)
+--frame:SetClampedToScreen(true)
+--frame:SetMovable(true)
 
 ObjectiveTrackerFrame:ClearAllPoints()
 ObjectiveTrackerFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
 ObjectiveTrackerFrame:SetHeight(T.getscreenheight / 1.6)
 ObjectiveTrackerFrame:SetWidth(180)
-
 
 hooksecurefunc(ObjectiveTrackerFrame, "SetPoint", function(_, _, parent)
 	if parent ~= frame then
@@ -33,18 +25,6 @@ end)
 
 ObjectiveTrackerBlocksFrame.QuestHeader:SetAlpha(0)
 ObjectiveTrackerFrame.HeaderMenu.Title:SetAlpha(0)
-
-_G.StaticPopupDialogs["WATCHFRAME_URL"] = {
-	text = lST .. " link",
-	button1 = OKAY,
-	timeout = 0,
-	whileDead = true,
-	hasEditBox = true,
-	editBoxWidth = 350,
-	OnShow = function(self, ...) self.editBox:SetFocus() end,
-	EditBoxOnEnterPressed = function(self) self:GetParent():Hide() end,
-	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
-}
 
 
 function watchFButton()
@@ -178,5 +158,5 @@ end
 local frame1 = CreateFrame("Frame")
 frame1:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame1:SetScript("OnEvent", function(self, event)
-		ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:Click()
+		ObjectiveTracker_Collapse()
 end)
