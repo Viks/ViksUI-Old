@@ -692,21 +692,21 @@ oUF.Tags.Methods['freebgrid:pwb'] = function(u) if UnitAura(u, GetSpellInfo(8178
 oUF.Tags.Events['freebgrid:pwb'] = "UNIT_AURA"
 
 -- Druid
-local lbCount = { 4, 2, 3}
-oUF.Tags.Methods['freebgrid:lb'] = function(u) 
-	local name, _,_, c,_,_, expirationTime, fromwho = UnitAura(u, GetSpellInfo(33763))
-	if(fromwho == "player") then
-		local spellTimer = GetTime()-expirationTime
-		if spellTimer > -2 then
-			return "|cffFF0000"..lbCount[c].."|r"
-		elseif spellTimer > -4 then
-			return "|cffFF9900"..lbCount[c].."|r"
-		else
-			return "|cffA7FD0A"..lbCount[c].."|r"
+
+local LIFEBLOOM = GetSpellInfo(33763)
+oUF.Tags.Events["freebgrid:lb"] = 'UNIT_AURA'
+oUF.Tags.Methods["freebgrid:lb"] = function(unit)
+	local _, _, _, stacks, _, _, expirationTime, source = UnitAura(unit, LIFEBLOOM)
+	if source and source == "player" then
+		if stacks == 1 then
+			return format("|cffcc0000%.0f|r ", expirationTime - GetTime())
+		elseif stacks == 2 then
+			return format("|cffff6314%.0f|r ", expirationTime - GetTime())
+		elseif stacks == 3 then
+			return format("|cffffcc00%.0f|r ", expirationTime - GetTime())
 		end
 	end
 end
-oUF.Tags.Events['freebgrid:lb'] = "UNIT_AURA"
 
 oUF.Tags.Methods['freebgrid:rejuv'] = function(u)
 	local name, _,_,_,_,_, expirationTime, fromwho = UnitAura(u, GetSpellInfo(774))
@@ -913,48 +913,56 @@ ns.classIndicators={
 ----------------------------------------------------------------------------------------
 else
 ----------------------------------------------------------------------------------------
+local GetTime = GetTime
 
-
+local EARTH_SHIELD = GetSpellInfo(974)
 oUF.Tags.Events["Shaman:EarthShield"] = 'UNIT_AURA'
 oUF.Tags.Methods["Shaman:EarthShield"] = function(unit)
-	local esCount = select(4, UnitAura(unit,GetSpellInfo(974)))
+	local _, _, _, esCount, _, _, _, source = UnitAura(unit, EARTH_SHIELD)
 	if esCount then
-		if esCount > 3 then 
-			return "|cff33cc00"..esCount.."|r "
+		if source == "player" then
+			if esCount > 3 then 
+				return format("|cff33cc00%.0f|r ", esCount)
+			else
+				return format("|cffffcc00%.0f|r ", esCount)
+			end		
 		else
-			return "|cffffcc00"..esCount.."|r "
+			return format("|cffaa2200%.0f|r ", esCount)
 		end
 	end
 end
 
+local RIPTIDE = GetSpellInfo(61295)
 oUF.Tags.Events["Shaman:Riptide"] = 'UNIT_AURA'
 oUF.Tags.Methods["Shaman:Riptide"] = function(unit)
-	local name,_,_,_,_,_,timeLeft,source = UnitAura(unit,GetSpellInfo(61295))
-	if source == "player" then return "|cff0099cc"..getTime(timeLeft).."|r " end
+	local _, _, _, _, _, _, expirationTime, source = UnitAura(unit, RIPTIDE)
+	if source and source == "player" then
+		return format("|cff0099cc%.0f|r ", expirationTime - GetTime())
+	end
 end
-
 
 local POWER_WORD_SHIELD = GetSpellInfo(17)
 local WEAKENED_SOUL = GetSpellInfo(6788)
 oUF.Tags.Events["Priest:PowerWordShield"] = 'UNIT_AURA'
 oUF.Tags.Methods["Priest:PowerWordShield"] = function(unit)
 	local _, _, _, _, _, _, expirationTime = UnitAura(unit, POWER_WORD_SHIELD)
-  if expirationTime then
-    return format("|cffffcc00%.0f|r ", expirationTime - GetTime())
+	if expirationTime then
+		return format("|cffffcc00%.0f|r ", expirationTime - GetTime())
 	else
 		local _, _, _, _, _, _, expirationTime = UnitDebuff(unit, WEAKENED_SOUL)
-    if expirationTime then
-      return format("|cffaa0000%.0f|r ", expirationTime - GetTime())
-    end
+		if expirationTime then
+			return format("|cffaa0000%.0f|r ", expirationTime - GetTime())
+		end
 	end
 end
 
-
-
+local RENEW = GetSpellInfo(139)
 oUF.Tags.Events["Priest:Renew"] = 'UNIT_AURA'
 oUF.Tags.Methods["Priest:Renew"] = function(unit)
-	local name,_,_,_,_,_,expirationTime,source = UnitAura(unit,GetSpellInfo(139))
-	if source == "player" then return getTime(expirationTime) end 
+	local _, _, _, _, _, _, expirationTime, source = UnitAura(unit, RENEW)
+	if source and source == "player" then
+		return format("|cff33cc00%.0f|r ", expirationTime - GetTime())
+	end
 end
 
 --oUF.Tags.Methods["[pom]"] = function(u) local c = select(4, UnitAura(u, L["Prayer of Mending"])) if c then return "|cffFFCF7F"..oUF.pomCount[c].."|r" end end
@@ -972,44 +980,44 @@ oUF.Tags.Methods["pom"] = function(unit)
 	end
 end
 
-
-
+local LIFEBLOOM = GetSpellInfo(33763)
 oUF.Tags.Events["Druid:Lifebloom"] = 'UNIT_AURA'
 oUF.Tags.Methods["Druid:Lifebloom"] = function(unit)
-	local name,_,_,c,_,_,timeLeft,source = UnitAura(unit,GetSpellInfo(33763))
-	if source == "player" then
-		if c == 1 then
-			return "|cffcc0000"..getTime(timeLeft).."|r "
-		elseif c == 2 then
-			return "|cffff6314"..getTime(timeLeft).."|r "
-		elseif c == 3 then
-			return "|cffffcc00"..getTime(timeLeft).."|r "
+	local _, _, _, stacks, _, _, expirationTime, source = UnitAura(unit, LIFEBLOOM)
+	if source and source == "player" then
+		if stacks == 1 then
+			return format("|cffcc0000%.0f|r ", expirationTime - GetTime())
+		elseif stacks == 2 then
+			return format("|cffff6314%.0f|r ", expirationTime - GetTime())
+		elseif stacks == 3 then
+			return format("|cffffcc00%.0f|r ", expirationTime - GetTime())
 		end
 	end
 end
 
+local REJUVENATION = GetSpellInfo(774)
 oUF.Tags.Events["Druid:Rejuv"] = 'UNIT_AURA'
 oUF.Tags.Methods["Druid:Rejuv"] = function(unit)
-	local name,_,_,_,_,_,timeLeft,source = UnitAura(unit,GetSpellInfo(774))
-	if source == "player" then return "|cffd814ff"..getTime(timeLeft).."|r " end
+	local _, _, _, _, _, _, expirationTime, source = UnitAura(unit, REJUVENATION)
+	if source and source == "player" then
+		return format("|cffd814ff%.0f|r ", expirationTime - GetTime())
+	end
 end
 
+local REGROWTH = GetSpellInfo(8936)
 oUF.Tags.Events["Druid:Regrowth"] = 'UNIT_AURA'
 oUF.Tags.Methods["Druid:Regrowth"] = function(unit)
-	local name,_,_,_,_,_,timeLeft,source = UnitAura(unit,GetSpellInfo(8936))
-	if source == "player" then return "|cff33cc00"..getTime(timeLeft).."|r " end
+	local _, _, _, _, _, _, expirationTime, source = UnitAura(unit, REGROWTH)
+	if source == "player" then
+		return format("|cff33cc00%.0f|r ", expirationTime - GetTime())
+	end
 end
 
-oUF.Tags.Events["Druid:Wild Growth"] = 'UNIT_AURA'
-oUF.Tags.Methods["Druid:Wild Growth"] = function(unit)
-	local name,_,_,_,_,_,timeLeft,source = UnitAura(unit,GetSpellInfo(48438))
-	if source == "player" then return "|cff33cc00"..getTime(timeLeft).."|r " end
-end
-
+local BEACON = GetSpellInfo(53563)
 oUF.Tags.Events["Paladin:Beacon"] = 'UNIT_AURA'
 oUF.Tags.Methods["Paladin:Beacon"] = function(unit)
-	local name,_,_,_,_,_,_,source = UnitAura(unit,GetSpellInfo(53563))
-	if name then
+	local _, _, _, _, _, _, _, source = UnitAura(unit, BEACON)
+	if source then
 		if source == "player" then
 			return "|cffffff33M|r "
 		else
@@ -1018,32 +1026,65 @@ oUF.Tags.Methods["Paladin:Beacon"] = function(unit)
 	end
 end
 
+local FORBEARANCE = GetSpellInfo(25771)
 oUF.Tags.Events["Paladin:Forbearance"] = 'UNIT_AURA'
 oUF.Tags.Methods["Paladin:Forbearance"] = function(unit)
-	if UnitDebuff(unit,GetSpellInfo(25771)) then return "|cffaa0000M|r " end
+	if UnitDebuff(unit, FORBEARANCE) then
+		return "|cffaa0000M|r "
+	end
 end
 
+local MISDIRECTION = GetSpellInfo(35079)
 oUF.Tags.Events["Hunter:Misdirection"] = 'UNIT_AURA'
 oUF.Tags.Methods["Hunter:Misdirection"] = function(unit)
-	if UnitDebuff(unit,GetSpellInfo(35079)) then return "|cffaa0000M|r " end
+	if UnitDebuff(unit, MISDIRECTION) then 
+		return "|cffaa0000M|r "
+	end
 end
 
+local ENVELOPING_MIST = GetSpellInfo(124682)
 oUF.Tags.Events["Monk:EnvelopingMist"] = 'UNIT_AURA'
 oUF.Tags.Methods["Monk:EnvelopingMist"] = function(unit)
-	local name,_,_,_,_,_,timeLeft,source = UnitAura(unit,GetSpellInfo(124682))
-	if source == "player" then return "|cff33cc00"..getTime(timeLeft).."|r " end
+	local _, _, _, _, _, _, expirationTime, source = UnitAura(unit, ENVELOPING_MIST)
+	if source and source == "player" then
+		return format("|cff33cc00%.0f|r ", expirationTime - GetTime())
+	end
 end
 
+local RENEWING_MIST = GetSpellInfo(119611)
 oUF.Tags.Events["Monk:RenewingMist"] = 'UNIT_AURA'
 oUF.Tags.Methods["Monk:RenewingMist"] = function(unit)
-	local name,_,_,_,_,_,timeLeft,source = UnitAura(unit,GetSpellInfo(119611))
-	if source == "player" then return "|cff0099cc"..getTime(timeLeft).."|r " end
+	local _, _, _, _, _, _, expirationTime, source = UnitAura(unit, RENEWING_MIST)
+	if source and source == "player" then
+		return format("|cff0099cc%.0f|r ", expirationTime - GetTime())
+	end
 end
 
+local VIGILANCE = GetSpellInfo(114030)
+oUF.Tags.Events["Warrior:Vigilance"] = 'UNIT_AURA'
+oUF.Tags.Methods["Warrior:Vigilance"] = function(unit)
+	local _, _, _, _, _, _, expirationTime = UnitAura(unit, VIGILANCE)
+	if expirationTime then
+		return format("|cff33cc00%.0f|r ", expirationTime - GetTime())
+	end
+end
 
+local SAFEGUARD = GetSpellInfo(114029)
 oUF.Tags.Events["Warrior:Safeguard"] = 'UNIT_AURA'
 oUF.Tags.Methods["Warrior:Safeguard"] = function(unit)
-	local name,_,_,_,_,_,timeLeft,_ = UnitAura(unit,GetSpellInfo(114029))
-	if name then return "|cff33cc00"..getTime(timeLeft).."|r " end
+	local _, _, _, _, _, _, expirationTime, _ = UnitAura(unit, SAFEGUARD)
+	if expirationTime then
+		return format("|cff33cc00%.0f|r ", expirationTime - GetTime())
+	end
 end
+
+local DEATH_BARRIER = GetSpellInfo(115635)
+oUF.Tags.Events["DK:DeathBarrier"] = 'UNIT_AURA'
+oUF.Tags.Methods["DK:DeathBarrier"] = function(unit)
+	local _, _, _, _, _, _, expirationTime, _ = UnitAura(unit, DEATH_BARRIER)
+	if expirationTime then
+		return format("|cffffcc00%.0f|r ", expirationTime - GetTime())
+	end
+end
+
 end

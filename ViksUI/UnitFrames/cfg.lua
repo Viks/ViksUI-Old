@@ -163,7 +163,7 @@ cfg.showarena = false
 ------------------------------------------------------------------------------------------------
 	cfg.IndicatorList = {
 		["NUMBERS"] = {
-			--["DEATHKNIGHT"] 	= ,
+			["DEATHKNIGHT"] 	= "[DK:DeathBarrier]",
 			["DRUID"]			= "[Druid:Lifebloom][Druid:Rejuv][Druid:Regrowth]",
 			["HUNTER"]			= "[Hunter:Misdirection]",
 			--["MAGE"]			= ,
@@ -173,7 +173,7 @@ cfg.showarena = false
 			--["ROGUE"]			= tricks,
 			["SHAMAN"]			= "[Shaman:Riptide][Shaman:EarthShield]",
 			--["WARLOCK"]		= ,
-			--["WARRIOR"]			= ,
+			["WARRIOR"]			= "[Warrior:Vigilance][Warrior:Safeguard]",
 		},
 		["SQUARE"] = {
 			--["DEATHKNIGHT"] 	= ,

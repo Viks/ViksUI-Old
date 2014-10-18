@@ -1,5 +1,4 @@
-
-
+local T, Viks, L = unpack(select(2, ...))
 local _, ns = ...
 local oUF = ns.oUF or oUF
 
@@ -58,79 +57,70 @@ local DispellPriority = {
 local DispellFilter
 do
 	local dispellClasses = {
-		['PRIEST'] = {
-			['Magic'] = true,
-			['Disease'] = true,
+		["DRUID"] = {
+			["Magic"] = false,
+			["Curse"] = true,
+			["Poison"] = true,
+			["Disease"] = false,
 		},
-		['SHAMAN'] = {
-			['Magic'] = false,
-			['Curse'] = true,
+		["MAGE"] = {
+			["Curse"] = true,
 		},
-		['PALADIN'] = {
-			['Poison'] = true,
-			['Magic'] = false,
-			['Disease'] = true,
+		["MONK"] = {
+			["Magic"] = false,
+			["Poison"] = true,
+			["Disease"] = true,
 		},
-		['MAGE'] = {
-			['Curse'] = true,
+		["PALADIN"] = {
+			["Magic"] = false,
+			["Poison"] = true,
+			["Disease"] = true,
 		},
-		['DRUID'] = {
-			['Magic'] = false,
-			['Curse'] = true,
-			['Poison'] = true,
+		["PRIEST"] = {
+			["Magic"] = false,
+			["Disease"] = false,
+		},
+		["SHAMAN"] = {
+			["Magic"] = false,
+			["Curse"] = true,
 		},
 	}
-	
-	DispellFilter = dispellClasses[select(2, UnitClass('player'))] or {}
+
+	DispellFilter = dispellClasses[T.class] or {}
 end
 
--- Return true if the talent matching the name of the spell given by (Credit Pitbull4)
--- spellid has at least one point spent in it or false otherwise
-local function CheckForKnownTalent(spellid)
-	local wanted_name = GetSpellInfo(spellid)
-	if not wanted_name then return nil end
-	local num_tabs = GetNumSpecializations()
-	for t=1, num_tabs do
-		local num_talents = GetNumTalents(t)
-		for i=1, num_talents do
-			local name_talent, _, _, _, current_rank = GetTalentInfo(t,i)
-			if name_talent and (name_talent == wanted_name) then
-				if current_rank and (current_rank > 0) then
-					return true
-				else
-					return false
-				end
-			end
-		end
-	end
-	return false
-end
-
-local function CheckSpec(self, event, levels)
-	-- Not interested in gained points from leveling	
-	if event == "CHARACTER_POINTS_CHANGED" and levels > 0 then return end
-	
-	--Check for certain talents to see if we can dispel magic or not
-	if select(2, UnitClass('player')) == "PALADIN" then
-		--Check to see if we have the 'Sacred Cleansing' talent.
-		if CheckForKnownTalent(53551) then
+local function CheckSpec(self, event)
+	if T.class == "DRUID" then
+		if T.CheckSpec(4) then
 			DispellFilter.Magic = true
 		else
-			DispellFilter.Magic = false	
+			DispellFilter.Magic = false
 		end
-	elseif select(2, UnitClass('player')) == "SHAMAN" then
-		--Check to see if we have the 'Improved Cleanse Spirit' talent.
-		if CheckForKnownTalent(77130) then
+	elseif T.class == "MONK" then
+		if T.CheckSpec(2) then
 			DispellFilter.Magic = true
 		else
-			DispellFilter.Magic = false	
+			DispellFilter.Magic = false
 		end
-	elseif select(2, UnitClass('player')) == "DRUID" then
-		--Check to see if we have the 'Nature's Cure' talent.
-		if CheckForKnownTalent(88423) then
+	elseif T.class == "PALADIN" then
+		if T.CheckSpec(1)then
 			DispellFilter.Magic = true
 		else
-			DispellFilter.Magic = false	
+			DispellFilter.Magic = false
+		end
+	elseif T.class == "PRIEST" then
+		if T.CheckSpec(3) then
+			DispellFilter.Magic = false
+			DispellFilter.Disease = false
+		else
+			DispellFilter.Magic = true
+			DispellFilter.Disease = true
+		end
+	elseif T.class == "SHAMAN" then
+		if T.CheckSpec(3) then
+			DispellFilter.Magic = true
+		else
+			DispellFilter.Magic = false
 		end
 	end
 end
