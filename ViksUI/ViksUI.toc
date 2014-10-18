@@ -3,7 +3,7 @@
 ## Notes: ViksUI
 ## Credits to: Tukz, Dawn, Shestak, Haste, Roth, P3lim, Monolit, AlleyKat, Viks.
 ## Author: Viks
-## Version: 5.01
+## Version: 5.02
 ## X-oUF: oUF
 ## SavedVariables: ViksData, SavedOptions, SavedStats, SavedAddonProfiles, SavedBindings, SavedCurrency
 ## SavedVariablesPerCharacter: ViksDataPerChar, UISavedPositions, StuffingDB, SavedOptionsPerChar, SavedPositions, ImprovedCurrency 
