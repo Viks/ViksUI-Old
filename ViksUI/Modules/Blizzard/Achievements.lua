@@ -1,6 +1,7 @@
 ﻿local T, Viks, L, _ = unpack(select(2, ...))
 if IsAddOnLoaded("MoveAnything") then return end
 
+if 1 == 1 then return end
 ----------------------------------------------------------------------------------------
 --	Based on AchievementMover
 ----------------------------------------------------------------------------------------
