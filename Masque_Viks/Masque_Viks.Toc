@@ -1,8 +1,0 @@
-## Interface: 60000
-## Title: Masque|c0000FF00:|r|cffa335ee Viks|r 
-## Version: v4.1
-## Notes: Viks's Skins for Masque. Used with ViksUI
-
-## Dependencies: Masque
-
-Skins.lua
