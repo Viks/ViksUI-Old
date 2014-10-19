@@ -1,6 +1,5 @@
 ﻿local T, Viks, L, _ = unpack(select(2, ...))
 
-
 local _, class = UnitClass("player")
 local rv, gv, bv = 0, .38, .651
 
@@ -17,8 +16,8 @@ Viks["media"] = {
 	["pxfontsize"] = 14, 																-- Size of font Datatext
 	["pxfontHsize"] = 14, 																-- Size of font Datatext
 	["fontsize"] = 12, 														    		-- Size of font 
-	["bordercolor"] = { rv, gv, bv,1 }, 												-- border color of Viks UI panels
-	["backdropcolor"] = { .06,.06,.06,1 }, 												-- background color of Viks UI panels
+	["bordercolor"] = { 0, .38, .651, 1}, 												-- border color of Viks UI panels
+	["backdropcolor"] = {.06,.06,.06, 1}, 												-- background color of Viks UI panels
 	["overlay_color"] = {0, 0, 0, 0.9},													-- Color for action bars overlay
 	["texture"] = "Interface\\Addons\\ViksUI\\Media\\Other\\statusbar",
 	["blank"] = "Interface\\Buttons\\WHITE8x8",

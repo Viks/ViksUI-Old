@@ -20,36 +20,10 @@ CPMinimap = Viks.minimapp.size 					-- Width/Hight for Minimap Panel
 Pscale = Viks.misc.Pscale						-- Can be used to resize all panels. It does not change X Y Values
 
 
-
-----------------------------------------------------------------------------------------
--- Misc Values
-----------------------------------------------------------------------------------------
---font = [=[Interface\Addons\ViksUI\Media\Font\HandelGothicBT.ttf]=] 			        -- main font in Viks UI
---font2 = [=[Interface\Addons\ViksUI\Media\Font\DICTATOR.ttf]=]
---pxfont = "Interface\\Addons\\ViksUI\\Media\\Font\\HOOG0555.ttf" 			-- main font in Viks UI
---pxfontsize = 16
---fontsize = 12 													    -- Size of font 
---texture = "Interface\\Addons\\ViksUI\\Media\\Other\\statusbar"
---blank = "Interface\\Buttons\\WHITE8x8"
-----------------------------------------------------------------------------------------
--- COLORS
-----------------------------------------------------------------------------------------
-
 local _, class = UnitClass("player")
---local r, g, b = CUSTOM_CLASS_COLORS[class].r, CUSTOM_CLASS_COLORS[class].g, CUSTOM_CLASS_COLORS[class].b		--Classcolor // Use Classcolors Addon Values. Add/Remove -- Infront of local to enable/disable
---local r, g, b = RAID_CLASS_COLORS[class].r, RAID_CLASS_COLORS[class].g, RAID_CLASS_COLORS[class].b  		--Classcolor // Blizz default values. Add/Remove -- Infront of local to enable/disable
 local r, g, b = 0,.38,.651
 qColor = ("|cff%.2x%.2x%.2x"):format(r * 255, g * 255, b * 255)
 qColor2 = ("|cff%.2x%.2x%.2x"):format(0 * 255, .38 * 255, .651 * 255)
---pxfontsize = Viks.media.pxfontsize
---font = Viks.media.font 			        -- main font in Viks UI
---pxfont = Viks.media.pxfont					-- main font in Viks UI
---fontsize = Viks.media.fontsize 													    				-- Size of font 
-
---bordercolor = r, g, b, 1 															-- border color of Viks UI panels. Use r, g, b, 1 for classcolor or add ur own color in decimal.
---backdropcolor = .06, .06, .06, 1													-- background color of Viks UI panels
---texture = Viks.media.texture
---blank = Viks.media.blank
 
 ----------------------------------------------------------------------------------------
 -- General options   
@@ -72,52 +46,11 @@ function CreateShadow0(f)--
 	return shadow
 end
 
-
---Check Player's Role
-CheckRole = function()
-	local role = ""
-	local tree = GetSpecialization()
-	
-	if tree then
-		role = select(6, GetSpecializationInfo(tree))
-	end
-
-	return role
-end
 buttonsize = Viks.actionbar.buttonsize
 buttonspacing = Viks.actionbar.buttonspacing
 petbuttonsize = Viks.actionbar.petbuttonsize
 petbuttonspacing = Viks.actionbar.buttonspacing
 
-local waitTable = {}
-local waitFrame
-function Delay(delay, func, ...)
-	if(type(delay)~="number" or type(func)~="function") then
-		return false
-	end
-	if(waitFrame == nil) then
-		waitFrame = CreateFrame("Frame","WaitFrame", UIParent)
-		waitFrame:SetScript("onUpdate",function (self,elapse)
-			local count = #waitTable
-			local i = 1
-			while(i<=count) do
-				local waitRecord = tremove(waitTable,i)
-				local d = tremove(waitRecord,1)
-				local f = tremove(waitRecord,1)
-				local p = tremove(waitRecord,1)
-				if(d>elapse) then
-				  tinsert(waitTable,i,{d-elapse,f,p})
-				  i = i + 1
-				else
-				  count = count - 1
-				  f(unpack(p))
-				end
-			end
-		end)
-	end
-	tinsert(waitTable,{delay,func,{...}})
-	return true
-end
 ----------------------------------------------------------------------------------------
 -- Backdrop/Shadow/Glow/Border
 ----------------------------------------------------------------------------------------
@@ -592,10 +525,6 @@ end
 
 local addon = CreateFrame("Frame")
 
--- Used to detect 4.0 and 5.0 clients
-local cata = select(4, GetBuildInfo()) >= 40000
-local mop  = select(4, GetBuildInfo()) >= 50000
-
 -- Based on the frame list from NDragIt by Nemes.
 -- These frames are hooked on login.
 local frames = {
@@ -646,11 +575,7 @@ local frames = {
   ["VideoOptionsFrame"] = false,
   ["AudioOptionsFrame"] = false,
   ["BankFrame"] = false,
-  --["WorldMapTitleButton"] = true,
- -- ["WorldMapPositioningGuide"] = true,
-  --["TicketStatusFrame"] = false,
   ["StaticPopup1"] = false,
-  --["GhostFrame"] = false,
   ["EncounterJournal"] = false, -- only in 4.2
   ["RaidParentFrame"] = false,
   ["TutorialFrame"] = false,
@@ -661,18 +586,11 @@ local frames = {
   ["PVPBannerFrame"] = false,
   ["PVEFrame"] = false, -- dungeon finder + challenges
   ["GuildInviteFrame"] = false,
-
+  ["WorldMapFrame"] = false,	
   -- AddOns
   ["LudwigFrame"] = false,
 }
 
-if not mop then
-  -- Dungeon Finder was changed in 5.0, this would break the new interface
-  frames["LFGParentFrame"] = false
-  frames["LFDQueueFrame"] = true
-  frames["LFRQueueFrame"] = true
-  frames["LFRBrowseFrame"] = true
-end
 
 -- Frames provided by load on demand addons, hooked when the addon is loaded.
 local lodFrames = {
@@ -692,7 +610,6 @@ local lodFrames = {
   Blizzard_AchievementUI = { ["AchievementFrame"] = false, ["AchievementFrameHeader"] = true, ["AchievementFrameCategoriesContainer"] = "AchievementFrame" },
   Blizzard_TokenUI = { ["TokenFrame"] = true },
   Blizzard_ItemSocketingUI = { ["ItemSocketingFrame"] = false },
-  --Blizzard_GlyphUI = { ["GlyphFrame"] = true },
   Blizzard_BarbershopUI = { ["BarberShopFrame"] = false },
   Blizzard_Calendar = { ["CalendarFrame"] = false, ["CalendarCreateEventFrame"] = true },
   Blizzard_GuildUI = { ["GuildFrame"] = false, ["GuildRosterFrame"] = true },
