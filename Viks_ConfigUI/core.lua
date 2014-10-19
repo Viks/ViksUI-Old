@@ -30,6 +30,7 @@ local ALLOWED_GROUPS = {
 	["panels"] = 27,
 	["stats"] = 28,
 	["XPBar"] = 29,
+	["Theme"] = 30,
 }
 local function Local(o)
 	local T, Viks, L = unpack(ViksUI)

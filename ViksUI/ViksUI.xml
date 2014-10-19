@@ -15,7 +15,6 @@
 	<Script file="Modules\Automation\AutoInvite.lua"/>
 	<Script file="Core\GUI.lua"/>
 	<Script file="Core\PixelPerfect.lua"/>
-	<Script file="Main\Style.lua"/>
 	
 		
 	<Include file="Libs\oUF\oUF.xml"/>
@@ -58,11 +57,12 @@
 	<Script file="Core\CheckVersion.lua"/>
 	<Script file="Core\Panels.lua"/>
 	<Script file="Core\Movers.lua"/>
+	<Script file="Config\theme.lua"/>
 	
 	<Include file="UnitFrames\uf.xml"/>
 	<Include file="UnitFrames\template.xml"/>
 	<Include file="UnitFrames\Raid\load.xml"/>
-		
+	<Script file="Main\Style.lua"/>	
 	<Script file="Modules\Misc\AddOnsList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\Archaeology.lua"/>
