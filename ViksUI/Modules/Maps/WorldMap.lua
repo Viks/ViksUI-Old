@@ -28,6 +28,14 @@ WorldMapFrameAreaDescription:SetFont(Viks.media.font, 30)
 WorldMapFrameAreaDescription:SetShadowOffset(2, -2)
 
 ----------------------------------------------------------------------------------------
+--	Change position
+----------------------------------------------------------------------------------------
+hooksecurefunc("WorldMap_ToggleSizeDown", function()
+	WorldMapFrame:ClearAllPoints()
+	WorldMapFrame:SetPoint(unpack(Viks.position.map))
+end)
+
+----------------------------------------------------------------------------------------
 --	Creating coordinate
 ----------------------------------------------------------------------------------------
 local coords = CreateFrame("Frame", "CoordsFrame", WorldMapFrame)
