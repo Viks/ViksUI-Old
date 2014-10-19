@@ -1,5 +1,4 @@
 ﻿local T, Viks, L, _ = unpack(select(2, ...))
-
 ----------------------------------------------------------------------------------------
 --	MSBT settings
 ----------------------------------------------------------------------------------------
@@ -1183,6 +1182,190 @@ MBFDB = {
 }
 end
 
+local UploadChat = function()
+	FCF_ResetChatWindows()
+	FCF_SetLocked(ChatFrame1, 1)
+	FCF_DockFrame(ChatFrame2)
+	FCF_SetLocked(ChatFrame2, 1)
+
+	FCF_OpenNewWindow("T & L")
+	FCF_OpenNewWindow("Guild")
+	FCF_DockFrame(ChatFrame3)
+	FCF_SetLocked(ChatFrame3, 1)
+	FCF_UnDockFrame(ChatFrame4)
+	FCF_SetLocked(ChatFrame4, 1)
+	ChatFrame4:Show()			
+			
+	for i = 1, NUM_CHAT_WINDOWS do
+		local frame = _G[format("ChatFrame%s", i)]
+		local chatFrameId = frame:GetID()
+		local chatName = FCF_GetChatWindowInfo(chatFrameId)
+		
+		-- move general bottom left
+		if i == 1 then
+			frame:ClearAllPoints()
+			frame:SetWidth(LChat:GetWidth()-8)
+			frame:SetHeight(LChat:GetHeight()-8)
+			frame:SetPoint("BOTTOMLEFT",LChat,"BOTTOMLEFT",4,6)
+			frame:SetPoint("TOPRIGHT",LChat,"TOPRIGHT",-4,-2)		
+		elseif i == 4 then
+			frame:ClearAllPoints()
+			frame:SetWidth(RChat:GetWidth()-8)
+			frame:SetHeight(RChat:GetHeight()-8)
+			frame:SetPoint("BOTTOMLEFT",RChat,"BOTTOMLEFT",4,4)
+			frame:SetPoint("TOPRIGHT",RChat,"TOPRIGHT",-4,-2)
+		end
+		
+		FCF_SavePositionAndDimensions(frame)
+		FCF_StopDragging(frame)
+		
+		-- set default font size
+		FCF_SetChatWindowFontSize(nil, frame, 11)
+		
+		-- rename windows general because moved to chat #3
+		if i == 1 then
+			FCF_SetWindowName(frame, "GROUP")
+		elseif i == 2 then
+			FCF_SetWindowName(frame, "LOG")
+		elseif i == 3 then 
+			FCF_SetWindowName(frame, "T&G")
+		elseif i == 4 then 
+			FCF_SetWindowName(frame, "GUILD") 			
+		end
+	end
+	---Chat Channels Setup
+	--Chatwindow 1 is used for Party and Raid so lets remove spam channels
+	ChatFrame_RemoveChannel(ChatFrame1, "Trade")
+	ChatFrame_RemoveChannel(ChatFrame1, "General")
+	ChatFrame_RemoveChannel(ChatFrame1, "LocalDefense")
+	ChatFrame_RemoveChannel(ChatFrame1, "GuildRecruitment")
+	ChatFrame_RemoveChannel(ChatFrame1, "LookingForGroup")
+	--Lets setup what to show, we start by killing all msg first.
+	ChatFrame_RemoveAllMessageGroups(ChatFrame1)
+	ChatFrame_AddMessageGroup(ChatFrame1, "SAY")
+	ChatFrame_AddMessageGroup(ChatFrame1, "EMOTE")
+	ChatFrame_AddMessageGroup(ChatFrame1, "YELL")
+	ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_SAY")
+	ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_EMOTE")
+	ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_YELL")
+	ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_WHISPER")
+	ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_BOSS_EMOTE")
+	ChatFrame_AddMessageGroup(ChatFrame1, "MONSTER_BOSS_WHISPER")
+	ChatFrame_AddMessageGroup(ChatFrame1, "PARTY")
+	ChatFrame_AddMessageGroup(ChatFrame1, "PARTY_LEADER")
+	ChatFrame_AddMessageGroup(ChatFrame1, "RAID")
+	ChatFrame_AddMessageGroup(ChatFrame1, "RAID_LEADER")
+	ChatFrame_AddMessageGroup(ChatFrame1, "RAID_WARNING")
+	ChatFrame_AddMessageGroup(ChatFrame1, "INSTANCE_CHAT")
+	ChatFrame_AddMessageGroup(ChatFrame1, "INSTANCE_CHAT_LEADER")
+	ChatFrame_AddMessageGroup(ChatFrame1, "BATTLEGROUND")
+	ChatFrame_AddMessageGroup(ChatFrame1, "BATTLEGROUND_LEADER")
+	ChatFrame_AddMessageGroup(ChatFrame1, "BG_HORDE")
+	ChatFrame_AddMessageGroup(ChatFrame1, "BG_ALLIANCE")
+	ChatFrame_AddMessageGroup(ChatFrame1, "BG_NEUTRAL")
+	ChatFrame_AddMessageGroup(ChatFrame1, "SYSTEM")
+	ChatFrame_AddMessageGroup(ChatFrame1, "ERRORS")
+	ChatFrame_AddMessageGroup(ChatFrame1, "AFK")
+	ChatFrame_AddMessageGroup(ChatFrame1, "DND")
+	ChatFrame_AddMessageGroup(ChatFrame1, "IGNORED")
+	ChatFrame_AddMessageGroup(ChatFrame1, "ACHIEVEMENT")
+	ChatFrame_AddMessageGroup(ChatFrame1, "LOOT")
+	-- Setup the Trade / Locale spam chat frame	
+	ChatFrame_RemoveAllMessageGroups(ChatFrame3)
+	ChatFrame_AddChannel(ChatFrame3, "Trade")
+	ChatFrame_AddChannel(ChatFrame3, "General")
+	ChatFrame_AddChannel(ChatFrame3, "LocalDefense")
+	ChatFrame_AddChannel(ChatFrame3, "GuildRecruitment")
+	ChatFrame_AddChannel(ChatFrame3, "LookingForGroup")
+	ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_XP_GAIN")
+	ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_HONOR_GAIN")
+	ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_FACTION_CHANGE")
+	ChatFrame_AddMessageGroup(ChatFrame3, "LOOT")
+	ChatFrame_AddMessageGroup(ChatFrame3, "MONEY")
+	ChatFrame_AddMessageGroup(ChatFrame3, "SKILL")
+	ChatFrame_AddMessageGroup(ChatFrame3, "CURRENCY")
+	ChatFrame_AddMessageGroup(ChatFrame3, "OPENING")
+	ChatFrame_AddMessageGroup(ChatFrame3, "TRADESKILLS")
+	-- Setup the guild chat frame
+	ChatFrame_RemoveAllMessageGroups(ChatFrame4)
+	ChatFrame_AddMessageGroup(ChatFrame4, "GUILD")
+	ChatFrame_AddMessageGroup(ChatFrame4, "OFFICER")
+	ChatFrame_AddMessageGroup(ChatFrame4, "GUILD_ACHIEVEMENT")
+	ChatFrame_AddMessageGroup(ChatFrame4, "WHISPER")
+	ChatFrame_AddMessageGroup(ChatFrame4, "BN_WHISPER")
+	ChatFrame_AddMessageGroup(ChatFrame4, "BN_CONVERSATION")
+	ChatFrame_AddMessageGroup(ChatFrame4, "BN_INLINE_TOAST_ALERT")
+	ChatFrame_AddMessageGroup(ChatFrame4, "COMBAT_GUILD_XP_GAIN")
+	-- enable classcolor automatically on login and on each character without doing /configure each time.
+	ToggleChatColorNamesByClassGroup(true, "SAY")
+	ToggleChatColorNamesByClassGroup(true, "EMOTE")
+	ToggleChatColorNamesByClassGroup(true, "YELL")
+	ToggleChatColorNamesByClassGroup(true, "GUILD")
+	ToggleChatColorNamesByClassGroup(true, "OFFICER")
+	ToggleChatColorNamesByClassGroup(true, "GUILD_ACHIEVEMENT")
+	ToggleChatColorNamesByClassGroup(true, "ACHIEVEMENT")
+	ToggleChatColorNamesByClassGroup(true, "WHISPER")
+	ToggleChatColorNamesByClassGroup(true, "PARTY")
+	ToggleChatColorNamesByClassGroup(true, "PARTY_LEADER")
+	ToggleChatColorNamesByClassGroup(true, "RAID")
+	ToggleChatColorNamesByClassGroup(true, "RAID_LEADER")
+	ToggleChatColorNamesByClassGroup(true, "RAID_WARNING")
+	ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND")
+	ToggleChatColorNamesByClassGroup(true, "BATTLEGROUND_LEADER")	
+	ToggleChatColorNamesByClassGroup(true, "INSTANCE_CHAT")
+	ToggleChatColorNamesByClassGroup(true, "INSTANCE_CHAT_LEADER")		
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL1")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL2")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL3")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL4")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL5")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL6")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL7")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL8")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL9")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL10")
+	ToggleChatColorNamesByClassGroup(true, "CHANNEL11")
+	--Adjust Chat Colors
+	--General
+	ChangeChatColor("CHANNEL1", 195/255, 230/255, 232/255)
+	--Trade
+	ChangeChatColor("CHANNEL2", 232/255, 158/255, 121/255)
+	--Local Defense
+	ChangeChatColor("CHANNEL3", 232/255, 228/255, 121/255)
+end
+
+local UploadCvar = function()
+	SetCVar("alternateResourceText", 1)
+	SetCVar("statusTextDisplay", "BOTH")
+	SetCVar("screenshotQuality", 10)
+	SetCVar("cameraDistanceMax", 50)
+	SetCVar("ShowClassColorInNameplate", 1)
+	SetCVar("showTutorials", 0)
+	SetCVar("gameTip", "0")
+	SetCVar("UberTooltips", 1)
+	SetCVar("chatMouseScroll", 1)
+	SetCVar("removeChatDelay", 1)
+	SetCVar("chatStyle", "classic")
+	SetCVar("WholeChatWindowClickable", 0)
+	SetCVar("ConversationMode", "inline")
+	SetCVar("WhisperMode", "inline")
+	SetCVar("BnWhisperMode", "inline")
+	SetCVar("colorblindMode", 0)
+	SetCVar("lootUnderMouse", 0)
+	SetCVar("autoLootDefault", 1)
+	SetCVar("RotateMinimap", 0)
+	SetCVar("ConsolidateBuffs", 0)
+	SetCVar("autoQuestProgress", 1)
+	SetCVar("scriptErrors", 0)
+	SetCVar("taintLog", 0)
+	SetCVar("buffDurations", 1)
+	SetCVar("enableCombatText", 1)
+	SetCVar("autoOpenLootHistory", 0)
+	SetCVar("lossOfControl", 0)
+	SetCVar("threatWarning", 3)
+	SetCVar('SpamFilter', 0)
+end
+
 StaticPopupDialogs.SETTINGS_ALL = {
 	text = L_POPUP_SETTINGS_ALL,
 	button1 = ACCEPT,
@@ -1193,6 +1376,8 @@ StaticPopupDialogs.SETTINGS_ALL = {
 		if IsAddOnLoaded("MikScrollingBattleText") then UploadMSBT() end
 		if IsAddOnLoaded("Skada") then UploadSkada() end
 		if IsAddOnLoaded("Bartender4") then UploadBartender() end
+		UploadChat()
+		UploadCvar()
 		ReloadUI()
 	end,
 	timeout = 0,
@@ -1236,6 +1421,10 @@ SlashCmdList.SETTINGS = function(msg)
 		else
 			print("|cffffff00Skada"..L_INFO_NOT_INSTALLED.."|r")
 		end
+	elseif msg == "chat" then
+			UploadChat()
+	elseif msg == "cvar" then
+			UploadCvar()
 	elseif msg == "bartender" then
 		if IsAddOnLoaded("Bartender4") then
 			UploadBartender()
@@ -1250,6 +1439,8 @@ SlashCmdList.SETTINGS = function(msg)
 		print("|cffffff00"..L_INFO_SETTINGS_DXE.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_MSBT.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_SKADA.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_CHAT.."|r")
+		print("|cffffff00"..L_INFO_SETTINGS_CVAR.."|r")
 		print("|cffffff00"..L_INFO_SETTINGS_ALL.."|r")
 	end
 end
