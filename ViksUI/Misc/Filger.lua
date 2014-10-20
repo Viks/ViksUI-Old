@@ -319,7 +319,7 @@ Filger_Spells = {
 			-- Starfall
 			{spellID = 48505, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Nature's Grasp
-			--Wod {spellID = 170856, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 170856, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Dash
 			{spellID = 1850, unitID = "player", caster = "player", filter = "BUFF"},
 
@@ -336,12 +336,10 @@ Filger_Spells = {
 			Position = {"RIGHT", AnchorP_PROC_ICON},
 
 			-- Buffs
-			-- Shooting Stars
-			{spellID = 93400, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Lunar Shower
-			--Wod {spellID = 81192, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nature's Grace
-			--Wod {spellID = 16886, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Lunar Peak
+			{spellID = 171743, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Solar Peak
+			{spellID = 171744, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Glyph of Rejuvenation
 			{spellID = 96206, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Clearcasting
@@ -579,11 +577,16 @@ Filger_Spells = {
 			{spellID = 102793, filter = "CD"},
 			-- Nature's Vigil
 			{spellID = 124974, filter = "CD"},
-
-			-- Incarnation
-			--Wod {spellID = 102558, filter = "CD"},
 			-- Berserk
 			{spellID = 106952, filter = "CD"},
+			-- Incarnation: Son of Ursoc
+			{spellID = 102558, filter = "CD"},
+			-- Incarnation: Tree of Life
+			{spellID = 33891, filter = "CD"},
+			-- Incarnation: Chosen of Elunee
+			{spellID = 102560, filter = "CD"},
+			-- Incarnation: King of the Jungle
+			{spellID = 102543, filter = "CD"},
 
 			-- Racial
 			-- Shadowmeld (Night Elf)
@@ -627,8 +630,8 @@ Filger_Spells = {
 			{spellID = 19263, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Rapid Fire
 			{spellID = 3045, unitID = "player", caster = "player", filter = "BUFF"},
-			-- The Beast Within
-			--Wod {spellID = 34471, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Bestial Wrath
+			{spellID = 19574, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Focus Fire
 			{spellID = 82692, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Spirit Mend
@@ -653,7 +656,7 @@ Filger_Spells = {
 			-- Steady Focus
 			--Wod {spellID = 53220, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Lock and Load
-			--Wod {spellID = 56453, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 168980, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Thrill of the Hunt
 			{spellID = 34720, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Frenzy
@@ -2986,6 +2989,8 @@ Filger_Spells = {
 			{spellID = 8178, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Lightwell Renew
 			{spellID = 7001, unitID = "player", caster = "all", filter = "BUFF"},
+			-- Aspect of the Fox
+			{spellID = 172106, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Slow Fall
 			{spellID = 130, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Levitate
@@ -3197,8 +3202,6 @@ Filger_Spells = {
 			{spellID = 3600, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Frost Shock
 			{spellID = 8056, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Frostbrand Attack
-			--Wod {spellID = 8034, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Thunderstorm
 			{spellID = 51490, unitID = "player", caster = "all", filter = "DEBUFF"},
 
@@ -3404,8 +3407,6 @@ Filger_Spells = {
 			{spellID = 116844, unitID = "target", caster = "target", filter = "BUFF"},
 			-- Diffuse Magic
 			{spellID = 122783, unitID = "target", caster = "target", filter = "BUFF"},
-			-- Dematerialize
-			--Wod {spellID = 122465, unitID = "target", caster = "target", filter = "BUFF"},
 			-- Debuffs
 			-- Paralysis
 			{spellID = 115078, unitID = "target", caster = "all", filter = "DEBUFF"},
@@ -3589,6 +3590,7 @@ Filger_Spells = {
 		},
 	},
 }
+
 
 SpellActivationOverlayFrame:SetFrameStrata("BACKGROUND")
 local Filger = {}
