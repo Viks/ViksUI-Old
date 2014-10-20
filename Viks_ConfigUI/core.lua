@@ -271,6 +271,7 @@ if o == "ViksConfigUIchatcombatlog" then o = L_GUI_CHAT_CL_TAB end
 if o == "ViksConfigUIchattabs_mouseover" then o = L_GUI_CHAT_TABS_MOUSEOVER end
 if o == "ViksConfigUIchatsticky" then o = L_GUI_CHAT_STICKY end
 if o == "ViksConfigUIchatdamage_meter_spam" then o = L_GUI_CHAT_DAMAGE_METER_SPAM end
+if o == "ViksConfigUIchatsmileys" then o = "Use custom Smileys/icon in chat"  end
 
 --	Bag options
 if o == "ViksConfigUIbag" then o = L_GUI_BAGS end

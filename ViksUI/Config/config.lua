@@ -360,6 +360,7 @@ Viks["chat"] = {
 	["tabs_mouseover"] = false,					-- Chat tabs on mouseover
 	["sticky"] = true,							-- Remember last channel
 	["damage_meter_spam"] = false,				-- Merge damage meter spam in one line-link
+	["smileys"] = true,							-- Insert smileys instead of symbols like xD
 }
 
 ----------------------------------------------------------------------------------------

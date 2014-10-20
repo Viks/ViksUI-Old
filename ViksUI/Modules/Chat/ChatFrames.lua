@@ -9,7 +9,6 @@ local origs = {}
 local function Strip(info, name)
 	return string.format("|Hplayer:%s|h[%s]|h", info, name:gsub("%-[^|]+", ""))
 end
-
 -- Function to rename channel and other stuff
 local AddMessage = function(self, text, ...)
 	if type(text) == "string" then
@@ -17,6 +16,140 @@ local AddMessage = function(self, text, ...)
 		text = text:gsub("|Hplayer:(.-)|h%[(.-)%]|h", Strip)
 	end
 	return origs[self](self, text, ...)
+end
+
+local format = string.format
+local gsub = string.gsub
+local sub = string.sub
+local find = string.find
+local len = string.len
+
+
+local smileyPack = {
+	['Angry'] = [[Interface\AddOns\ViksUI\Media\smileys\Angry.blp]],
+	['Grin'] = [[Interface\AddOns\ViksUI\Media\smileys\Grin.blp]],
+	['Hmm'] = [[Interface\AddOns\ViksUI\Media\smileys\Hmm.blp]],
+	['MiddleFinger'] = [[Interface\AddOns\ViksUI\Media\smileys\MiddleFinger.blp]],
+	['Sad'] = [[Interface\AddOns\ViksUI\Media\smileys\Sad.blp]],
+	['Surprise'] = [[Interface\AddOns\ViksUI\Media\smileys\Surprise.blp]],
+	['Tongue'] = [[Interface\AddOns\ViksUI\Media\smileys\Tongue.blp]],
+	['Cry'] = [[Interface\AddOns\ViksUI\Media\smileys\Weepy.blp]],
+	['Wink'] = [[Interface\AddOns\ViksUI\Media\smileys\Winky.blp]],
+	['Happy'] = [[Interface\AddOns\ViksUI\Media\smileys\Happy.blp]],
+	['Heart'] = [[Interface\AddOns\ViksUI\Media\smileys\Heart.blp]],
+	['BrokenHeart'] = [[Interface\AddOns\ViksUI\Media\smileys\BrokenHeart.blp]],
+}
+
+local smileyKeys = {
+	["%:%-%@"] = "Angry",
+	["%:%@"] = "Angry",
+	["%:%-%)"] = "Happy",
+	["%:%)"] = "Happy",
+	["%:D"] = "Grin",
+	["%:%-D"] = "Grin",
+	["%;%-D"] = "Grin",
+	["%;D"] = "Grin",
+	["%=D"] = "Grin",
+	["xD"] = "Grin",
+	["XD"] = "Grin",
+	["%:%-%("] = "Sad",
+	["%:%("] = "Sad",
+	["%:o"] = "Surprise",
+	["%:%-o"] = "Surprise",
+	["%:%-O"] = "Surprise",
+	["%:O"] = "Surprise",
+	["%:%-0"] = "Surprise",
+	["%:P"] = "Tongue",
+	["%:%-P"] = "Tongue",
+	["%:p"] = "Tongue",
+	["%:%-p"] = "Tongue",
+	["%=P"] = "Tongue",
+	["%=p"] = "Tongue",
+	["%;%-p"] = "Tongue",
+	["%;p"] = "Tongue",
+	["%;P"] = "Tongue",
+	["%;%-P"] = "Tongue",
+	["%;%-%)"] = "Wink",
+	["%;%)"] = "Wink",
+	["%:S"] = "Hmm",
+	["%:%-S"] = "Hmm",
+	["%:%,%("] = "Cry",
+	["%:%,%-%("] = "Cry",
+	["%:%'%("] = "Cry",
+	["%:%'%-%("] = "Cry",
+	["%:%F"] = "MiddleFinger",
+	["<3"] = "Heart",
+	["</3"] = "BrokenHeart",
+}
+
+local function InsertEmotions( msg )
+	for k, v in pairs( smileyKeys ) do
+		msg = gsub( msg, k, '|T' .. smileyPack[v] .. ':16|t' )
+	end
+
+	return msg
+end
+
+local function GetSmileyReplacementText( msg )
+	if( not msg ) then
+		return
+	end
+
+	if not (Viks.chat.smileys or msg:find( '/run' ) or msg:find( '/dump' ) or msg:find( '/script' ) ) then
+		return msg
+	end
+
+	local outstr = ''
+	local origlen = len( msg )
+	local startpos = 1
+	local endpos
+
+	while( startpos <= origlen ) do
+		endpos = origlen
+
+		local pos = find( msg, '|H', startpos, true )
+		if( pos ~= nil ) then
+			endpos = pos
+		end
+
+		outstr = outstr .. InsertEmotions( sub( msg, startpos, endpos ) )
+		startpos = endpos + 1
+
+		if( pos ~= nil ) then
+			endpos = find( msg, '|h]|r', startpos, -1 ) or find( msg, '|h', startpos, -1 )
+			endpos = endpos or origlen
+
+			if( startpos < endpos ) then
+				outstr = outstr .. sub( msg, startpos, endpos )
+				startpos = endpos + 1
+			end
+		end
+	end
+
+	return outstr
+end
+
+local function AddMessage( Frame, String, ... )
+	local Smilies = true
+	local MessageString
+
+	String = String:gsub( '|Hplayer:(.-)|h%[(.-)%]|h', '|Hplayer:%1|h%2|h' )
+	String = String:gsub( '|HBNplayer:(.-)|h%[(.-)%]|h', '|HBNplayer:%1|h%2|h' )
+	String = String:gsub( '^To (.-|h)', '|cffad2424@|r%1' )
+	String = String:gsub( '^(.-|h) whispers', '%1' )
+	String = String:gsub( '^(.-|h) says', '%1' )
+	String = String:gsub( '^(.-|h) yells', '%1' )
+	String = String:gsub( '<' .. AFK .. '>', "AFK" )
+	String = String:gsub( '<' .. DND .. '>', "DND" )
+	String = String:gsub( '^%[' .. RAID_WARNING .. '%]', "Raid Warning" )
+
+	if( Smilies ) then
+		MessageString = origs[Frame]( Frame, GetSmileyReplacementText( String ), ... )
+	else
+		MessageString = origs[Frame]( Frame, String, ... )
+	end
+
+	return MessageString
 end
 
 -- Global strings
