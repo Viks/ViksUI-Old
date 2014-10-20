@@ -30,7 +30,6 @@ local ALLOWED_GROUPS = {
 	["panels"] = 27,
 	["stats"] = 28,
 	["XPBar"] = 29,
-	["Theme"] = 30,
 }
 local function Local(o)
 	local T, Viks, L = unpack(ViksUI)
@@ -247,6 +246,10 @@ if o == "ViksConfigUItooltipitem_count" then o = L_GUI_TOOLTIP_ITEM_COUNT end
 if o == "ViksConfigUItooltipunit_role" then o = L_GUI_TOOLTIP_UNIT_ROLE end
 if o == "ViksConfigUItooltipinstance_lock" then o = L_GUI_TOOLTIP_INSTANCE_LOCK end
 if o == "ViksConfigUItooltipitem_transmogrify" then o = L_GUI_TOOLTIP_ITEM_TRANSMOGRIFY end
+if o == "ViksConfigUItooltipbottomleft" then o = "Tooltip shows from BottomLeft of /ui anchor " end
+if o == "ViksConfigUItooltipbottomright" then o = "Tooltip shows from Bottomright of /ui anchor " end
+if o == "ViksConfigUItooltiptopright" then o = "Tooltip shows from Top Right of /ui anchor " end
+if o == "ViksConfigUItooltiptopleft" then o = "Tooltip shows from Top Left of /ui anchor " end
 
 --	Chat options
 if o == "ViksConfigUIchat" then o = "CHAT" end

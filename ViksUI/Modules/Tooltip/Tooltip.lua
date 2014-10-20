@@ -44,13 +44,27 @@ for _, tt in pairs(tooltips) do
 end
 
 local anchor = CreateFrame("Frame", "TooltipAnchor", UIParent)
-anchor:SetSize(200, 160)
-anchor:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 2, -20)
+anchor:SetSize(200, 40)
+anchor:SetFrameStrata("TOOLTIP")
+anchor:SetFrameLevel(20)
+anchor:SetClampedToScreen(true)
+anchor:SetAlpha(0)
 
+AnchorTooltips = CreateFrame("Frame","Move_Tooltip",UIParent)
+AnchorTooltips:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 2, -20)
+CreateAnchor(AnchorTooltips, "Move tooltips", 120, 80)
 if Viks.tooltip.topleft then anchor:SetPoint("TOPLEFT", AnchorTooltips) end
 if Viks.tooltip.topright then anchor:SetPoint("TOPRIGHT", AnchorTooltips) end
 if Viks.tooltip.bottomleft then anchor:SetPoint("BOTTOMLEFT", AnchorTooltips) end
 if Viks.tooltip.bottomright then anchor:SetPoint("BOTTOMRIGHT", AnchorTooltips) end
+
+frame1px(anchor)
+CreateShadow(anchor)
+anchor:SetBackdropBorderColor(1, 0, 0, 1)
+anchor:SetMovable(true)
+anchor.text = SetFontString(anchor, Viks.media.font, 10)
+anchor.text:SetPoint("CENTER")
+anchor.text:SetText("Move Tooltip")
 
 -- Hide PVP text
 PVP_ENABLED = ""
@@ -127,6 +141,7 @@ function GameTooltip_UnitColor(unit)
 		end
 	end
 
+
 	return r, g, b
 end
 
@@ -136,7 +151,19 @@ local function GameTooltipDefault(tooltip, parent)
 	else
 		tooltip:SetOwner(parent, "ANCHOR_NONE")
 		tooltip:ClearAllPoints()
-		tooltip:SetPoint("TOPLEFT", TooltipAnchor, "TOPLEFT", 0, 0)
+		if Viks.tooltip.topleft then
+			tooltip:ClearAllPoints()
+			tooltip:SetPoint("TOPLEFT",TooltipAnchor, "TOPLEFT", 0, -3)				
+		elseif Viks.tooltip.topright then
+			tooltip:ClearAllPoints()
+			tooltip:SetPoint("BOTTOMRIGHT", TooltipAnchor)		
+		elseif Viks.tooltip.bottomleft then
+			tooltip:ClearAllPoints()
+			tooltip:SetPoint("BOTTOMLEFT", TooltipAnchor, "BOTTOMLEFT", 0,00)		
+		elseif Viks.tooltip.bottomright then
+			tooltip:ClearAllPoints()
+			tooltip:SetPoint("BOTTOMRIGHT", TooltipAnchor, "TOPRIGHT", -1, -70)
+		end
 		tooltip.default = 1
 	end
 end
@@ -177,7 +204,20 @@ else
 			if InCombatLockdown() and Viks.tooltip.hide_combat and not IsShiftKeyDown() then
 				self:Hide()
 			else
-				self:SetPoint("TOPLEFT", TooltipAnchor, "TOPLEFT", 0, 0)
+			if Viks.tooltip.topleft then
+			self:ClearAllPoints()
+			self:SetPoint("TOPLEFT",TooltipAnchor, "TOPLEFT", 0, 0)				
+			elseif Viks.tooltip.topright then
+			self:ClearAllPoints()
+			self:SetPoint("TOPRIGHT", TooltipAnchor, "TOPRIGHT", 0, 0)		
+			elseif Viks.tooltip.bottomleft then
+			self:ClearAllPoints()
+			self:SetPoint("BOTTOMLEFT", TooltipAnchor, "BOTTOMLEFT", 0, 0)		
+			elseif Viks.tooltip.bottomright then
+			self:ClearAllPoints()
+			self:SetPoint("BOTTOMRIGHT", TooltipAnchor, "BOTTOMRIGHT", 0, 0)
+			end
+				--self:SetPoint("TOPLEFT", TooltipAnchor, "TOPLEFT", 0, 0)
 			end
 		end)
 	end
@@ -295,6 +335,7 @@ local OnTooltipSetUnit = function(self)
 		local r, g, b = GameTooltip_UnitColor(unit.."target")
 		local text = ""
 
+
 		if UnitIsEnemy("player", unit.."target") then
 			r, g, b = unpack(T.oUF_colors.reaction[1])
 		elseif not UnitIsFriend("player", unit.."target") then
@@ -323,6 +364,7 @@ local OnTooltipSetUnit = function(self)
 end
 
 GameTooltip:HookScript("OnTooltipSetUnit", OnTooltipSetUnit)
+
 
 ----------------------------------------------------------------------------------------
 --	Adds guild rank to tooltips(GuildRank by Meurtcriss)

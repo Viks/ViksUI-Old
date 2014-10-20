@@ -299,6 +299,10 @@ Viks["tooltip"] = {
 	["unit_role"] = true,						-- Unit role in tooltip
 	["instance_lock"] = true,					-- Your instance lock status in tooltip
 	["item_transmogrify"] = false,				-- Displays items can not be transmogrified
+	["bottomleft"] = false, 				-- Anchor to BottomLeft
+	["bottomright"] = false, 				-- Anchor to Bottomright
+	["topright"] = false, 					-- Anchor to Top Right
+	["topleft"] = true, 					-- Anchor to Top Left
 }
 
 ----------------------------------------------------------------------------------------
@@ -710,7 +714,7 @@ Viks["position"] = {
 	["bank"] = {"LEFT", UIParent, "LEFT", 23, 150},									-- Bank
 	["bn_popup"] = {"BOTTOMLEFT", LChatTab, "BOTTOMLEFT", 10, 20},					-- Battle.net popup
 	["achievement"] = {"TOP", UIParent, "TOP", 0, -21},								-- Achievements frame
-	["tooltip"] = {"BOTTOMRIGHT", Minimap, "TOPRIGHT", 2, 5},						-- Tooltip
+	["tooltip"] = {"TOPLEFT", UIParent, "TOPLEFT", 2, -20},						-- Tooltip
 	["attempt"] = {"TOP", UIParent, "TOP", -85, -25},								-- Attempts frame
 	["capture_bar"] = {"TOP", UIParent, "TOP", 0, 3},								-- BG capture bars
 	["vehicle"] = {"BOTTOM", Minimap, "TOP", 0, 27},								-- Vehicle frame
