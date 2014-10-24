@@ -72,7 +72,7 @@ end
 
 local OnEnter = function(self)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-	GameTooltip:AddDoubleLine(self.spell, self.right:GetText())
+	GameTooltip:AddDoubleLine(self.left:GetText(), self.right:GetText())
 	GameTooltip:SetClampedToScreen(true)
 	GameTooltip:Show()
 end
@@ -131,33 +131,14 @@ local CreateBar = function()
 	
 	return bar
 end
-raid_spells = {
-		[20484] = 600,	-- Rebirth
-		[61999] = 600,	-- Raise Ally
-		[20707] = 900,	-- Soulstone
-		[6346] = 180,	-- Fear Ward
-		[29166] = 180,	-- Innervate
-		[32182] = 300,	-- Heroism
-		[2825] = 300,	-- Bloodlust
-		[80353] = 300,	-- Time Warp
-		[90355] = 300,	-- Ancient Hysteria
-			-- Сейвы
-		[64843] = 480,  -- Divine Hymn (Божественный гимн)
-		[33206] = 180,  -- Pain Suppression (Подавление боли)
-		[62618] = 180,  -- Power Word: Barrier (Купол)
-		[97462] = 180,  -- Rallying Cry (Ободряющий клич)
-		[31821] = 120,  -- Aura Mastery (Мастер Аур)
-		[70940] = 180,  -- Divine Guardian (Масс Сакра)
-		[98008] = 180,  -- Spirit Link Totem (Тотем духовной связи)
-		[6940] = 120,   -- Hand of Sacrifice (Сакра)
-}
+
 local StartTimer = function(name, spellId)
 	local bar = CreateBar()
 	local spell, rank, icon = GetSpellInfo(spellId)
-	bar.endTime = GetTime() + raid_spells[spellId]
+	bar.endTime = GetTime() + T.raid_spells[spellId]
 	bar.startTime = GetTime()
 	bar.left:SetText(name.." - "..spell)
-	bar.right:SetText(FormatTime(raid_spells[spellId]))
+	bar.right:SetText(FormatTime(T.raid_spells[spellId]))
 	bar.icon:SetNormalTexture(icon)
 	bar.icon:GetNormalTexture():SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	
@@ -187,7 +168,7 @@ local OnEvent = function(self, event, ...)
 		if band(sourceFlags, filter) == 0 then return end
 		local spellId = select(12, ...)
 
-		if raid_spells[spellId] and show[select(2, IsInInstance())] then
+		if T.raid_spells[spellId] and show[select(2, IsInInstance())] then
 			if eventType == "SPELL_RESURRECT" and not spellId == 61999 then
 				if spellId == 95750 then spellId = 6203 end
 				StartTimer(sourceName, spellId)
@@ -222,7 +203,6 @@ SlashCmdList.RaidCD = function(msg)
 	StartTimer(UnitName("player"), 20484)	-- Rebirth
 	StartTimer(UnitName("player"), 20707)	-- Soulstone
 	StartTimer(UnitName("player"), 6346)	-- Fear Ward
-	StartTimer(UnitName("player"), 29166)	-- Innervate
 	StartTimer(UnitName("player"), 32182)	-- Heroism
 	StartTimer(UnitName("player"), 2825)	-- Bloodlust
 end
