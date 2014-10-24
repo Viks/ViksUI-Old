@@ -89,6 +89,8 @@ elseif T.class == "HUNTER" then
 		T.aoespam[131900] = 3		-- A Murder of Crows
 		T.aoespam[3674] = 3			-- Black Arrow
 		T.aoespam[121414] = 3		-- Glaive Toss
+		T.aoespam[162543] = 3		-- Poisoned Ammo
+		T.aoespam[162541] = 3		-- Incendiary Ammo
 		T.aoespam[34655] = 3		-- Deadly Poison (Trap)
 		T.aoespam[93433] = 3		-- Burrow Attack (Worm)
 		T.aoespam[92380] = 3		-- Froststorm Breath (Chimaera)
@@ -117,9 +119,13 @@ elseif T.class == "MAGE" then
 		T.aoespam[44425] = 0		-- Arcane Barrage
 		T.aoespam[84721] = 3		-- Frozen Orb
 		T.aoespam[148022] = 3		-- Icicle (Mastery)
-		T.aoespam[31707] = 3		-- Waterbolt
+		T.aoespam[31707] = 3		-- Waterbolt (Pet)
 		T.aoespam[30455] = 0		-- Ice Lance
 		T.aoespam[115611] = 6		-- Temporal Ripples
+		T.aoespam[157981] = 1		-- Blast Wave
+		T.aoespam[157997] = 1		-- Ice Nova
+		T.aoespam[157980] = 1		-- Supernova
+		T.aoespam[135029] = 3		-- Water Jet (Pet)
 	end
 elseif T.class == "MONK" then
 	if Viks.combattext.merge_aoe_spam then
@@ -247,6 +253,7 @@ elseif T.class == "SHAMAN" then
 		T.aoespam[98021] = 3		-- Spirit Link
 		T.aoespam[114911] = 3		-- Ancestral Guidance
 		T.aoespam[114942] = 3		-- Healing Tide
+		T.aoespam[114083] = 3		-- Restorative Mists
 		-- Damaging spells
 		T.aoespam[421] = 1			-- Chain Lightning
 		T.aoespam[8349] = 0			-- Fire Nova
@@ -259,8 +266,14 @@ elseif T.class == "SHAMAN" then
 		T.aoespam[3606] = 3			-- Searing Bolt
 		T.aoespam[170379] = 3		-- Molten Earth
 		T.aoespam[114074] = 1		-- Lava Beam
+		T.aoespam[32175] = 0		-- Stormstrike
+		T.aoespam[114089] = 3		-- Windlash
+		T.aoespam[115357] = 0		-- Windstrike
 		T.merge[168477] = 421		-- Chain Lightning (Multi)
 		T.merge[168489] = 114074	-- Lava Beam (Multi)
+		T.merge[32176] = 32175		-- Stormstrike Off-Hand
+		T.merge[114093] = 114089	-- Windlash Off-Hand
+		T.merge[115360] = 115357	-- Windstrike Off-Hand
 	end
 elseif T.class == "WARLOCK" then
 	if Viks.combattext.merge_aoe_spam then
@@ -287,6 +300,8 @@ elseif T.class == "WARLOCK" then
 		T.aoespam[108685] = 0		-- Conflagrate
 		T.aoespam[22703] = 0		-- Infernal Awakening
 		T.aoespam[171017] = 0		-- Meteor Strike (Infrenal)
+		T.aoespam[104318] = 3		-- Fel Firebolt
+		T.aoespam[3110] = 3			-- Firebolt (Imp)
 		T.merge[157736] = 348		-- Immolate
 		T.merge[108686] = 348		-- Immolate
 		T.merge[131737] = 980		-- Agony (Drain Soul)

@@ -649,12 +649,8 @@ Filger_Spells = {
 			Position = {"RIGHT", AnchorP_PROC_ICON},
 
 			-- Buffs
-			-- Ready, Set, Aim...
-			--Wod {spellID = 82925, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fire!
-			--Wod {spellID = 82926, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Steady Focus
-			--Wod {spellID = 53220, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 177668, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Lock and Load
 			{spellID = 168980, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Thrill of the Hunt
@@ -758,8 +754,6 @@ Filger_Spells = {
 			{spellID = 5116, filter = "CD"},
 			-- Counter Shot
 			{spellID = 147362, filter = "CD"},
-			-- Binding Shot
-			{spellID = 117526, filter = "CD"},
 			-- Kill Command
 			{spellID = 34026, filter = "CD"},
 			-- Explosive Shot
@@ -770,24 +764,24 @@ Filger_Spells = {
 			{spellID = 53351, filter = "CD"},
 			-- Glaive Toss
 			{spellID = 117050, filter = "CD"},
+			-- Barrage
+			{spellID = 120360, filter = "CD"},
 			-- Disengage
 			{spellID = 781, filter = "CD"},
 			-- Dire Beast
 			{spellID = 120679, filter = "CD"},
 			-- Fervor
 			{spellID = 82726, filter = "CD"},
-			-- Barrage
-			{spellID = 120360, filter = "CD"},
 			-- Misdirection
 			{spellID = 34477, filter = "CD"},
 			-- Feign Death
 			{spellID = 5384, filter = "CD"},
-			-- Snake Trap
-			{spellID = 34600, filter = "CD"},
 			-- Explosive Trap
 			{spellID = 13813, filter = "CD"},
 			-- Ice Trap
 			{spellID = 13809, filter = "CD"},
+			-- Binding Shot
+			{spellID = 117526, filter = "CD"},
 			-- Master's Call
 			{spellID = 53271, filter = "CD"},
 			-- Powershot
@@ -798,10 +792,10 @@ Filger_Spells = {
 			{spellID = 19577, filter = "CD"},
 			-- Bestial Wrath
 			{spellID = 19574, filter = "CD"},
-			-- Lynx Rush
-			{spellID = 120697, filter = "CD"},
 			-- A Murder of Crows
 			{spellID = 131894, filter = "CD"},
+			-- Lynx Rush
+			{spellID = 120697, filter = "CD"},
 			-- Exhilaration
 			{spellID = 109304, filter = "CD"},
 			-- Rapid Fire
@@ -1032,8 +1026,6 @@ Filger_Spells = {
 			{spellID = 1953, filter = "CD"},
 			-- Blazing Speed
 			{spellID = 108843, filter = "CD"},
-			-- Dragon's Breath
-			{spellID = 31661, filter = "CD"},
 			-- Deep Freeze
 			{spellID = 44572, filter = "CD"},
 			-- Frost Nova
@@ -1149,8 +1141,6 @@ Filger_Spells = {
 			{spellID = 116740, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Touch of Karma
 			{spellID = 125174, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Avert Harm
-			--Wod {spellID = 115213, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Diffuse Magic
 			{spellID = 122783, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Energizing Brew
@@ -1174,8 +1164,6 @@ Filger_Spells = {
 			{spellID = 116768, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Combo Breaker: Tiger Palm
 			{spellID = 118864, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Power Guard
-			--Wod {spellID = 118636, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Shuffle
 			{spellID = 115307, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Vital Mists
@@ -1956,8 +1944,6 @@ Filger_Spells = {
 			{spellID = 2983, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Feint
 			{spellID = 1966, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Shadow Walk
-			--Wod {spellID = 114842, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Subterfuge
 			{spellID = 115192, unitID = "player", caster = "player", filter = "BUFF"},
 		},
@@ -2196,8 +2182,6 @@ Filger_Spells = {
 			Position = {"RIGHT", AnchorP_PROC_ICON},
 
 			-- Buffs
-			-- Clearcasting
-			--Wod {spellID = 16246, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Lava Surge
 			{spellID = 77762, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Elemental Blast
@@ -2326,8 +2310,6 @@ Filger_Spells = {
 			{spellID = 8056, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Flame Shock
 			{spellID = 8050, unitID = "target", caster = "player", filter = "DEBUFF"},
-			-- Searing Flames
-			--Wod {spellID = 77661, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Earthgrab
 			{spellID = 64695, unitID = "target", caster = "player", filter = "DEBUFF"},
 		},
@@ -2477,10 +2459,8 @@ Filger_Spells = {
 			{spellID = 122355, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Backdraft
 			{spellID = 117828, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Backlash
-			--Wod {spellID = 34936, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Demonic Rebirth
-			--Wod {spellID = 108559, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Demonic Synergy
+			{spellID = 171982, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Item sets
 			-- Ember Master (T16)
 			{spellID = 145164, unitID = "player", caster = "player", filter = "BUFF"},
@@ -2738,7 +2718,7 @@ Filger_Spells = {
 			-- Jade Warlord Figurine (Mastery, Use)
 			{spellID = 126597, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Physical Strength DPS
-			-- Assurance of Consequence (Strength, Proc)
+			-- Evil Eye of Galakras (Strength, Proc)
 			{spellID = 146245, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Thok's Tail Tip (Strength, Proc)
 			{spellID = 146250, unitID = "player", caster = "player", filter = "BUFF", absID = true},
@@ -2931,16 +2911,10 @@ Filger_Spells = {
 			{spellID = 146555, unitID = "player", caster = "all", filter = "BUFF"},
 
 			-- Professions
-			-- Synapse Springs
-			{spellID = 126734, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Phase Fingers
-			--Wod {spellID = 108788, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Nitro Boosts
 			{spellID = 54861, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Parachute
 			{spellID = 55001, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Lifeblood
-			--Wod {spellID = 74497, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Racial
 			-- Berserking (Troll)
@@ -2979,6 +2953,8 @@ Filger_Spells = {
 			{spellID = 31821, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Rallying Cry
 			{spellID = 97463, unitID = "player", caster = "all", filter = "BUFF"},
+			-- Amplify Magic
+			{spellID = 159916, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Tricks of the Trade
 			{spellID = 57933, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Stampeding Roar
@@ -3074,9 +3050,7 @@ Filger_Spells = {
 			{spellID = 135373, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Concussive Shot
 			{spellID = 5116, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Concussive Barrage
-			--WoD {spellID = 35101, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Glyph of Freezing Trap
+			-- Frozen Wake (Glyph of Freezing Trap)
 			{spellID = 61394, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Ice Trap
 			{spellID = 135299, unitID = "player", caster = "all", filter = "DEBUFF"},
