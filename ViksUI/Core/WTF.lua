@@ -1294,7 +1294,6 @@ local UploadChat = function()
 	ChatFrame_AddMessageGroup(ChatFrame4, "WHISPER")
 	ChatFrame_AddMessageGroup(ChatFrame4, "BN_WHISPER")
 	ChatFrame_AddMessageGroup(ChatFrame4, "BN_CONVERSATION")
-	ChatFrame_AddMessageGroup(ChatFrame4, "BN_INLINE_TOAST_ALERT")
 	ChatFrame_AddMessageGroup(ChatFrame4, "COMBAT_GUILD_XP_GAIN")
 	-- enable classcolor automatically on login and on each character without doing /configure each time.
 	ToggleChatColorNamesByClassGroup(true, "SAY")
