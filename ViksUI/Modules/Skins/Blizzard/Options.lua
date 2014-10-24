@@ -108,6 +108,7 @@ local function LoadSkin()
 		"Display_ResolutionDropDown",
 		"Display_RefreshDropDown",
 		"Display_PrimaryMonitorDropDown",
+
 		"Display_AntiAliasingDropDown",
 		"Display_VerticalSyncDropDown",
 		"Graphics_TextureResolutionDropDown",
@@ -130,6 +131,7 @@ local function LoadSkin()
 		"AudioOptionsVoicePanelChatModeDropDown",
 		"AudioOptionsVoicePanelOutputDeviceDropDown",
 		"Graphics_SSAODropDown",
+		"InterfaceOptionsLanguagesPanelAudioLocaleDropDown",
 		"Graphics_RefractionDropDown",
 		"RaidGraphics_TextureResolutionDropDown",
 		"RaidGraphics_FilteringDropDown",
@@ -203,12 +205,8 @@ local function LoadSkin()
 	_G["AudioOptionsVoicePanelChatMode1KeyBindingButton"]:ClearAllPoints()
 	_G["AudioOptionsVoicePanelChatMode1KeyBindingButton"]:SetPoint("CENTER", _G["AudioOptionsVoicePanelBinding"], "CENTER", 0, -10)
 
-	GraphicsButton:SetPoint("BOTTOMLEFT", "Graphics_", "TOPLEFT", 0, 3)
-	GraphicsButton:SkinButton(true)
-	RaidButton:SkinButton(true)
-
-	T.SkinDropDownBox(InterfaceOptionsLanguagesPanelAudioLocaleDropDown, 250)
-	T.SkinDropDownBox(InterfaceOptionsLanguagesPanelLocaleDropDown, 250)
+	GraphicsButton:StripTextures()
+	RaidButton:StripTextures()
 end
 
 tinsert(T.SkinFuncs["ViksUI"], LoadSkin)
