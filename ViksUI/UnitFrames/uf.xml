@@ -2,16 +2,12 @@
 	<Script file="cfg.lua"/>
 	<Script file="castbar.lua"/>
 	<Script file="tags.lua"/>
-	<Script file="move.lua"/>
-	<Script file="Elements\afk1.lua"/>
 	<Script file="Elements\AuraWatch.lua"/>
 	<Script file="Elements\DebuffHighlight.lua"/>
 	<Script file="Elements\raidDebuffs.lua"/>
 	<Script file="Elements\auras.lua"/>
 	<Script file="Elements\Indicators.lua"/>
 	<Script file="Elements\Indicators2.lua"/>
-	<Script file="Elements\autorez1.lua"/>
-	<Script file="Elements\1heals.lua"/>
 	<Script file="Elements\range.lua"/>
 	<Script file="Plugins\Experience.lua"/>
 	<Script file="Plugins\HarmonyBar.lua"/>

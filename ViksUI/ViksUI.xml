@@ -63,13 +63,11 @@
 	<Include file="UnitFrames\template.xml"/>
 	<Include file="UnitFrames\Raid\load.xml"/>
 	<Script file="Main\Style.lua"/>	
-	<Script file="Modules\Misc\AddOnsList.lua"/>
 	<Script file="Modules\Misc\AlreadyKnown.lua"/>
 	<Script file="Modules\Misc\Archaeology.lua"/>
 	<Script file="Modules\Misc\Author.lua"/>
 	<Script file="Modules\Misc\CharsCurrency.lua"/>
 	<Script file="Modules\Misc\ClickCast.lua"/>
-	<Script file="Modules\Misc\DungeonTabs.lua"/>
 	<Script file="Modules\Misc\GemCounter.lua"/>
 	<Script file="Modules\Misc\GuildFinderSort.lua"/>
 	<Script file="Modules\Misc\HealerIconNameplate.lua"/>
@@ -103,7 +101,6 @@
 	<Script file="Modules\Automation\AchScreens.lua"/>
 	<Script file="Modules\Automation\AutoChefsHat.lua"/>
 	<Script file="Modules\Automation\AutoSafariHat.lua"/>
-	<Script file="Modules\Automation\AutoGreed.lua"/>
 
 	<Script file="Modules\Automation\AutoRelease.lua"/>
 	<Script file="Modules\Automation\AutoRepair.lua"/>
@@ -116,11 +113,6 @@
 	<Script file="Modules\Automation\SkipCinematic.lua"/>
 	<Script file="Modules\Automation\SolveArtifact.lua"/>
 	<Script file="Modules\Automation\TabBinder.lua"/>
-	
-	<Script file="Modules\Cooldowns\DiminishingCD.lua"/>
-	<Script file="Modules\Cooldowns\EnemyCD.lua"/>
-	<Script file="Modules\Cooldowns\PulseCD.lua"/>
-	<Script file="Modules\Cooldowns\RaidCD.lua"/>
 	
 	<Script file="Modules\Loot\AutoDisenchant.lua"/>
 	<Script file="Modules\Loot\AutoGreed.lua"/>
@@ -148,7 +140,6 @@
 	<Script file="Misc\Filger.lua"/>
 	<Script file="Misc\MarkBar.lua"/>
 	<Script file="Misc\MBFToggle.lua"/>
-	<Script file="Misc\align.lua"/>
 	<Script file="Misc\RaidCooldowns.lua"/>
 	<Script file="Misc\XPBar.lua"/>
 	<Script file="Misc\CooldownFlash.lua"/>
@@ -160,7 +151,6 @@
 	<Script file="Datatext\Guild.lua"/>
 	<Script file="Datatext\Bags.lua"/>
 	<Script file="Datatext\Time.lua"/>
-	<Script file="Datatext\Battleground.lua"/>
 	<Script file="Datatext\Armor.lua"/>
 	<Script file="Datatext\Avoidance.lua"/>
 	<Script file="Datatext\Crit.lua"/>
@@ -173,9 +163,7 @@
 	<Script file="Datatext\Arena.lua"/>
 	<Script file="Datatext\Temp.lua"/>
 	<Script file="Datatext\location.lua"/>
-	<Include file="Skins\skins.xml"/>
-	
-	
+		
 	<Script file="Modules\Announcements\BadGear.lua"/>
 	<Script file="Modules\Announcements\Drinking.lua"/>
 	<Script file="Modules\Announcements\FeastsAndPortals.lua"/>
@@ -216,7 +204,6 @@
 	<Script file="Modules\Blizzard\MoveBlizzFrames.lua"/>
 	<Script file="Modules\Blizzard\Nameplates.lua"/>
 	<Script file="Modules\Blizzard\PetBattle.lua"/>
-	<Script file="Modules\Blizzard\SearchMounts.lua"/>
 	<Script file="Modules\Blizzard\ShiftMark.lua"/>
 	<Script file="Modules\Blizzard\TimerTracker.lua"/>
 	<Script file="Modules\Blizzard\Vehicle.lua"/>
@@ -241,14 +228,7 @@
 	<Script file="Modules\Chat\ArmoryLink.lua"/>
 	<Script file="Modules\Chat\SpamageMeters.lua"/>
 	<Script file="Modules\Chat\ChatBind.lua"/>
-	
-	<Script file="Modules\Cooldowns\DiminishingCD.lua"/>
-	<Script file="Modules\Cooldowns\EnemyCD.lua"/>
-	<Script file="Modules\Cooldowns\PulseCD.lua"/>
-	<Script file="Modules\Cooldowns\RaidCD.lua"/>
-
-	<Script file="Modules\DataText\Battleground.lua"/>
-	
+		
 	<Script file="Modules\Maps\BattlefieldMap.lua"/>
 	<Script file="Modules\Maps\ButtonCollect.lua"/>
 	<Script file="Modules\Maps\ExploreMap.lua"/>
@@ -290,7 +270,6 @@
 	<Script file="Modules\Skins\VanasKoS.lua"/>
 	<Script file="Modules\Skins\WeakAuras.lua"/>
 	<Script file="Modules\Skins\tmp.lua"/>
-	<Script file="Modules\Automation\tmp.lua"/>
 	<Script file="Modules\Tooltip\Tooltip.lua"/>
 	<Script file="Modules\Tooltip\HyperLink.lua"/>
 	<Script file="Modules\Tooltip\Achievement.lua"/>
