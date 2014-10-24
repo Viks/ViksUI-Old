@@ -54,7 +54,7 @@ L_MISC_BUY_STACK = "Alt-Klick um einen Stapel zu kaufen"
 L_MISC_ONECLICK_BUYOUT = "Shift-Right-Click um den ausgewählten Gegenstand ohne Bestätigung zu kaufen"
 L_MISC_ONECLICK_BID = "Shift-Right-Click um auf den ausgewählten Gegenstand ohne Bestätigung zu bieten"
 L_MISC_ONECLICK_CANCEL = "Shift-Right-Click um den ausgewählten Gegenstand ohne Bestätigung abzubrechen"
-L_MISC_UI_OUTDATED = "Deine Version von ViksUI ist veraltet. Du kannst die aktuelle Version von www.shestak.org laden"
+L_MISC_UI_OUTDATED = "Deine Version von ShestakUI ist veraltet. Du kannst die aktuelle Version von www.shestak.org laden"
 L_MISC_HEADER_MARK = "Mausdrüber Raid Icon"
 L_MISC_BINDER_OPEN = "Maus gebunden"
 L_MISC_MOUNTS_GROUND = "Boden"
@@ -102,9 +102,9 @@ L_MAP_FOG = "Nebel des Krieges"
 
 -- Minimap
 L_MINIMAP_CALENDAR = "Kalender"
-L_MINIMAP_HEAL_LAYOUT = "Left-Click - Heal Layout" -- Needs review
-L_MINIMAP_DPS_LAYOUT = "Right-Click - DPS Layout" -- Needs review
-L_MINIMAP_BLIZZ_LAYOUT = "Middle-Click - Blizzard Layout" -- Needs review
+L_MINIMAP_HEAL_LAYOUT = "Links-Klick - Heiler Layout"
+L_MINIMAP_DPS_LAYOUT = "Rechts-Klick - DPS Layout"
+L_MINIMAP_BLIZZ_LAYOUT = "Mittel-Klick - Blizzard Layout"
 
 -- Addons list
 L_ALOAD_RL = "Interface Neuladen"
@@ -133,8 +133,8 @@ L_CHAT_PARTY_LEADER = "PL"
 L_CHAT_RAID = "R"
 L_CHAT_RAID_LEADER = "RL"
 L_CHAT_RAID_WARNING = "RW"
-L_CHAT_INSTANCE_CHAT = "I" -- Needs review
-L_CHAT_INSTANCE_CHAT_LEADER = "IL" -- Needs review
+L_CHAT_INSTANCE_CHAT = "I"
+L_CHAT_INSTANCE_CHAT_LEADER = "IL"
 L_CHAT_OFFICER = "O"
 L_CHAT_PET_BATTLE = "PB"
 L_CHAT_COME_ONLINE = "ist jetzt |cff298F00online|r."
@@ -145,7 +145,6 @@ L_ERRORFRAME_L = "Klick um Fehler anzuzeigen."
 
 -- Bags
 L_BAG_BANK = "Bank"
-L_BAG_NO_SLOTS = "Kann keine weiteren Taschenplätze kaufen!"
 L_BAG_COSTS = "Kosten: %.2f Gold"
 L_BAG_BUY_SLOTS = "Kaufe neuen Platz mit /bags purchase yes"
 L_BAG_OPEN_BANK = "Du musst erst das Bankfach öffnen."
@@ -240,12 +239,12 @@ L_INFO_SKIN_DISABLED1 = "Stilisierung für "
 L_INFO_SKIN_DISABLED2 = " ist ausgeschaltet."
 
 -- Popups
-L_POPUP_INSTALLUI = "Dies ist Ihre erste Benutzung von ViksUI mit diesem Charakter. Um das Interface zu konfigurieren, wird das UI nun neugeladen."
-L_POPUP_RESETUI = "Sind Sie sich sicher, dass Sie die Einstellungen von ViksUI zurückgesetzen wollen?"
+L_POPUP_INSTALLUI = "Dies ist Ihre erste Benutzung von ShestakUI mit diesem Charakter. Um das Interface zu konfigurieren, wird das UI nun neugeladen."
+L_POPUP_RESETUI = "Sind Sie sich sicher, dass Sie die Einstellungen von ShestakUI zurückgesetzen wollen?"
 L_POPUP_RESETSTATS = "Bist du sicher das du die Gold und verbrachte Zeit Statistik zurücksetzen möchtest?"
 L_POPUP_SWITCH_RAID = "Wähle Raid Layout."
 L_POPUP_DISBAND_RAID = "Bist du dir sicher, dass du die Gruppe auflösen möchtest?"
-L_POPUP_DISABLEUI = "ViksUI funktioniert nicht mit deiner Auflösung, möchtest du ViksUI ausschalten? (Drücke Abbrechen, falls du eine andere Auflösung testen willst)"
+L_POPUP_DISABLEUI = "ShestakUI funktioniert nicht mit deiner Auflösung, möchtest du ShestakUI ausschalten? (Drücke Abbrechen, falls du eine andere Auflösung testen willst)"
 L_POPUP_SETTINGS_ALL = "Einstellungen für alle AddOns übernehmen? (DBM/DXE, Skada und MSBT)"
 L_POPUP_SETTINGS_DBM = "Die Position der DBM Elemente muss verändert werden."
 L_POPUP_SETTINGS_DXE = "Die Position der DXE Elemente muss verändert werden."
@@ -254,7 +253,7 @@ L_POPUP_ARMORY = "Waffenkammer"
 L_POPUP_CURRENCY_CAP = "Maximalwert erreicht"
 
 -- Welcome message
-L_WELCOME_LINE_1 = "Willkommen bei ViksUI "
+L_WELCOME_LINE_1 = "Willkommen bei ShestakUI "
 L_WELCOME_LINE_2_1 = "Gebe /cfg ein um das Interface zu konfigurieren, oder besuche http://shestak.org"
 L_WELCOME_LINE_2_2 = "für weitere Informationen."
 

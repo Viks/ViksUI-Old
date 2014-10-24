@@ -54,7 +54,7 @@ L_MISC_BUY_STACK = "Alt-Click para comprar un lote"
 L_MISC_ONECLICK_BUYOUT = "Shift-Right-Click para comprar el objeto seleccionado sin confirmacion" -- Needs review
 L_MISC_ONECLICK_BID = "Shift-Right-Click para pujar por el objeto seleccionado sin confirmacion" -- Needs review
 L_MISC_ONECLICK_CANCEL = "Shift-Right-Click to cancel on the selected item without confirmation" -- Needs review
-L_MISC_UI_OUTDATED = "Tu versión de ViksUI no está actualizada. Puedes descargar la última versión de www.shestak.org"
+L_MISC_UI_OUTDATED = "Tu versión de ShestakUI no está actualizada. Puedes descargar la última versión de www.shestak.org"
 L_MISC_HEADER_MARK = "Mouseover Raid Icons" -- Needs review
 L_MISC_BINDER_OPEN = "Mouse Bindings" -- Needs review
 L_MISC_MOUNTS_GROUND = "Ground" -- Needs review
@@ -145,7 +145,6 @@ L_ERRORFRAME_L = "Click para ver errores."
 
 -- Bags
 L_BAG_BANK = "Banco"
-L_BAG_NO_SLOTS = "¡No puedes comprar más espacios!"
 L_BAG_COSTS = "Costo: %.2f oro"
 L_BAG_BUY_SLOTS = "Compra un nuevo espacio mediante /bags purchase yes"
 L_BAG_OPEN_BANK = "Necesitas abrir primero el banco."
@@ -240,12 +239,12 @@ L_INFO_SKIN_DISABLED1 = "Estilizacion para "
 L_INFO_SKIN_DISABLED2 = " esta desactivado."
 
 -- Popups
-L_POPUP_INSTALLUI = "Es la primera vez que usas ViksUI con este personaje. Usted debe volver a cargar la interfaz de usuario para configurarlo."
-L_POPUP_RESETUI = "¿Estás seguro de que desea restablecer ViksUI?"
+L_POPUP_INSTALLUI = "Es la primera vez que usas ShestakUI con este personaje. Usted debe volver a cargar la interfaz de usuario para configurarlo."
+L_POPUP_RESETUI = "¿Estás seguro de que desea restablecer ShestakUI?"
 L_POPUP_RESETSTATS = "¿Estás seguro de que quieres reiniciar las estadísticas de tiempo empleado en el juego y oro adquirido?"
 L_POPUP_SWITCH_RAID = "Select Raid layout." -- Needs review
 L_POPUP_DISBAND_RAID = "¿Estás seguro de que quieres disolver el grupo?"
-L_POPUP_DISABLEUI = "ViksUI no funciona con esta resolución, ¿Quieres desactivar ViksUI? (Pulsa cancelar si quieres probar otra resolución)"
+L_POPUP_DISABLEUI = "ShestakUI no funciona con esta resolución, ¿Quieres desactivar ShestakUI? (Pulsa cancelar si quieres probar otra resolución)"
 L_POPUP_SETTINGS_ALL = "¿Aplicar modificaciones para todos los addons? (DBM/DXE, Skada o MSBT)"
 L_POPUP_SETTINGS_DBM = "Necesito cambiar la posición de los elementos del DBM."
 L_POPUP_SETTINGS_DXE = "Necesito cambiar la posición de los elementos del DXE."
@@ -254,7 +253,7 @@ L_POPUP_ARMORY = "Arsenal"
 L_POPUP_CURRENCY_CAP = "You get maximum value of" -- Needs review
 
 -- Welcome message
-L_WELCOME_LINE_1 = "Bienvenido a ViksUI "
+L_WELCOME_LINE_1 = "Bienvenido a ShestakUI "
 L_WELCOME_LINE_2_1 = "Escribe /cfg para configurar la interfaz, o visita http://shestak.org"
 L_WELCOME_LINE_2_2 = "para más información."
 
