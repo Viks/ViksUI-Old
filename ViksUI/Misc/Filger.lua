@@ -102,6 +102,10 @@ Filger_Spells = {
 			{spellID = 53365, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Dark Transformation
 			{spellID = 63560, unitID = "pet", caster = "player", filter = "BUFF"},
+			-- Shadow Infusion
+			{spellID = 91342, unitID = "pet", caster = "player", filter = "BUFF", count = 5},
+			-- Blood Charge
+			{spellID = 114851, unitID = "player", caster = "player", filter = "BUFF", count = 10},
 
 			-- Trinkets
 			-- General
@@ -134,7 +138,7 @@ Filger_Spells = {
 			{spellID = 146285, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Fusion-Fire Core (Strength, Proc)
 			{spellID = 148899, unitID = "player", caster = "player", filter = "BUFF", absID = true},
-			-- Alacrity of Xuen (Haste, Proc)
+			-- Celestial Celerity (Haste, Proc) [Alacrity of Xuen]
 			{spellID = 146296, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Brutal Talisman of the Shado-Pan Assault (Strength, Proc)
 			{spellID = 138702, unitID = "player", caster = "player", filter = "BUFF"},
@@ -193,28 +197,36 @@ Filger_Spells = {
 			{spellID = 47481, filter = "CD"},
 			-- Remorseless Winter
 			{spellID = 108200, filter = "CD"},
+			-- Dark Simulacrum
+			{spellID = 77606, filter = "CD"},
 			-- Soul Reaper
 			{spellID = 130736, filter = "CD"},
 			-- Death Grip
 			{spellID = 49576, filter = "CD"},
 			-- Plague Leech
 			{spellID = 123693, filter = "CD"},
-			-- Rune Tap
-			{spellID = 48982, filter = "CD"},
+
+
 			-- Death and Decay
 			{spellID = 43265, filter = "CD"},
 			-- Death's Advance
 			{spellID = 96268, filter = "CD"},
+			-- Rune Tap
+			{spellID = 48982, filter = "CD"},
 			-- Anti-Magic Shell
 			{spellID = 48707, filter = "CD"},
 			-- Vampiric Blood
 			{spellID = 55233, filter = "CD"},
-			-- Outbreak
-			{spellID = 77575, filter = "CD"},
+
+
 			-- Pillar of Frost
 			{spellID = 51271, filter = "CD"},
+			-- Outbreak
+			{spellID = 77575, filter = "CD"},
 			-- Gorefiend's Grasp
 			{spellID = 108199, filter = "CD"},
+			-- Raise Dead
+			{spellID = 46584, filter = "CD"},
 			-- Dancing Rune Weapon
 			{spellID = 49028, filter = "CD"},
 			-- Unholy Blight
@@ -225,8 +237,8 @@ Filger_Spells = {
 			{spellID = 108201, filter = "CD"},
 			-- Death Pact
 			{spellID = 48743, filter = "CD"},
-			-- Raise Dead
-			{spellID = 46584, filter = "CD"},
+
+
 			-- Anti-Magic Zone
 			{spellID = 51052, filter = "CD"},
 			-- Icebound Fortitude
@@ -1699,6 +1711,8 @@ Filger_Spells = {
 			{spellID = 123254, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Evangelism
 			{spellID = 81661, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Shadow Word: Insanity
+			{spellID = 132573, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
 			-- General
@@ -2150,7 +2164,7 @@ Filger_Spells = {
 			-- Maelstorm Weapon
 			{spellID = 53817, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Lightning Shield
-			{spellID = 324, unitID = "player", caster = "player", filter = "BUFF", spec = 1, count = 5},
+			{spellID = 324, unitID = "player", caster = "player", filter = "BUFF", spec = 1, count = 6},
 			-- Shamanistic Rage
 			{spellID = 30823, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Elemental Mastery
@@ -2683,6 +2697,11 @@ Filger_Spells = {
 			IconSize = 37,
 			Position = {"RIGHT", AnchorP_PROC_ICON},
 
+
+			-- Sudden Death
+			{spellID = 52437, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Raging Blow!
+			{spellID = 131116, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Bloodsurge
 			{spellID = 46916, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Sword and Board
@@ -2776,6 +2795,9 @@ Filger_Spells = {
 			IconSize = 37,
 			Position = {"LEFT", AnchorT_DEBUFF_ICON},
 
+
+			-- Rend
+			{spellID = 772, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Colossus Smash
 			{spellID = 86346, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Hamstring
@@ -3875,7 +3897,7 @@ function Filger:OnEvent(event, unit)
 						start, duration = GetInventoryItemCooldown("player", data.slotID)
 					end
 				end
-				if name and (T.class ~= "DEATHKNIGHT" and (duration or 0) > 1.5) or (duration or 0) > 10 then
+				if name and (duration or 0) > 1.5 then
 					found = true
 				end
 			elseif data.filter == "ICD" then
@@ -3904,6 +3926,9 @@ function Filger:OnEvent(event, unit)
 				if not self.actives[i] then
 					self.actives[i] = {data = data, name = name, icon = icon, count = count, start = start, duration = duration, spid = spid}
 					needUpdate = true
+					if T.class == "DEATHKNIGHT" and self.actives[i].duration == 10 then
+						self.actives[i] = nil
+					end
 				else
 					if data.filter ~= "ICD" and (self.actives[i].count ~= count or self.actives[i].start ~= start or self.actives[i].duration ~= duration) then
 						self.actives[i].count = count
