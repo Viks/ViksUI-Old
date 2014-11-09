@@ -60,16 +60,11 @@ local function OnEvent(self, event, arg1, arg2)
 		if (group.instance and group.instance == true) or (group.pvp and group.pvp == true) then
 			self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 		end
-
-		if group.role and group.role == true then
-			self:RegisterEvent("UNIT_INVENTORY_CHANGED")
-		end
 	end
 
 	local role = group.role
 	local spec = group.spec
 	local combat = group.combat
-	local personal = group.personal
 	local instance = group.instance
 	local pvp = group.pvp
 	local reversecheck = group.reversecheck
@@ -104,6 +99,7 @@ local function OnEvent(self, event, arg1, arg2)
 
 	-- Only time we allow it to play a sound
 	if (event == "ZONE_CHANGED_NEW_AREA" or event == "PLAYER_REGEN_DISABLED") and Viks.reminder.solo_buffs_sound == true then canplaysound = true end
+	if event == "PLAYER_LOGIN" then return end
 
 	if ((combat and UnitAffectingCombat("player")) or (instance and difficultyID ~= 0) or (pvp and (instanceType == "arena" or instanceType == "pvp"))) and
 	specpass == true and rolepass == true and not UnitInVehicle("player") then
@@ -150,7 +146,6 @@ for i = 1, #tab do
 
 	frame:RegisterEvent("UNIT_AURA")
 	frame:RegisterEvent("PLAYER_LOGIN")
-	frame:RegisterEvent("UNIT_INVENTORY_CHANGED")
 	frame:RegisterEvent("PLAYER_REGEN_ENABLED")
 	frame:RegisterEvent("PLAYER_REGEN_DISABLED")
 	frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")

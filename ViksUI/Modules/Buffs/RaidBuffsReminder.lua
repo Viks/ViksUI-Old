@@ -193,8 +193,6 @@ raidbuff_reminder:CreatePanel("Invisible", (Viks.reminder.raid_buffs_size * 6) +
 raidbuff_reminder:RegisterEvent("UNIT_AURA")
 raidbuff_reminder:RegisterEvent("PLAYER_ENTERING_WORLD")
 raidbuff_reminder:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-raidbuff_reminder:RegisterEvent("UNIT_INVENTORY_CHANGED")
-raidbuff_reminder:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
 raidbuff_reminder:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 raidbuff_reminder:SetScript("OnEvent", OnAuraChange)
 
