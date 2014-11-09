@@ -53,7 +53,6 @@ Viks["misc"] = {
 	["quest_auto_button"] = true,				-- Quest auto button
 	["raid_tools"] = true,						-- Raid tools
 	["profession_tabs"] = true,					-- Professions tabs on TradeSkill frames
-	["profession_database"] = false,			-- Professions Database on Professions frame
 	["hide_bg_spam"] = true,					-- Remove Boss Emote spam during BG("Arathi Basin" and "The Battle for Gilneas")
 	["item_level"] = true,						-- Item level on character slot buttons
 	["gem_counter"] = true,						-- Displays how many red/blue/yellow gems you have
@@ -124,6 +123,7 @@ Viks["automation"] = {
 	["vendor"] = true,							-- Auto sell grey items
 	["AutoRepair"] = true,						-- automaticly repair?
 	["AutoRepairG"] = true,						-- automaticly repair and Use guild funds?
+	["open_items"] = false,						-- Auto opening of items in bag
 }
 
 ----------------------------------------------------------------------------------------
