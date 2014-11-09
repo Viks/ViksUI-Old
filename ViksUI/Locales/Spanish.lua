@@ -35,6 +35,9 @@ L_ANNOUNCE_FP_CAST = "%s is casting %s." -- Needs review
 L_ANNOUNCE_FP_CLICK = "%s is casting %s. Click!" -- Needs review
 L_ANNOUNCE_FP_USE = "%s used a %s." -- Needs review
 
+-- Announce your interrupts
+L_ANNOUNCE_INTERRUPTED = INTERRUPTED
+
 -- Tooltip
 L_TOOLTIP_NO_TALENT = "No tienes talentos"
 L_TOOLTIP_LOADING = "Cargando..."
@@ -57,13 +60,8 @@ L_MISC_ONECLICK_CANCEL = "Shift-Right-Click to cancel on the selected item witho
 L_MISC_UI_OUTDATED = "Tu versión de ShestakUI no está actualizada. Puedes descargar la última versión de www.shestak.org"
 L_MISC_HEADER_MARK = "Mouseover Raid Icons" -- Needs review
 L_MISC_BINDER_OPEN = "Mouse Bindings" -- Needs review
-L_MISC_MOUNTS_GROUND = "Ground" -- Needs review
-L_MISC_MOUNTS_FLYING = "Flying" -- Needs review
-L_MISC_MOUNTS_FLYINGGROUND = "Flying & Ground" -- Needs review
-L_MISC_MOUNTS_SWIMMING = "Swimming" -- Needs review
 L_MISC_GROCERY_BUY = "Buy" -- Needs review
 L_MISC_GROCERY_DESC = "Automatically buy grocery bags" -- Needs review
-L_MISC_GROCERY_ERROR = "Not enough items." -- Needs review
 L_MISC_SCROLL = "Pergamino"
 
 -- Raid Utility
@@ -106,21 +104,6 @@ L_MINIMAP_HEAL_LAYOUT = "Left-Click - Heal Layout" -- Needs review
 L_MINIMAP_DPS_LAYOUT = "Right-Click - DPS Layout" -- Needs review
 L_MINIMAP_BLIZZ_LAYOUT = "Middle-Click - Blizzard Layout" -- Needs review
 
--- Addons list
-L_ALOAD_RL = "Recargar UI"
-L_ALOAD_DEP = "Dependencias: "
-L_ALOAD_OP_DEP = "Optional Dependencies: " -- Needs review
-L_ALOAD_AUTHOR = "Author: " -- Needs review
-L_ALOAD_PROFILES = "Profiles" -- Needs review
-L_ALOAD_ENABLE_ALL = "Enable All" -- Needs review
-L_ALOAD_DISABLE_ALL = "Disable All" -- Needs review
-L_ALOAD_PROFILE_NAME = "Profile Name" -- Needs review
-L_ALOAD_SET_TO = "Set To.." -- Needs review
-L_ALOAD_ADD_TO = "Add To.." -- Needs review
-L_ALOAD_REMOVE_FROM = "Remove From.." -- Needs review
-L_ALOAD_DELETE_PROFILE = "Delete Profile.." -- Needs review
-L_ALOAD_CONFIRM_DELETE = "Are you sure you want to delete this profile? Hold down shift and click again if you are." -- Needs review
-
 -- Chat
 L_CHAT_WHISPER = "De"
 L_CHAT_BN_WHISPER = "De"
@@ -144,22 +127,7 @@ L_CHAT_GONE_OFFLINE = "se ha |cffff0000desconectado|r."
 L_ERRORFRAME_L = "Click para ver errores."
 
 -- Bags
-L_BAG_BANK = "Banco"
-L_BAG_COSTS = "Costo: %.2f oro"
-L_BAG_BUY_SLOTS = "Compra un nuevo espacio mediante /bags purchase yes"
-L_BAG_OPEN_BANK = "Necesitas abrir primero el banco."
-L_BAG_SORT = "Ordena tu bolsa, o tu banco si está abierto."
-L_BAG_STACK = "Llena los montones incompletos en tu bolsa, o en tu banco si está abierto."
-L_BAG_BUY_BANKS_SLOT = "Compra un espacio en el banco (Necesitas tener el banco abierto)."
-L_BAG_SORT_MENU = "Ordenar"
-L_BAG_SORT_SPECIAL = "Orden Especial"
-L_BAG_STACK_MENU = "Amontonar"
-L_BAG_STACK_SPECIAL = "Montón Especial"
 L_BAG_SHOW_BAGS = "Mostrar Bolsas"
-L_BAG_SORTING_BAGS = "Se ha acabado de ordenar."
-L_BAG_NOTHING_SORT = "No hay nada que ordenar."
-L_BAG_BAGS_BIDS = "Usando las bolsas: "
-L_BAG_STACK_END = "Se ha acabado de amontonar."
 L_BAG_RIGHT_CLICK_SEARCH = "Click derecho para buscar"
 
 -- Grab mail
@@ -173,8 +141,6 @@ L_MAIL_MESSAGES = "mensajes"
 L_LOOT_RANDOM = "Jugador aleatorio"
 L_LOOT_SELF = "Despojar automáticamente"
 L_LOOT_FISH = "Despojar pescado"
-L_LOOT_MONSTER = ">> Botín de "
-L_LOOT_CHEST = ">> Botín del cofre"
 L_LOOT_ANNOUNCE = "Anunciar a"
 L_LOOT_TO_RAID = "  banda"
 L_LOOT_TO_PARTY = "  grupo"
@@ -285,7 +251,7 @@ L_STATS_WORLD_MAP = "Clickeando abres el Mapa del Mundo."
 L_STATS_CURRENT_XP = "Actual/Max EXP"
 L_STATS_MEMORY_USAGE = "Blizzard UI Memory Usage:" -- Needs review
 L_STATS_GARBAGE_COLLECTED = "Basura recogida"
-L_STATS_CHANGE_SORTING = "[Hermandad] Click-Derecho para cambiar la clasificacion, shift-click-derecho para invertir el orden."
+L_STATS_CHANGE_SORTING = "[Hermandad] Click-Derecho para cambiar la clasificacion, Shift-Click-Derecho para invertir el orden."
 L_STATS_HIDDEN = "Oculto"
 L_STATS_VIEW_NOTES = "Manten pulsada la tecla Alt para ver rangos, notas y notas de oficiales."
 L_STATS_HR = "hr"
@@ -359,7 +325,6 @@ L_SLASHCMD_HELP = {
 	"/resetstats - Reinicia las estadísticas de oro y tiempo empleado.",
 	"/settings ADDON_NAME - Aplica la configuración a msbt, dbm, skada, o a todos los addons (con 'all').",
 	"/ls, /litestats - Ayuda para LiteStats.",
-	"/bags - Gestiona las bolsas.",
 	"/xct - Gestiona el texto de combate.",
 	"/raidcd - Prueba de los enfriamientos de la banda.",
 	"/enemycd - Prueba de los enfriamientos del enemigo.",
