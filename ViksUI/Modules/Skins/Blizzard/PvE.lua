@@ -352,6 +352,10 @@ local function LoadSkin()
 	LFGListFrame.SearchPanel.ResultsInset.Bg:Hide()
 	LFGListFrame.SearchPanel.ResultsInset:DisableDrawLayer("BORDER")
 
+	LFGListFrame.NothingAvailable.Inset.Bg:Hide()
+	select(10, LFGListFrame.NothingAvailable.Inset:GetRegions()):Hide()
+	LFGListFrame.NothingAvailable.Inset:DisableDrawLayer("BORDER")
+
 	LFGListFrame.CategorySelection.FindGroupButton:SkinButton()
 	LFGListFrame.CategorySelection.StartGroupButton:SkinButton()
 	LFGListFrame.SearchPanel.RefreshButton:SkinButton()
@@ -362,7 +366,7 @@ local function LoadSkin()
 	LFGListFrame.SearchPanel.RefreshButton:SetSize(24, 24)
 	LFGListFrame.SearchPanel.RefreshButton.Icon:SetPoint("CENTER")
 
-	-- T.SkinEditBox(LFGListFrame.SearchPanel.SearchBox)
+	T.SkinEditBox(LFGListFrame.SearchPanel.SearchBox)
 	T.SkinScrollBar(LFGListFrame.SearchPanel.ScrollFrame.scrollBar)
 
 	T.SkinCloseButton(PVEFrameCloseButton)
@@ -382,7 +386,6 @@ local function LoadSkin()
 	LFGDungeonReadyDialog.SetBackdrop = T.dummy
 	LFGListFrame.CategorySelection.CategoryButtons[1]:SetNormalFontObject(GameFontNormal)
 	hooksecurefunc("LFGListCategorySelection_AddButton", function(self, index)
-		--T.SkinEditBox(LFGListFrame.SearchPanel.SearchBox)
 		local button = self.CategoryButtons[index]
 		if button and not button.styled then
 			button.Cover:Hide()
