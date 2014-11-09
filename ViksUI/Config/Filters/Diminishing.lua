@@ -13,9 +13,8 @@ T.DiminishingSpells = {
 	[91797] = {"ctrlstun"},		-- Monstrous Blow (Mutated Ghoul)
 	[115001] = {"ctrlstun"},	-- Remorseless Winter
 	[22570] = {"ctrlstun"},		-- Maim
-	--WoD [9005] = {"ctrlstun"},		-- Pounce
+	[163505] = {"ctrlstun"},	-- Rake
 	[5211] = {"ctrlstun"},		-- Mighty Bash
-	--WoD [102795] = {"ctrlstun"},	-- Bear Hug
 	[19577] = {"ctrlstun"},		-- Intimidation
 	[117526] = {"ctrlstun"},	-- Binding Shot
 	[44572] = {"ctrlstun"},		-- Deep Freeze
@@ -24,7 +23,6 @@ T.DiminishingSpells = {
 	[120086] = {"ctrlstun"},	-- Fists of Fury
 	[853] = {"ctrlstun"},		-- Hammer of Justice
 	[105593] = {"ctrlstun"},	-- Fist of Justice
-	--WoD [115752] = {"ctrlstun"},	-- Blinding Light
 	[119072] = {"ctrlstun"},	-- Holy Wrath
 	[1833] = {"ctrlstun"},		-- Cheap Shot
 	[408] = {"ctrlstun"},		-- Kidney Shot
@@ -39,14 +37,14 @@ T.DiminishingSpells = {
 	-- Control Roots
 	[96294] = {"ctrlroot"},		-- Chains of Ice
 	[339] = {"ctrlroot"},		-- Entangling Roots
-	--WoD [19975] = {"ctrlroot"},		-- Nature's Grasp
+	[170855] = {"ctrlroot"},	-- Entangling Roots (Nature's Grasp)
 	[102359] = {"ctrlroot"},	-- Mass Entanglement
 	[136634] = {"ctrlroot"},	-- Narrow Escape
 	[122] = {"ctrlroot"},		-- Frost Nova
 	[33395] = {"ctrlroot"},		-- Freeze (Water Elemental)
 	[116706] = {"ctrlroot"},	-- Disable
 	[114404] = {"ctrlroot"},	-- Void Tendril's Grasp
-	[63685] = {"ctrlroot"},		-- Freeze
+	[63685] = {"ctrlroot"},		-- Frozen Power
 	[107566] = {"ctrlroot"},	-- Staggering Shout
 
 	-- Disorients
@@ -56,9 +54,13 @@ T.DiminishingSpells = {
 	[28272] = {"disorient"},	-- Polymorph (Pig)
 	[28271] = {"disorient"},	-- Polymorph (Turtle)
 	[61305] = {"disorient"},	-- Polymorph (Black Cat)
-	[61025] = {"disorient"},	-- Polymorph (Serpent)
 	[61721] = {"disorient"},	-- Polymorph (Rabbit)
 	[61780] = {"disorient"},	-- Polymorph (Turkey)
+	[161355] = {"disorient"},	-- Polymorph (Penguin)
+	[161354] = {"disorient"},	-- Polymorph (Monkey)
+	[126819] = {"disorient"},	-- Polymorph (Porcupine)
+	[161353] = {"disorient"},	-- Polymorph (Polar Bear Cub)
+	[161372] = {"disorient"},	-- Polymorph (Peacock)
 	[82691] = {"disorient"},	-- Ring of Frost
 	[115078] = {"disorient"},	-- Paralysis
 	[20066] = {"disorient"},	-- Repentance
@@ -74,7 +76,6 @@ T.DiminishingSpells = {
 	[10326] = {"fear"},			-- Turn Evil
 	[145067] = {"fear"},		-- Turn Evil (Talent)
 	[8122] = {"fear"},			-- Psychic Scream
-	--WoD [113792] = {"fear"},		-- Psychic Terror
 	[2094] = {"fear"},			-- Blind
 	[118699] = {"fear"},		-- Fear
 	[5484] = {"fear"},			-- Howl of Terror
@@ -93,7 +94,7 @@ T.DiminishingSpells = {
 	[7922] = {"rndstun"},		-- Warbringer
 
 	-- Random Roots
-	--WoD [19185] = {"rndroot"},		-- Entrapment
+	[135373] = {"rndroot"},		-- Entrapment
 	[111340] = {"rndroot"},		-- Ice Ward
 	[64695] = {"rndroot"},		-- Earthgrab
 
@@ -109,11 +110,13 @@ T.DiminishingSpells = {
 	[31935] = {"silence"},		-- Avenger's Shield
 	[15487] = {"silence"},		-- Silence
 	[1330] = {"silence"},		-- Garrote
-	[25046] = {"silence"},		-- Arcane Torrent (Energy version)
-	[28730] = {"silence"},		-- Arcane Torrent (Mana version)
-	[50613] = {"silence"},		-- Arcane Torrent (Runic power version)
-	[69179] = {"silence"},		-- Arcane Torrent (Rage version)
-	[80483] = {"silence"},		-- Arcane Torrent (Focus version)
+	[25046] = {"silence"},		-- Arcane Torrent (Energy)
+	[28730] = {"silence"},		-- Arcane Torrent (Mana)
+	[50613] = {"silence"},		-- Arcane Torrent (Runic Power)
+	[69179] = {"silence"},		-- Arcane Torrent (Rage)
+	[80483] = {"silence"},		-- Arcane Torrent (Focus)
+	[129597] = {"silence"},		-- Arcane Torrent (Chi)
+	[155145] = {"silence"},		-- Arcane Torrent (Holy Power)
 
 	-- Misc
 	[605] = {"mind"},			-- Dominate Mind
@@ -127,6 +130,7 @@ end
 T.DiminishingIcons = {
 	["ctrlstun"] = GetIcon(408),
 	["ctrlroot"] = GetIcon(122),
+	["disorient"] = GetIcon(118),
 	["fear"] = GetIcon(8122),
 	["horror"] = GetIcon(64044),
 	["mind"] = GetIcon(605),

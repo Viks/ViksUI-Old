@@ -351,7 +351,6 @@ T.RaidDebuffs = {
 	-- Priest
 	[SpellName(605)] = 3,		-- Dominate Mind
 	[SpellName(8122)] = 3,		-- Psychic Scream
-	--WoD [SpellName(113792)] = 3,	-- Psychic Terror
 	[SpellName(64044)] = 3,		-- Psychic Horror
 	[SpellName(15487)] = 3,		-- Silence
 	-- Rogue
@@ -361,10 +360,9 @@ T.RaidDebuffs = {
 	-- Shaman
 	[SpellName(51514)] = 3,		-- Hex
 	[SpellName(118905)] = 3,	-- Static Charge
-	[SpellName(63685)] = 2,		-- Freeze
+	[SpellName(63685)] = 2,		-- Frozen Power
 	-- Warlock
 	[SpellName(118699)] = 3,	-- Fear
-	--WoD [SpellName(104045)] = 3,	-- Sleep
 	[SpellName(6789)] = 3,		-- Mortal Coil
 	[SpellName(5484)] = 3,		-- Howl of Terror
 	[SpellName(6358)] = 3,		-- Seduction (Succubus)
