@@ -343,7 +343,6 @@ end)
 ----------------------------------------------------------------------------------------
 --	Old achievements filter
 ----------------------------------------------------------------------------------------
---[[
 function AchievementFrame_GetCategoryNumAchievements_OldIncomplete(categoryID)
 	local numAchievements, numCompleted = GetCategoryNumAchievements(categoryID)
 	return numAchievements - numCompleted, 0, numCompleted
@@ -371,5 +370,3 @@ filter:SetScript("OnEvent", function(self, event, addon, ...)
 		end
 	end
 end)
-
---]]
