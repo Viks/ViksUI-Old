@@ -17,7 +17,7 @@ local AddMessage = function(self, text, ...)
 	end
 	return origs[self](self, text, ...)
 end
-
+SetCVar("chatStyle", "im")
 local format = string.format
 local gsub = string.gsub
 local sub = string.sub
