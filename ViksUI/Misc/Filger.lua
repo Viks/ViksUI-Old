@@ -1696,6 +1696,8 @@ Filger_Spells = {
 
 			-- Buffs
 			-- Divine Insight
+			{spellID = 123267, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Shadowy Insight
 			{spellID = 124430, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Surge of Light
 			{spellID = 114255, unitID = "player", caster = "player", filter = "BUFF"},
@@ -2057,7 +2059,7 @@ Filger_Spells = {
 			-- Crippling Poison
 			{spellID = 3409, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Wound Poison
-			{spellID = 8680, unitID = "target", caster = "player", filter = "DEBUFF"},	
+			{spellID = 8680, unitID = "target", caster = "player", filter = "DEBUFF"},
 		},
 		{
 			Name = "PVE/PVP_CC",

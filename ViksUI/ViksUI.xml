@@ -267,6 +267,7 @@
 	<Script file="Modules\Skins\Recount.lua"/>
 	<Script file="Modules\Skins\Skada.lua"/>
 	<Script file="Modules\Skins\TinyDPS.lua"/>
+	<Script file="Modules\Skins\zygor.lua"/>
 	<Script file="Modules\Skins\VanasKoS.lua"/>
 	<Script file="Modules\Skins\WeakAuras.lua"/>
 	<Script file="Modules\Skins\tmp.lua"/>
