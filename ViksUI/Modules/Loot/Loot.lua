@@ -196,7 +196,7 @@ close:SetScript("OnClick", function() CloseLoot() end)
 ----------------------------------------------------------------------------------------
 local function Announce(chn)
 	local nums = GetNumLootItems()
-	iif nums == 0 or (nums == 1 and GetLootSlotType(1) == LOOT_SLOT_MONEY) then return end
+	if nums == 0 or (nums == 1 and GetLootSlotType(1) == LOOT_SLOT_MONEY) then return end
 	if UnitIsPlayer("target") or not UnitExists("target") then
 		SendChatMessage(">> "..LOOT..":", chn)
 	else
