@@ -159,7 +159,6 @@ Viks["skins"] = {
 	["vanaskos"] = false,						-- VanasKoS skin
 	["weak_auras"] = false,						-- WeakAuras skin
 	["skada"] = true,							-- Skada skin
-	["zygor"] = true,							-- zygor skin	
 	["my_role_play"] = false,					-- MyRolePlay skin
 	["ExtraActionBarFrame"] = true, 		-- Skinn ExtraActionBarFrame with Masque
 }
