@@ -10,21 +10,10 @@ if Viks.raidcooldown.enable == true then
 		[20484] = 600,	-- Rebirth
 		[61999] = 600,	-- Raise Ally
 		[20707] = 600,	-- Soulstone
-		[126393] = 600,	-- Eternal Guardian
-		[6346] = 180,	-- Fear Ward
-		[32182] = 300,	-- Heroism
-		[2825] = 300,	-- Bloodlust
-		[80353] = 300,	-- Time Warp
-		[90355] = 300,	-- Ancient Hysteria
-			-- Сейвы
+		[126393] = 600,	-- Eternal Guardian (Quilen)
+		[159956] = 600,	-- Dust of Life (Moth)
+		[159931] = 600,	-- Gift of Chi-Ji (Crane)
 		[108280] = 180,	-- Healing Tide Totem
-		[64843] = 180,  -- Divine Hymn (Божественный гимн)
-		[33206] = 180,  -- Pain Suppression (Подавление боли)
-		[62618] = 180,  -- Power Word: Barrier (Купол)
-		[97462] = 180,  -- Rallying Cry (Ободряющий клич)
-		[31821] = 120,  -- Devotion Aura
-		[98008] = 180,  -- Spirit Link Totem (Тотем духовной связи)
-		[6940] = 120,   -- Hand of Sacrifice (Сакра)
 	}
 end
 
@@ -79,6 +68,7 @@ if Viks.enemycooldown.enable == true then
 		[1856] = 120,	-- Vanish
 		[19263] = 180,	-- Deterrence
 		[33206] = 180,	-- Pain Suppression
+		[7744] = 180,	-- Will of the Forsaken (Racial)
 	}
 end
 

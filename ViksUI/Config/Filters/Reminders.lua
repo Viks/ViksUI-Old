@@ -9,70 +9,85 @@ if Viks.reminder.raid_buffs_enable == true then
 	-- General buffs
 	T.ReminderBuffs = {
 		Flask = {
+			156071,	-- Draenic Strength Flask
+			156077,	-- Draenic Stamina Flask
+			156070,	-- Draenic Intellect Flask
+			156073,	-- Draenic Agility Flask
+			156080,	-- Greater Draenic Strength Flask
+			156064,	-- Greater Draenic Agility Flask
+			156084,	-- Greater Draenic Stamina Flask
+			156079,	-- Greater Draenic Intellect Flask
+			105694,	-- Flask of the Earth
 			105691,	-- Flask of the Warm Sun
 			105696,	-- Flask of Winter's Bite
 			105693,	-- Flask of Falling Leaves
 			105689,	-- Flask of Spring Blossoms
-			105694,	-- Flask of the Earth
 		},
 		BattleElixir = {
+			105686,	-- Elixir of Perfection
 			105688,	-- Monk's Elixir
 			105685,	-- Elixir of Peace
 			105682,	-- Mad Hozen Elixir
 			105683,	-- Elixir of Weaponry
 			105684,	-- Elixir of the Rapids
-			105686,	-- Elixir of Perfection
 		},
 		GuardianElixir = {
-			105681,	-- Mantid Elixir
 			105687,	-- Elixir of Mirrors
+			105681,	-- Mantid Elixir
 		},
 		Food = {
 			104280,	-- Well Fed
 		},
 		Stat = {
-			20217,	-- Blessing of Kings
+			1126,	-- Mark of the Wild
+			159988,	-- Bark of the Wild (Dog)
+			160017,	-- Blessing of Kongs (Gorilla)
+			90363,	-- Embrace of the Shale Spider
+			160077,	-- Strength of the Earth (Worm)
 			115921,	-- Legacy of the Emperor
 			116781,	-- Legacy of the White Tiger
-			90363,	-- Embrace of the Shale Spider
-			1126,	-- Mark of the Wild
+			20217,	-- Blessing of Kings
 		},
 		Stamina = {
-			469,	-- Commanding Shout
-			90364,	-- Qiraji Fortitude
-			166928,	-- Blood Pact
-			111922,	-- Runescroll of Fortitude III
 			21562,	-- Power Word: Fortitude
+			90364,	-- Qiraji Fortitude (Silithid)
+			160003,	-- Savage Vigor (Rylak)
+			160014,	-- Sturdiness (Goat)
+			166928,	-- Blood Pact
+			469,	-- Commanding Shout
+			111922,	-- Runescroll of Fortitude III
 		}
 	}
 
 	-- Caster buffs
 	function T.ReminderCasterBuffs()
 		Spell5Buff = {	-- Spell Power
-			109773,	-- Dark Intent
-			126309,	-- Still Water
-			128433,	-- Serpent's Swiftness
-			61316,	-- Dalaran Brilliance
 			1459,	-- Arcane Brilliance
+			61316,	-- Dalaran Brilliance
+			126309,	-- Still Water (Water Strider)
+			128433,	-- Serpent's Cunning (Serpent)
+			90364,	-- Qiraji Fortitude (Silithid)
+			109773,	-- Dark Intent
 		}
 	end
 
 	-- Physical buffs
 	function T.ReminderPhysicalBuffs()
 		Spell5Buff = {	-- Attack Power
-			6673,	-- Battle Shout
-			19506,	-- Trueshot Aura
 			57330,	-- Horn of Winter
+			19506,	-- Trueshot Aura
+			6673,	-- Battle Shout
 		}
 	end
 
 	Spell6Buff = {	-- Haste
-		49868,	-- Mind Quickening
-		135678,	-- Energizing Spores
-		113742,	-- Swiftblade's Cunning
-		128432,	-- Cackling Howl
-		55610,	-- Unholy Aura
 		116956,	-- Grace of Air
+		55610,	-- Unholy Aura
+		128432,	-- Cackling Howl (Hyena)
+		135678,	-- Energizing Spores (Sporebat)
+		160003,	-- Savage Vigor (Rylak)
+		49868,	-- Mind Quickening
+		113742,	-- Swiftblade's Cunning
 	}
 end
 
@@ -113,6 +128,8 @@ if Viks.reminder.solo_buffs_enable == true then
 					19506,	-- Trueshot Aura
 				},
 				["combat"] = true,
+				["instance"] = true,
+				["pvp"] = true,
 			},
 			[2] = {	-- Blood Presence group
 				["spells"] = {
@@ -151,9 +168,11 @@ if Viks.reminder.solo_buffs_enable == true then
 				},
 				["negate_spells"] = {
 					1126,	-- Mark of the Wild
-					20217,	-- Blessing of Kings
+					160017,	-- Blessing of Kongs (Gorilla)
 					90363,	-- Embrace of the Shale Spider
+					160077,	-- Strength of the Earth (Worm)
 					116781,	-- Legacy of the White Tiger
+					20217,	-- Blessing of Kings
 				},
 				["combat"] = true,
 				["instance"] = true,
@@ -187,9 +206,11 @@ if Viks.reminder.solo_buffs_enable == true then
 				},
 				["negate_spells"] = {
 					1126,	-- Mark of the Wild
+					160017,	-- Blessing of Kongs (Gorilla)
+					90363,	-- Embrace of the Shale Spider
+					160077,	-- Strength of the Earth (Worm)
 					115921,	-- Legacy of the Emperor
 					116781,	-- Legacy of the White Tiger
-					90363,	-- Embrace of the Shale Spider
 				},
 				["personal"] = {
 					19740,	-- Blessing of Might
@@ -222,9 +243,11 @@ if Viks.reminder.solo_buffs_enable == true then
 					21562,	-- Power Word: Fortitude
 				},
 				["negate_spells"] = {
-					469,	-- Commanding Shout
-					90364,	-- Qiraji Fortitude
+					90364,	-- Qiraji Fortitude (Silithid)
+					160003,	-- Savage Vigor (Rylak)
+					160014,	-- Sturdiness (Goat)
 					166928,	-- Blood Pact
+					469,	-- Commanding Shout
 				},
 				["combat"] = true,
 				["instance"] = true,
@@ -242,7 +265,7 @@ if Viks.reminder.solo_buffs_enable == true then
 				["instance"] = true,
 				["pvp"] = true,
 			},
-			[2] = {	--  Non-Lethal Poisons group
+			[2] = {	-- Non-Lethal Poisons group
 				["spells"] = {
 					3408,	-- Crippling Poison
 					108211,	-- Leeching Poison
@@ -280,15 +303,18 @@ if Viks.reminder.solo_buffs_enable == true then
 					469,	-- Commanding Shout
 				},
 				["negate_spells"] = {
+					90364,	-- Qiraji Fortitude (Silithid)
+					160003,	-- Savage Vigor (Rylak)
+					160014,	-- Sturdiness (Goat)
 					21562,	-- Power Word: Fortitude
-					90364,	-- Qiraji Fortitude
 					166928,	-- Blood Pact
 				},
 				["personal"] = {
 					6673,	-- Battle Shout
 				},
 				["combat"] = true,
-				["role"] = "Tank",
+				["instance"] = true,
+				["pvp"] = true,
 			},
 			[2] = {	-- Battle Shout group
 				["spells"] = {
@@ -302,7 +328,8 @@ if Viks.reminder.solo_buffs_enable == true then
 					469,	-- Commanding Shout
 				},
 				["combat"] = true,
-				["role"] = "Melee",
+				["instance"] = true,
+				["pvp"] = true,
 			},
 		},
 	}

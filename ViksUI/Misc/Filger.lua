@@ -286,8 +286,7 @@ Filger_Spells = {
 			{slotID = 14, filter = "CD"},
 
 			-- Internal
-			-- Shroud of Purgatory
-			{spellID = 116888, filter = "ICD", trigger = "BUFF", duration = 180},
+
 		},
 	},
 	["DRUID"] = {
@@ -477,8 +476,6 @@ Filger_Spells = {
 			-- Caster General
 			-- Jade Spirit (Intellect + Spirit)
 			{spellID = 104993, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Lightweave (Intellect)
-			{spellID = 125487, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Caster Heal
 
 			-- Legendary Meta Gems
@@ -622,8 +619,6 @@ Filger_Spells = {
 			{slotID = 14, filter = "CD"},
 
 			-- Internal
-			-- Lightweave
-			{spellID = 125487, filter = "ICD", trigger = "BUFF", duration = 60},
 			-- Purified Bindings of Immerseus (Intellect, Proc)
 			{spellID = 146046, filter = "ICD", trigger = "BUFF", duration = 115},
 		},
@@ -961,8 +956,6 @@ Filger_Spells = {
 			-- Caster General
 			-- Jade Spirit (Intellect + Spirit)
 			{spellID = 104993, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Lightweave (Intellect)
-			{spellID = 125487, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Legendary Meta Gems
 			-- Sinister Primal Diamond (Caster DPS)
@@ -1127,8 +1120,6 @@ Filger_Spells = {
 			{slotID = 14, filter = "CD"},
 
 			-- Internal
-			-- Lightweave
-			{spellID = 125487, filter = "ICD", trigger = "BUFF", duration = 60},
 			-- Purified Bindings of Immerseus (Intellect, Proc)
 			{spellID = 146046, filter = "ICD", trigger = "BUFF", duration = 115},
 		},
@@ -1268,8 +1259,6 @@ Filger_Spells = {
 			-- Caster General
 			-- Jade Spirit (Intellect + Spirit)
 			{spellID = 104993, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Lightweave (Intellect)
-			{spellID = 125487, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Caster Heal
 
 			-- Legendary Meta Gems
@@ -1537,8 +1526,6 @@ Filger_Spells = {
 			-- Caster General
 			-- Jade Spirit (Intellect + Spirit)
 			{spellID = 104993, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Lightweave (Intellect)
-			{spellID = 125487, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Caster Heal
 
 			-- Legendary Meta Gems
@@ -1771,8 +1758,6 @@ Filger_Spells = {
 			-- Caster General
 			-- Jade Spirit (Intellect + Spirit)
 			{spellID = 104993, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Lightweave (Intellect)
-			{spellID = 125487, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Caster Heal
 
 			-- Legendary meta gems
@@ -2297,8 +2282,6 @@ Filger_Spells = {
 			-- Caster General
 			-- Jade Spirit (Intellect + Spirit)
 			{spellID = 104993, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Lightweave (Intellect)
-			{spellID = 125487, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Caster Heal
 
 			-- Legendary Meta Gems
@@ -2426,8 +2409,6 @@ Filger_Spells = {
 			{slotID = 14, filter = "CD"},
 
 			-- Internal
-			-- Lightweave
-			{spellID = 125487, filter = "ICD", trigger = "BUFF", duration = 60},
 			-- Purified Bindings of Immerseus (Intellect, Proc)
 			{spellID = 146046, filter = "ICD", trigger = "BUFF", duration = 115},
 		},
@@ -2527,8 +2508,6 @@ Filger_Spells = {
 			-- Caster General
 			-- Jade Spirit (Intellect + Spirit)
 			{spellID = 104993, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Lightweave (Intellect)
-			{spellID = 125487, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Legendary meta gems
 
@@ -2560,7 +2539,7 @@ Filger_Spells = {
 			-- Immolate
 			{spellID = 348, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Unstable Affliction
-			{spellID = 30108, unitID = "target", caster = "player", filter = "DEBUFF"},
+			{spellID = 30108, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
 			-- Haunt
 			{spellID = 48181, unitID = "target", caster = "player", filter = "DEBUFF"},
 		},
@@ -2647,8 +2626,6 @@ Filger_Spells = {
 			{slotID = 14, filter = "CD"},
 
 			-- Internal
-			-- Lightweave
-			{spellID = 125487, filter = "ICD", trigger = "BUFF", duration = 60},
 			-- Purified Bindings of Immerseus (Intellect, Proc)
 			{spellID = 146046, filter = "ICD", trigger = "BUFF", duration = 115},
 		},
@@ -2685,6 +2662,8 @@ Filger_Spells = {
 			{spellID = 12292, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Recklesness
 			{spellID = 1719, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Shield Charge
+			{spellID = 169667, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Sweeping Strikes
 			{spellID = 12328, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Victorious
@@ -2712,6 +2691,8 @@ Filger_Spells = {
 			{spellID = 122510, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Meat Cleaver
 			{spellID = 85739, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Unyielding Strikes
+			{spellID = 169686, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Enrage
 			{spellID = 12880, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Rude Interruption
@@ -2845,8 +2826,6 @@ Filger_Spells = {
 			{spellID = 1160, filter = "CD"},
 			-- Enraged Regeneration
 			{spellID = 55694, filter = "CD"},
-			-- Commanding Shout
-			{spellID = 469, filter = "CD"},
 			-- Shield Wall
 			{spellID = 871, filter = "CD"},
 			-- Last Stand
