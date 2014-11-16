@@ -6,8 +6,8 @@
 ----------------------------------------------------------------------------------------
 L_GUI_BUTTON_RESET = "Réinitialisation totale de l'UI"
 L_GUI_SET_SAVED_SETTTINGS = "Sauvegarder la configuration par personnage"
-L_GUI_RESET_CHAR = "Réinitialiser les paramètres de votre personnage sur ShestakUI ?"
-L_GUI_RESET_ALL = "Réinitialiser tous les paramètres de ShestakUI ?"
+L_GUI_RESET_CHAR = "Réinitialiser les paramètres de votre personnage sur ViksUI ?"
+L_GUI_RESET_ALL = "Réinitialiser tous les paramètres de ViksUI ?"
 L_GUI_PER_CHAR = "Modifier la configuration du personnage ?"
 L_GUI_MAKE_SELECTION = "Choisir une configuration avant de continuer."
 

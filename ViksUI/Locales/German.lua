@@ -57,7 +57,7 @@ L_MISC_BUY_STACK = "Alt-Klick um einen Stapel zu kaufen"
 L_MISC_ONECLICK_BUYOUT = "Shift-Right-Click um den ausgewählten Gegenstand ohne Bestätigung zu kaufen"
 L_MISC_ONECLICK_BID = "Shift-Right-Click um auf den ausgewählten Gegenstand ohne Bestätigung zu bieten"
 L_MISC_ONECLICK_CANCEL = "Shift-Right-Click um den ausgewählten Gegenstand ohne Bestätigung abzubrechen"
-L_MISC_UI_OUTDATED = "Deine Version von ShestakUI ist veraltet. Du kannst die aktuelle Version von www.shestak.org laden"
+L_MISC_UI_OUTDATED = "Deine Version von ViksUI ist veraltet. Du kannst die aktuelle Version von www.shestak.org laden"
 L_MISC_HEADER_MARK = "Mausdrüber Raid Icon"
 L_MISC_BINDER_OPEN = "Maus gebunden"
 L_MISC_GROCERY_BUY = "Kaufen"
@@ -205,12 +205,12 @@ L_INFO_SKIN_DISABLED1 = "Stilisierung für "
 L_INFO_SKIN_DISABLED2 = " ist ausgeschaltet."
 
 -- Popups
-L_POPUP_INSTALLUI = "Dies ist Ihre erste Benutzung von ShestakUI mit diesem Charakter. Um das Interface zu konfigurieren, wird das UI nun neugeladen."
-L_POPUP_RESETUI = "Sind Sie sich sicher, dass Sie die Einstellungen von ShestakUI zurückgesetzen wollen?"
+L_POPUP_INSTALLUI = "Dies ist Ihre erste Benutzung von ViksUI mit diesem Charakter. Um das Interface zu konfigurieren, wird das UI nun neugeladen."
+L_POPUP_RESETUI = "Sind Sie sich sicher, dass Sie die Einstellungen von ViksUI zurückgesetzen wollen?"
 L_POPUP_RESETSTATS = "Bist du sicher das du die Gold und verbrachte Zeit Statistik zurücksetzen möchtest?"
 L_POPUP_SWITCH_RAID = "Wähle Raid Layout."
 L_POPUP_DISBAND_RAID = "Bist du dir sicher, dass du die Gruppe auflösen möchtest?"
-L_POPUP_DISABLEUI = "ShestakUI funktioniert nicht mit deiner Auflösung, möchtest du ShestakUI ausschalten? (Drücke Abbrechen, falls du eine andere Auflösung testen willst)"
+L_POPUP_DISABLEUI = "ViksUI funktioniert nicht mit deiner Auflösung, möchtest du ViksUI ausschalten? (Drücke Abbrechen, falls du eine andere Auflösung testen willst)"
 L_POPUP_SETTINGS_ALL = "Einstellungen für alle AddOns übernehmen? (DBM/DXE, Skada und MSBT)"
 L_POPUP_SETTINGS_DBM = "Die Position der DBM Elemente muss verändert werden."
 L_POPUP_SETTINGS_DXE = "Die Position der DXE Elemente muss verändert werden."
@@ -219,7 +219,7 @@ L_POPUP_ARMORY = "Waffenkammer"
 L_POPUP_CURRENCY_CAP = "Maximalwert erreicht"
 
 -- Welcome message
-L_WELCOME_LINE_1 = "Willkommen bei ShestakUI "
+L_WELCOME_LINE_1 = "Willkommen bei ViksUI "
 L_WELCOME_LINE_2_1 = "Gebe /cfg ein um das Interface zu konfigurieren, oder besuche http://shestak.org"
 L_WELCOME_LINE_2_2 = "für weitere Informationen."
 
@@ -321,7 +321,7 @@ L_SLASHCMD_HELP = {
 	"/moveui - Ermöglicht das Bewegen der Interface Elemente.",
 	"/resetui - Zurücksetzen der allgemeinen Einstellungen auf die Standardwerte.",
 	"/resetuf - Zurücksetzen der Einheitenfenster auf die Standardposition.",
-	"/resetconfig - Zurücksetzen der ShestakUI_Config Einstellungen.",
+	"/resetconfig - Zurücksetzen der ViksUI_Config Einstellungen.",
 	"/resetstats - Gold Statistik und gespielte Zeit zurücksetzen.",
 	"/settings ADDON_NAME - Einstellungen für msbt, dbm, skada, oder alle Addons anwenden.",
 	"/ls, /litestats - Hilfe für LiteStats.",

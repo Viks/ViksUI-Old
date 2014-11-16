@@ -57,7 +57,7 @@ L_MISC_BUY_STACK = "Alt + click per comprarne una pila"
 L_MISC_ONECLICK_BUYOUT = "Shift + click sul destro per comprare direttamente l'oggetto selezionato senza conferma"
 L_MISC_ONECLICK_BID = "Shift + click sul destro per fare una puntata sull'oggetto selezionato senza conferma"
 L_MISC_ONECLICK_CANCEL = "Shift + click sul destro per cancellare l'oggetto selezionato senza conferma"
-L_MISC_UI_OUTDATED = "La tua versione della ShestakUI non è aggiornata: puoi scaricare la nuova versione da www.shestak.org."
+L_MISC_UI_OUTDATED = "La tua versione della ViksUI non è aggiornata: puoi scaricare la nuova versione da www.shestak.org."
 L_MISC_HEADER_MARK = "Marchi d'incursione al passaggio del mouse"
 L_MISC_BINDER_OPEN = "Assegnazione pulsanti mouse"
 L_MISC_GROCERY_BUY = "Compra"
@@ -205,12 +205,12 @@ L_INFO_SKIN_DISABLED1 = "Restyling per "
 L_INFO_SKIN_DISABLED2 = " è disabilitato."
 
 -- Popups
-L_POPUP_INSTALLUI = "È la prima volta che utilizzi la ShestakUI con questo personaggio. Devi riavviare l'interfaccia utente per configurarla."
-L_POPUP_RESETUI = "Vuoi davvero ripristinare tutte le impostazioni iniziali della ShestakUI?"
+L_POPUP_INSTALLUI = "È la prima volta che utilizzi la ViksUI con questo personaggio. Devi riavviare l'interfaccia utente per configurarla."
+L_POPUP_RESETUI = "Vuoi davvero ripristinare tutte le impostazioni iniziali della ViksUI?"
 L_POPUP_RESETSTATS = "Vuoi davvero riazzerare tutte le statistiche relative a tempo trascorso in gioco e oro?"
 L_POPUP_SWITCH_RAID = "Scegli la disposizione per le incursioni."
 L_POPUP_DISBAND_RAID = "Vuoi davvero sciogliere il gruppo?"
-L_POPUP_DISABLEUI = "A questa risoluzione la ShestakUI non funziona correttamente, vuoi disabilitare l'AddOn (clicca 'Cancella' se vuoi provare con un'altra risoluzione)?"
+L_POPUP_DISABLEUI = "A questa risoluzione la ViksUI non funziona correttamente, vuoi disabilitare l'AddOn (clicca 'Cancella' se vuoi provare con un'altra risoluzione)?"
 L_POPUP_SETTINGS_ALL = "Applica le impostazioni per tutte le AddOns (DBM/DXE, Skada e MSBT)?"
 L_POPUP_SETTINGS_DBM = "È necessario cambiare la posizione degli elementi di DBM."
 L_POPUP_SETTINGS_DXE = "È necessario cambiare la posizione degli elementi di DXE."
@@ -219,7 +219,7 @@ L_POPUP_ARMORY = "Armeria"
 L_POPUP_CURRENCY_CAP = "Hai raggiunto il valore massimo di"
 
 -- Welcome message
-L_WELCOME_LINE_1 = "Benvenuto/a in ShestakUI "
+L_WELCOME_LINE_1 = "Benvenuto/a in ViksUI "
 L_WELCOME_LINE_2_1 = "Digita /cfg per configurare l'interfaccia oppure visita http://shestak.org"
 L_WELCOME_LINE_2_2 = "per maggiori informazioni."
 
@@ -321,7 +321,7 @@ L_SLASHCMD_HELP = {
 	"/moveui - Consenti lo spostamento degli elementi dell'interfaccia.",
 	"/resetui - Ripristina le impostazioni generali iniziali.",
 	"/resetuf - Riporta i riquadri delle unità alla loro posizione originaria.",
-	"/resetconfig - Riporta le impostazioni della ShestakUI_Config a quelle iniziali.",
+	"/resetconfig - Riporta le impostazioni della ViksUI_Config a quelle iniziali.",
 	"/resetstats - Riazzera le statistiche su oro e tempo di gioco.",
 	"/settings ADDON_NAME - Applica le impostazioni a MSBT, DBM, Skada o a tutte le AddOns.",
 	"/ls, /litestats - Comandi d'aiuto per LiteStats.",

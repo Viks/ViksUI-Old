@@ -6,8 +6,8 @@
 ----------------------------------------------------------------------------------------
 L_GUI_BUTTON_RESET = "重载插件"
 L_GUI_SET_SAVED_SETTTINGS = "为每个角色分别保存设定"
-L_GUI_RESET_CHAR = "你确定要重置你所有角色的ShestakUI设定?"
-L_GUI_RESET_ALL = "你确定要重置全部ShestakUI设定?"
+L_GUI_RESET_CHAR = "你确定要重置你所有角色的ViksUI设定?"
+L_GUI_RESET_ALL = "你确定要重置全部ViksUI设定?"
 L_GUI_PER_CHAR = "你确定要设定为或者取消设定'每个角色单独设定'模式?"
 L_GUI_MAKE_SELECTION = "在你继续调整设定前必须选选择一个选项."
 

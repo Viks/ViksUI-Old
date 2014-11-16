@@ -355,7 +355,7 @@ L_SLASHCMD_HELP = {
 	"/moveui - Allows the movement of interface elements.",
 	"/resetui - Resets general settings to default.",
 	"/resetuf - Resets the unit frames to their default position.",
-	"/resetconfig - Resets ShestakUI_Config settings.",
+	"/resetconfig - Resets ViksUI_Config settings.",
 	"/resetstats - Resets the statistics of gold and time spent.",
 	"/settings ADDON_NAME - Applies settings to msbt, dbm, skada, or all addons.",
 	"/ls, /litestats - Help for LiteStats.",

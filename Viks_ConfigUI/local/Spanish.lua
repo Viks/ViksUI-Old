@@ -6,8 +6,8 @@
 ----------------------------------------------------------------------------------------
 L_GUI_BUTTON_RESET = "Reinicio total de la UI"
 L_GUI_SET_SAVED_SETTTINGS = "Cambios aplicables sólo a este PJ"
-L_GUI_RESET_CHAR = "¿Estás seguro de que quieres reiniciar tus preferencias de ShestakUI para este PJ?"
-L_GUI_RESET_ALL = "¿Estás seguro de que quieres reiniciar tus preferencias de ShestakUI para todos los PJs?"
+L_GUI_RESET_CHAR = "¿Estás seguro de que quieres reiniciar tus preferencias de ViksUI para este PJ?"
+L_GUI_RESET_ALL = "¿Estás seguro de que quieres reiniciar tus preferencias de ViksUI para todos los PJs?"
 L_GUI_PER_CHAR = "¿Estás segudo de que quieres cambiar a o desde 'Cambios sólo a este PJ'?"
 L_GUI_MAKE_SELECTION = "Debes hacer una selección antes de continuar la configuración."
 

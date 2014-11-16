@@ -273,8 +273,8 @@
 ----------------------------------------------------------------------------------------
 L_GUI_BUTTON_RESET = "Total Reset UI"
 L_GUI_SET_SAVED_SETTTINGS = "Set settings Per-Character"
-L_GUI_RESET_CHAR = "Are you sure you want to reset your character's settings for ShestakUI?"
-L_GUI_RESET_ALL = "Are you sure you want to reset all settings for ShestakUI"
+L_GUI_RESET_CHAR = "Are you sure you want to reset your character's settings for ViksUI?"
+L_GUI_RESET_ALL = "Are you sure you want to reset all settings for ViksUI"
 L_GUI_PER_CHAR = "Are you sure you want to change to or from 'Per Char Settings'?"
 L_GUI_MAKE_SELECTION = "You must make a selection before you can continue to config."
 

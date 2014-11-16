@@ -6,8 +6,8 @@
 ----------------------------------------------------------------------------------------
 L_GUI_BUTTON_RESET = "Ripristino totale IU"
 L_GUI_SET_SAVED_SETTTINGS = "Imposta le impostazioni 'Per-Personaggio'"
-L_GUI_RESET_CHAR = "Vuoi davvero ripristinare le impostazioni iniziali della ShestakUI per questo personaggio?"
-L_GUI_RESET_ALL = "Vuoi davvero ripristinate tutte le impostazioni iniziali della ShestakUI?"
+L_GUI_RESET_CHAR = "Vuoi davvero ripristinare le impostazioni iniziali della ViksUI per questo personaggio?"
+L_GUI_RESET_ALL = "Vuoi davvero ripristinate tutte le impostazioni iniziali della ViksUI?"
 L_GUI_PER_CHAR = "Vuoi davvero modificare questa impostazione (attivazione/disattivazione salvataggio impostazioni 'Per-Personaggio')?"
 L_GUI_MAKE_SELECTION = "Devi selezionare un'opzione prima di poter continuare con la configurazione."
 
