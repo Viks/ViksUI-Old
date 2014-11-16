@@ -27,6 +27,7 @@ Viks["media"] = {
 	["pxcolor2"] = { .41,.80,.94,1 },													-- Color for Value on Datatext if not dynamic color by value
 	["oUFfont"] = "Interface\\Addons\\ViksUI\\Media\\Font\\ROADWAY.ttf", 				-- DataText Font Normal
 	["oUFfontsize"] = 12, 																-- Size of font Datatext
+	["oUFfontcolor"] = { .07, .7, .3, 1}, 												-- Font color used when class colored bars
 	["whisp_sound"] = [[Interface\AddOns\ViksUI\Media\sounds\Whisper.ogg]],				-- Sound for wispers
 	["warning_sound"] = [[Interface\AddOns\ViksUI\Media\sounds\Warning.ogg]],			-- Sound for warning
 	["proc_sound"] = [[Interface\AddOns\ViksUI\Media\sounds\Proc.ogg]],					-- Sound for procs
@@ -159,7 +160,6 @@ Viks["skins"] = {
 	["vanaskos"] = false,						-- VanasKoS skin
 	["weak_auras"] = false,						-- WeakAuras skin
 	["skada"] = true,							-- Skada skin
-	["zygor"] = true,							-- zygor skin	
 	["my_role_play"] = false,					-- MyRolePlay skin
 	["ExtraActionBarFrame"] = true, 		-- Skinn ExtraActionBarFrame with Masque
 }
@@ -454,6 +454,7 @@ Viks["unitframes"] = {
 	["RaidShowAllGroups"] = true,														-- Show All 8 Raid Groups, if not then 5	
 	["RaidShowSolo"] = false,															-- show raid frames even when solo
 	["HealthcolorClass"] = false,														-- health color = class color
+	["HealthBarBackGround"] = { .1, .1, .1, 1},
 	["bigcastbar"] = true,
 	["Powercolor"] = true,																-- power color = class color
 	["showtot"] = true, 																-- show target of target frame

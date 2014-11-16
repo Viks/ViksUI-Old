@@ -341,6 +341,24 @@ oUF.Tags.Methods['drk:color'] = function(u, r)
 end
 oUF.Tags.Events['drk:color'] = 'UNIT_REACTION UNIT_HEALTH UNIT_HAPPINESS'
 
+oUF.Tags.Methods['drk:color2'] = function(u, r)
+	local _, class = UnitClass(u)
+	local reaction = UnitReaction(u, "player")
+	
+	if UnitIsDead(u) or UnitIsGhost(u) or not UnitIsConnected(u) then
+		return "|cffA0A0A0"
+	elseif (UnitIsTapped(u) and not UnitIsTappedByPlayer(u)) then
+		return hex(oUF.colors.tapped)
+	elseif (UnitIsPlayer(u)) then
+		return hex(unpack(Viks.media.oUFfontcolor))
+	elseif reaction then
+		return hex(oUF.colors.reaction[reaction])
+	else
+		return hex(1, 1, 1)
+	end
+end
+oUF.Tags.Events['drk:color2'] = 'UNIT_REACTION UNIT_HEALTH UNIT_HAPPINESS'
+
 oUF.Tags.Methods["drk:afkdnd"] = function(unit) 
 	
 	return UnitIsAFK(unit) and "|cffCFCFCF <afk>|r" or UnitIsDND(unit) and "|cffCFCFCF <dnd>|r" or ""

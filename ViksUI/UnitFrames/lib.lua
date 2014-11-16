@@ -474,7 +474,7 @@ lib.gen_hpbar = function(f)
     local b = s:CreateTexture(nil, "BACKGROUND")
     b:SetTexture(cfg.statusbar_texture)
     b:SetAllPoints(s)
-	b:SetVertexColor(.1,.1,.1)
+	b:SetVertexColor(unpack(Viks.unitframes.HealthBarBackGround))
 	f.Health = s
 end
 
@@ -531,22 +531,41 @@ lib.gen_hpstrings = function(f)
 	else
 		name:SetPoint("RIGHT", hpval, "LEFT", -2, 0)
 	end
-	if f.mystyle == "player" then
-		f:Tag(name, "[drk:color][name][drk:afkdnd]")
-		f:Tag(hpval, retVal(f,"[drk:color][drk:Shp]"))
-	elseif f.mystyle == "target" or f.mystyle == "arena" then 
-		f:Tag(name, "[drk:level] [drk:color][name][drk:afkdnd]")
-		f:Tag(hpval, retVal(f,"[drk:color][drk:Shp]"))
-	elseif f.mystyle == "raid" or f.mystyle == "raid25" or f.mystyle == "party" then
+	if Viks.unitframes.HealthcolorClass then
+	--name:SetFont(cfg.font, fontsize1, "OUTLINE")
+	--hpval:SetFont(cfg.font, fontsize2, "OUTLINE")
+		if f.mystyle == "player" then
+			f:Tag(name, "[drk:color2][name][drk:afkdnd]")
+			f:Tag(hpval, retVal(f,"[drk:color2][drk:Shp]"))
+		elseif f.mystyle == "target" or f.mystyle == "arena" then 
+			f:Tag(name, "[drk:level] [drk:color2][name][drk:afkdnd]")
+			f:Tag(hpval, retVal(f,"[drk:color2][drk:Shp]"))
+		elseif f.mystyle == "raid" or f.mystyle == "raid25" or f.mystyle == "party" then
+			f:Tag(name, "[drk:color2][name][drk:afkdnd]")
+			f:Tag(hpval, "[drk:color2][drk:Shp]")
+		elseif f.mystyle == "tank" then
+		f:Tag(name, "[drk:color2][name][drk:afkdnd]")
+		f:Tag(hpval, "[drk:color2][drk:Shp]")
+		else
+			f:Tag(name, "[drk:color2][name]")
+		end
+	else
+		if f.mystyle == "player" then
+			f:Tag(name, "[drk:color][name][drk:afkdnd]")
+			f:Tag(hpval, retVal(f,"[drk:color][drk:Shp]"))
+		elseif f.mystyle == "target" or f.mystyle == "arena" then 
+			f:Tag(name, "[drk:level] [drk:color][name][drk:afkdnd]")
+			f:Tag(hpval, retVal(f,"[drk:color][drk:Shp]"))
+		elseif f.mystyle == "raid" or f.mystyle == "raid25" or f.mystyle == "party" then
+			f:Tag(name, "[drk:color][name][drk:afkdnd]")
+			f:Tag(hpval, "[drk:color][drk:Shp]")
+		elseif f.mystyle == "tank" then
 		f:Tag(name, "[drk:color][name][drk:afkdnd]")
 		f:Tag(hpval, "[drk:color][drk:Shp]")
-	elseif f.mystyle == "tank" then
-	f:Tag(name, "[drk:color][name][drk:afkdnd]")
-	f:Tag(hpval, "[drk:color][drk:Shp]")
-	else
-		f:Tag(name, "[drk:color][name]")
+		else
+			f:Tag(name, "[drk:color][name]")
+		end
 	end
-	--f:Tag(hpval, retVal(f,"[drk:color][drk:hp]"))
 end
 
 --Setting up the Power Bar. TODO: Clean up the SetHight and SetWidth, by fixing RetVal
