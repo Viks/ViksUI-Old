@@ -3,13 +3,13 @@
 ## Notes: ViksUI
 ## Credits to: Tukz, Dawn, Shestak, Haste, Roth, P3lim, Monolit, AlleyKat, Viks.
 ## Author: Viks
-## Version: 5.07
+## Version: 5.08
 ## X-oUF: oUF
 ## SavedVariables: ViksData, SavedOptions, SavedStats, SavedAddonProfiles, SavedBindings, SavedCurrency
 ## SavedVariablesPerCharacter: ViksDataPerChar, UISavedPositions, StuffingDB, SavedOptionsPerChar, SavedPositions, ImprovedCurrency 
 ## OptionalDeps: Viks_ConfigUI, Masque, Bartender4, Recount, Omen, Skada, KLE, DBM, TinyDPS, DXE, TinyDPS, Blizzard_CombatText, , alEnemyCD, alRaidCD, AtlasLoot, caelNamePlates, cargBags, Clique, dNameplates, DXE, eCastingBar, epgp, Grid, Grid2, Mapster, Omen, oUF_Freebgrid, PitBull4, Postal, Prat-3.0, Quartz, Recount, ShadowedUnitFrames, sThreatMeter2, Stuf, TidyPlates, TipTac, TipTacTalents, TradeSkillMaster_Mailing, tullaCC, VuhDo, _NPCScan.Overlay, Masque
 ## X-oUF: oUF_Viks
-## X-Curse-Packaged-Version: 5.07
+## X-Curse-Packaged-Version: 5.08
 ## X-Curse-Project-Name: ViksUI
 ## X-Curse-Project-ID: viksui
 ViksUI.xml
